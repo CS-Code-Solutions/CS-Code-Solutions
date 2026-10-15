@@ -130,7 +130,6 @@
                     </div>
                     <div class="lg:col-span-5 flex justify-center">
                         <div class="flex flex-col items-center text-center space-y-4">
-                            <!-- Logo maior sem caixa em volta -->
                             <img src="logo.png" alt="Logo Destaque" class="h-44 w-44 object-contain drop-shadow-2xl">
                             <h3 class="text-xl font-bold text-white tracking-wide">CS Code Solutions</h3>
                             <p class="text-sm text-gray-400 max-w-sm">Desenvolvimento ágil, moderno, sem banco de dados complexo e focado na experiência do usuário.</p>
@@ -173,55 +172,57 @@
         <!-- ABA: MINHA HISTÓRIA -->
         <section id="aba-historia" class="tab-content hidden space-y-8">
             <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-blue-500/20">
-                <div class="max-w-3xl mx-auto space-y-8">
+                <div class="max-w-4xl mx-auto space-y-8">
                     <div class="text-center space-y-3">
-                        <h2 class="text-3xl font-extrabold text-white">Nossa História & Trajetória</h2>
+                        <h2 class="text-3xl font-extrabold text-white">Trajetória Acadêmica e Tecnológica</h2>
                         <p class="text-gray-400">A evolução profissional e tecnológica por trás da CS Code Solutions.</p>
                     </div>
 
-                    <div class="prose prose-invert max-w-none space-y-6 text-gray-300 leading-relaxed">
-                        <p>
-                            A <strong>CS Code Solutions</strong> nasceu da paixão por transformar problemas complexos em sistemas limpos, eficientes e de alto impacto visual. Fundada com o propósito de entregar soluções web modernas, a empresa combina engenharia de software de ponta com um atendimento próximo e personalizado.
-                        </p>
-                        <p>
-                            Acreditamos que a tecnologia deve ser acessível, rápida e funcional. Por isso, desenvolvemos arquiteturas enxutas que garantem excelente performance sem a complexidade desnecessária de infraestruturas pesadas.
-                        </p>
-                    </div>
-
-                    <!-- Bloco de Formação e IA -->
-                    <div class="pt-6 border-t border-gray-800 space-y-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-2xl glass-panel flex items-center justify-center p-2 border border-blue-500/30 shadow-lg">
-                                <img src="logo.png" alt="Logo Acadêmica" class="w-full h-full object-contain">
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-white">Trajetória Acadêmica e Tecnológica</h3>
-                                <p class="text-sm text-blue-400">Fundamentos sólidos em Gestão, Desenvolvimento e Inteligência Artificial</p>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-4">
+                        <!-- Logo Grande no lugar do quadrado com chapéu -->
+                        <div class="md:col-span-5 flex justify-center">
+                            <div class="glass-panel p-8 rounded-3xl border border-blue-500/30 shadow-2xl flex flex-col items-center justify-center space-y-4">
+                                <img src="logo.png" alt="CS Code Solutions Logo Grande" class="h-44 w-44 object-contain drop-shadow-2xl">
+                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Inovação & Engenharia</span>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                            <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                                <div class="flex items-center gap-3 text-blue-400 font-semibold">
-                                    <i class="fa-solid fa-graduation-cap text-lg"></i>
-                                    <span>Formação Acadêmica</span>
-                                </div>
-                                <ul class="space-y-2 text-sm text-gray-300">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <strong>GTI</strong> (Gestão da Tecnologia da Informação)</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> <strong>ADS</strong> (Análise e Desenvolvimento de Sistemas)</li>
-                                </ul>
+                        <!-- Texto Descritivo -->
+                        <div class="md:col-span-7 space-y-4 text-gray-300 leading-relaxed text-sm sm:text-base">
+                            <p>
+                                A <strong>CS Code Solutions</strong> reflete uma jornada sólida de aprendizado e especialização em tecnologia. Minha base técnica foi construída através de formações superiores em <strong>Gestão da Tecnologia da Informação (GTI)</strong> e <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong>, unindo visão estratégica de negócios com o desenvolvimento prático de software.
+                            </p>
+                            <p>
+                                Mantendo-me na vanguarda da inovação, especializei-me também através de <strong>cursos avançados em Inteligência Artificial (IA)</strong>, integrando recursos inteligentes, automações e soluções modernas aos projetos desenvolvidos.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-3 py-1 rounded-xl text-xs font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20">ADS & GTI</span>
+                                <span class="px-3 py-1 rounded-xl text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Inteligência Artificial (IA)</span>
+                                <span class="px-3 py-1 rounded-xl text-xs font-medium bg-purple-500/10 text-purple-300 border border-purple-500/20">Full-Stack & Local Systems</span>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                                <div class="flex items-center gap-3 text-emerald-400 font-semibold">
-                                    <i class="fa-solid fa-brain text-lg"></i>
-                                    <span>Especializações & IA</span>
-                                </div>
-                                <ul class="space-y-2 text-sm text-gray-300">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> Cursos avançados em <strong>Inteligência Artificial (IA)</strong></li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i> Integração de modelos generativos e automação</li>
-                                </ul>
+                    <!-- Bloco Detalhado de Formação e IA -->
+                    <div class="pt-8 border-t border-gray-800 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+                            <div class="flex items-center gap-3 text-blue-400 font-semibold">
+                                <i class="fa-solid fa-graduation-cap text-lg"></i>
+                                <span>Formação Acadêmica</span>
                             </div>
+                            <p class="text-sm text-gray-300">
+                                Graduações em <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong> e <strong>Gestão da Tecnologia da Informação (GTI)</strong>, proporcionando profundo conhecimento em arquitetura de sistemas, engenharia de software e gestão de projetos tecnológicos.
+                            </p>
+                        </div>
+
+                        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
+                            <div class="flex items-center gap-3 text-emerald-400 font-semibold">
+                                <i class="fa-solid fa-brain text-lg"></i>
+                                <span>Especialização em Inteligência Artificial</span>
+                            </div>
+                            <p class="text-sm text-gray-300">
+                                Cursos e capacitações focados em <strong>Inteligência Artificial</strong>, aplicação de modelos preditivos, automações inteligentes e integração de ferramentas de IA para otimização de fluxos de trabalho e desenvolvimento web.
+                            </p>
                         </div>
                     </div>
                 </div>
