@@ -44,10 +44,9 @@
     <!-- BARRA DE NAVEGAÇÃO -->
     <header class="glass-panel sticky top-0 z-50 border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo e Nome -->
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="mudarAba('inicio')">
-                <img src="logo.png" alt="CS Code Solutions Logo" class="h-14 w-14 object-contain rounded-xl shadow-lg shadow-blue-500/20">
-                <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">CS CODE SOLUTIONS</span>
+            <!-- Logo com texto (logo2.png) -->
+            <div class="flex items-center cursor-pointer" onclick="mudarAba('inicio')">
+                <img src="logo2.png" alt="CS Code Solutions Logo" class="h-14 w-auto object-contain">
             </div>
 
             <!-- Navegação Desktop -->
@@ -432,7 +431,6 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Banco de Dados simulado em Array (fácil de editar nomes, imagens e categorias)
         const projetosData = [
             {
                 id: 1,
@@ -486,7 +484,6 @@
 
         let projetoAtualId = null;
 
-        // Controle de Abas
         function mudarAba(nomeAba) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(`aba-${nomeAba}`).classList.remove('hidden');
@@ -510,7 +507,6 @@
             menu.classList.toggle('hidden');
         }
 
-        // Renderização dos Projetos
         function renderizarProjetos(filtro = 'todos') {
             const grade = document.getElementById('grade-projetos');
             grade.innerHTML = '';
@@ -544,7 +540,6 @@
         function filtrarCategoria(categoria) {
             renderizarProjetos(categoria);
 
-            // Atualizar botões de filtro na aba projetos
             document.querySelectorAll('#aba-projetos button[id^="filtro-"]').forEach(btn => {
                 btn.className = 'px-4 py-2 rounded-xl text-sm font-medium transition glass-panel text-gray-300 hover:text-white';
             });
@@ -554,7 +549,6 @@
             }
         }
 
-        // Modal de Projeto e LocalStorage
         function abrirModalProjeto(id) {
             const projeto = projetosData.find(p => p.id === id);
             if (!projeto) return;
@@ -566,7 +560,6 @@
             document.getElementById('modal-imagem').src = projeto.imagem;
 
             carregarFeedbacksLocalStorage();
-
             document.getElementById('modal-projeto').classList.remove('hidden');
         }
 
@@ -607,7 +600,6 @@
             });
         }
 
-        // Formulário de Contato Local
         function enviarMensagem(event) {
             event.preventDefault();
             const nome = document.getElementById('contato-nome').value;
@@ -624,7 +616,6 @@
             setTimeout(() => sucesso.classList.add('hidden'), 5000);
         }
 
-        // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             renderizarProjetos('todos');
         });
