@@ -55,10 +55,10 @@
     <header class="sticky top-0 z-50 glass-panel border-b border-csBorder">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <!-- Logo / Marca -->
+            <!-- Logo / Marca com logo.png -->
             <div class="flex items-center space-x-3 cursor-pointer" onclick="mudarTab('inicio')">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-csBlue to-csGreen flex items-center justify-center shadow-lg shadow-blue-500/20">
-                    <i class="fa-solid fa-code text-white text-lg"></i>
+                <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center overflow-hidden shadow-lg shadow-blue-500/10">
+                    <img src="logo.png" alt="CS Code Solutions Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/40x40/131C2E/3B82F6?text=CS';">
                 </div>
                 <div>
                     <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-csGreen bg-clip-text text-transparent">CS Code</span>
@@ -111,7 +111,7 @@
 
             <!-- Ação Rápida WhatsApp -->
             <div class="hidden lg:flex items-center space-x-4">
-                <a href="https://wa.me/5551999999999?text=Olá,%20vi%20o%20portfólio%20da%20CS%20Code%20Solutions%20e%20gostaria%20de%20um%20orçamento!" target="_blank" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-csGreen hover:from-emerald-500 hover:to-emerald-400 text-white font-medium text-sm flex items-center space-x-2 shadow-lg shadow-emerald-900/20 transition-all transform hover:-translate-y-0.5">
+                <a href="https://wa.me/555181061618?text=Olá,%20vi%20o%20portfólio%20da%20CS%20Code%20Solutions%20e%20gostaria%20de%20um%20orçamento!" target="_blank" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-csGreen hover:from-emerald-500 hover:to-emerald-400 text-white font-medium text-sm flex items-center space-x-2 shadow-lg shadow-emerald-900/20 transition-all transform hover:-translate-y-0.5">
                     <i class="fa-brands fa-whatsapp text-base"></i>
                     <span>Falar no WhatsApp</span>
                 </a>
@@ -192,18 +192,18 @@
                             <span class="text-xs text-slate-500 font-mono">cscodesolutions.local</span>
                         </div>
                         <div class="space-y-4">
-                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-                                <div class="flex items-center space-x-3 mb-2">
-                                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-csGreen flex items-center justify-center font-bold">V</div>
-                                    <div>
-                                        <h4 class="text-sm font-semibold text-white">Visão da Empresa</h4>
-                                        <p class="text-xs text-slate-400">Tecnologia acessível e eficiente</p>
-                                    </div>
+                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center overflow-hidden flex-shrink-0">
+                                    <img src="logo.png" alt="Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/48x48/131C2E/3B82F6?text=CS';">
                                 </div>
-                                <p class="text-xs text-slate-300 leading-relaxed">
-                                    Cada linha de código é pensada para gerar valor real para marcas que desejam se destacar no mercado digital sem complexidades desnecessárias.
-                                </p>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">CS Code Solutions</h4>
+                                    <p class="text-xs text-slate-400">Tecnologia acessível e eficiente</p>
+                                </div>
                             </div>
+                            <p class="text-xs text-slate-300 leading-relaxed px-1">
+                                Cada linha de código é pensada para gerar valor real para marcas que desejam se destacar no mercado digital sem complexidades desnecessárias.
+                            </p>
                             <button onclick="mudarTab('historia')" class="w-full py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 font-medium transition-colors flex items-center justify-center space-x-2">
                                 <span>Conhecer Minha História Completa</span>
                                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
@@ -218,9 +218,9 @@
         <section id="tab-historia" class="tab-content">
             <div class="max-w-4xl mx-auto space-y-12 py-6">
                 <div class="text-center space-y-4">
-                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Minha História & Propósito</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Minha História & Formação</h2>
                     <p class="text-slate-400 max-w-2xl mx-auto">
-                        A trajetória por trás da CS Code Solutions e a paixão por criar ferramentas digitais que impulsionam negócios.
+                        A trajetória acadêmica, os cursos em Inteligência Artificial e a paixão por criar soluções inovadoras na CS Code Solutions.
                     </p>
                 </div>
 
@@ -229,20 +229,45 @@
                         <div class="md:col-span-1 flex justify-center">
                             <div class="w-36 h-36 rounded-2xl bg-gradient-to-tr from-csBlue to-csGreen p-1 shadow-xl">
                                 <div class="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center overflow-hidden">
-                                    <i class="fa-solid fa-user-gear text-5xl text-csGreen"></i>
+                                    <i class="fa-solid fa-graduation-cap text-5xl text-csGreen"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="md:col-span-2 space-y-4">
-                            <h3 class="text-2xl font-bold text-white">Da Paixão pelo Código à Solução Real</h3>
+                            <h3 class="text-2xl font-bold text-white">Trajetória Acadêmica e Tecnológica</h3>
                             <p class="text-slate-300 text-sm leading-relaxed">
-                                A <strong class="text-white">CS Code Solutions</strong> nasceu do desejo de simplificar o desenvolvimento web para pequenas e médias empresas. Com anos de experiência prática criando interfaces responsivas, sistemas locais e lojas virtuais, percebi que o mercado precisava de agilidade, design limpo e autonomia total para os clientes.
+                                A <strong class="text-white">CS Code Solutions</strong> reflete uma jornada sólida de aprendizado e especialização em tecnologia. Minha base técnica foi construída através de formações superiores em <strong class="text-csBlue">Gestão da Tecnologia da Informação (GTI)</strong> e <strong class="text-csBlue">Análise e Desenvolvimento de Sistemas (ADS)</strong>, unindo visão estratégica de negócios com o desenvolvimento prático de software.
+                            </p>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Mantendo-me na vanguarda da inovação, especializei-me também através de <strong class="text-csGreen">cursos avançados em Inteligência Artificial (IA)</strong>, integrando recursos inteligentes, automações e soluções modernas aos projetos desenvolvidos.
                             </p>
                             <div class="flex flex-wrap gap-2 pt-2">
-                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">Desenvolvimento Full-Stack</span>
-                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">UI/UX Design</span>
-                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">Sistemas Leves (Local)</span>
+                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">ADS & GTI</span>
+                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">Inteligência Artificial (IA)</span>
+                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">Full-Stack & Local Systems</span>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Seção de Formações e Especializações Detalhadas -->
+                    <div class="border-t border-slate-800 pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+                            <div class="flex items-center space-x-2 text-csBlue font-semibold text-sm">
+                                <i class="fa-solid fa-laptop-code"></i>
+                                <span>Formação Acadêmica</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Graduações em <strong class="text-white">Análise e Desenvolvimento de Sistemas (ADS)</strong> e <strong class="text-white">Gestão da Tecnologia da Informação (GTI)</strong>, proporcionando profundo conhecimento em arquitetura de sistemas, engenharia de software e gestão de projetos tecnológicos.
+                            </p>
+                        </div>
+                        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+                            <div class="flex items-center space-x-2 text-csGreen font-semibold text-sm">
+                                <i class="fa-solid fa-brain"></i>
+                                <span>Especialização em Inteligência Artificial</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Cursos e capacitações focados em <strong class="text-white">Inteligência Artificial</strong>, aplicação de modelos preditivos, automações inteligentes e integração de ferramentas de IA para otimização de fluxos de trabalho e desenvolvimento web.
+                            </p>
                         </div>
                     </div>
 
@@ -363,42 +388,43 @@
                     </p>
                 </div>
 
-                <!-- Grade de Logos de Clientes -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Grade de Logos de Clientes (Usando 0.png até 5.png) -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
                     <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-csBlue flex items-center justify-center font-bold text-xl">
-                            <i class="fa-solid fa-store"></i>
+                        <div class="w-16 h-16 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden p-2">
+                            <img src="0.png" alt="Cliente 0" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/64x64/131C2E/3B82F6?text=0.png';">
                         </div>
-                        <span class="text-sm font-semibold text-slate-200">TechStore BR</span>
-                        <span class="text-[10px] text-slate-500 uppercase">E-commerce</span>
+                        <span class="text-sm font-semibold text-slate-200">Cliente 01</span>
                     </div>
                     <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-csGreen flex items-center justify-center font-bold text-xl">
-                            <i class="fa-solid fa-chart-line"></i>
+                        <div class="w-16 h-16 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden p-2">
+                            <img src="1.png" alt="Cliente 1" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/64x64/131C2E/3B82F6?text=1.png';">
                         </div>
-                        <span class="text-sm font-semibold text-slate-200">Inova Soluções</span>
-                        <span class="text-[10px] text-slate-500 uppercase">Sistema Web</span>
+                        <span class="text-sm font-semibold text-slate-200">Cliente 02</span>
                     </div>
                     <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xl">
-                            <i class="fa-solid fa-bolt"></i>
+                        <div class="w-16 h-16 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden p-2">
+                            <img src="2.png" alt="Cliente 2" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/64x64/131C2E/3B82F6?text=2.png';">
                         </div>
-                        <span class="text-sm font-semibold text-slate-200">Alpha Leads</span>
-                        <span class="text-[10px] text-slate-500 uppercase">Landing Page</span>
+                        <span class="text-sm font-semibold text-slate-200">Cliente 03</span>
                     </div>
                     <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-xl">
-                            <i class="fa-solid fa-building-columns"></i>
+                        <div class="w-16 h-16 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden p-2">
+                            <img src="3.png" alt="Cliente 3" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/64x64/131C2E/3B82F6?text=3.png';">
                         </div>
-                        <span class="text-sm font-semibold text-slate-200">Grupo Executivo</span>
-                        <span class="text-[10px] text-slate-500 uppercase">Institucional</span>
+                        <span class="text-sm font-semibold text-slate-200">Cliente 04</span>
                     </div>
                     <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-xl">
-                            <i class="fa-solid fa-heart-pulse"></i>
+                        <div class="w-16 h-16 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden p-2">
+                            <img src="4.png" alt="Cliente 4" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/64x64/131C2E/3B82F6?text=4.png';">
                         </div>
-                        <span class="text-sm font-semibold text-slate-200">Vitalis Saúde</span>
-                        <span class="text-[10px] text-slate-500 uppercase">Portal Web</span>
+                        <span class="text-sm font-semibold text-slate-200">Cliente 05</span>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
+                        <div class="w-16 h-16 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden p-2">
+                            <img src="5.png" alt="Cliente 5" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/64x64/131C2E/3B82F6?text=5.png';">
+                        </div>
+                        <span class="text-sm font-semibold text-slate-200">Cliente 06</span>
                     </div>
                 </div>
 
@@ -462,13 +488,13 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- WhatsApp Card -->
-                    <a href="https://wa.me/5551999999999?text=Olá,%20gostaria%20de%20um%20orçamento%20com%20a%20CS%20Code%20Solutions." target="_blank" class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-csGreen transition-all flex items-center space-x-4 group">
+                    <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20um%20orçamento%20com%20a%20CS%20Code%20Solutions." target="_blank" class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-csGreen transition-all flex items-center space-x-4 group">
                         <div class="w-14 h-14 rounded-xl bg-emerald-500/10 text-csGreen flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
                         <div>
                             <span class="block text-xs text-slate-400 uppercase font-semibold">Atendimento Direto</span>
-                            <h4 class="text-lg font-bold text-white">WhatsApp</h4>
+                            <h4 class="text-lg font-bold text-white">(51) 8106-1618</h4>
                             <p class="text-xs text-csGreen mt-0.5">Clique para iniciar conversa</p>
                         </div>
                     </a>
@@ -519,8 +545,8 @@
     <footer class="glass-panel border-t border-csBorder py-8 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-csBlue to-csGreen flex items-center justify-center">
-                    <i class="fa-solid fa-code text-white text-xs"></i>
+                <div class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden">
+                    <img src="logo.png" alt="Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/32x32/131C2E/3B82F6?text=CS';">
                 </div>
                 <span class="text-sm font-bold text-white">CS Code Solutions</span>
             </div>
@@ -528,9 +554,9 @@
                 &copy; 2026 CS Code Solutions. Todos os direitos reservados. Execução Local sem Banco de Dados.
             </p>
             <div class="flex space-x-4 text-slate-400 text-sm">
-                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-white transition-colors" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-white transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/cs_code_solutions?vrfl=Ym1mNDMzYTYxa3d6" target="_blank" class="hover:text-white transition-colors" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </footer>
