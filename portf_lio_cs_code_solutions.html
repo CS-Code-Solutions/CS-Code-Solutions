@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Code Solutions | Portfólio Profissional</title>
+    <!-- Tailwind CSS para um design moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        csDark: '#0B0F19',
+                        csCard: '#131C2E',
+                        csBorder: '#1E293B',
+                        csBlue: '#3B82F6',
+                        csGreen: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos customizados e animações suaves */
+        body {
+            background-color: #0B0F19;
+            color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(19, 28, 46, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        /* Transições de abas */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-csGreen selection:text-csDark">
+
+    <!-- HEADER / NAVEGAÇÃO -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-csBorder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo / Marca -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="mudarTab('inicio')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-csBlue to-csGreen flex items-center justify-center shadow-lg shadow-blue-500/20">
+                    <i class="fa-solid fa-code text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-csGreen bg-clip-text text-transparent">CS Code</span>
+                    <span class="block text-xs text-csGreen font-medium tracking-widest uppercase">Solutions</span>
+                </div>
+            </div>
+
+            <!-- Menu de Navegação Desktop -->
+            <nav class="hidden md:flex items-center space-x-1">
+                <button onclick="mudarTab('inicio')" id="btn-inicio" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-800/50 active-tab">
+                    Início
+                </button>
+                <button onclick="mudarTab('historia')" id="btn-historia" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-800/50">
+                    Minha História
+                </button>
+
+                <!-- Menu Cascata (Dropdown) de Projetos -->
+                <div class="relative group">
+                    <button id="btn-projetos-dropdown" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-800/50 flex items-center space-x-1">
+                        <span>Projetos</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform group-hover:rotate-180"></i>
+                    </button>
+                    <!-- Dropdown Container -->
+                    <div class="absolute left-0 mt-2 w-56 rounded-xl glass-panel shadow-2xl py-2 hidden group-hover:block border border-csBorder">
+                        <a href="#projetos" onclick="filtrarCategoria('todos'); mudarTab('projetos');" class="block px-4 py-2.5 text-sm text-slate-300 hover:bg-csBlue/20 hover:text-white transition-colors">
+                            <i class="fa-solid fa-layer-group mr-2 text-csBlue"></i> Todos os Projetos
+                        </a>
+                        <a href="#projetos" onclick="filtrarCategoria('ecommerce'); mudarTab('projetos');" class="block px-4 py-2.5 text-sm text-slate-300 hover:bg-csBlue/20 hover:text-white transition-colors">
+                            <i class="fa-solid fa-cart-shopping mr-2 text-csGreen"></i> E-commerce
+                        </a>
+                        <a href="#projetos" onclick="filtrarCategoria('landing'); mudarTab('projetos');" class="block px-4 py-2.5 text-sm text-slate-300 hover:bg-csBlue/20 hover:text-white transition-colors">
+                            <i class="fa-solid fa-rocket mr-2 text-amber-400"></i> Landing Pages
+                        </a>
+                        <a href="#projetos" onclick="filtrarCategoria('sistemas'); mudarTab('projetos');" class="block px-4 py-2.5 text-sm text-slate-300 hover:bg-csBlue/20 hover:text-white transition-colors">
+                            <i class="fa-solid fa-window-maximize mr-2 text-purple-400"></i> Sistemas Web
+                        </a>
+                        <a href="#projetos" onclick="filtrarCategoria('institucional'); mudarTab('projetos');" class="block px-4 py-2.5 text-sm text-slate-300 hover:bg-csBlue/20 hover:text-white transition-colors">
+                            <i class="fa-solid fa-building mr-2 text-cyan-400"></i> Sites Institucionais
+                        </a>
+                    </div>
+                </div>
+
+                <button onclick="mudarTab('clientes')" id="btn-clientes" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-800/50">
+                    Clientes
+                </button>
+                <button onclick="mudarTab('contato')" id="btn-contato" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-800/50">
+                    Contato
+                </button>
+            </nav>
+
+            <!-- Ação Rápida WhatsApp -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="https://wa.me/5551999999999?text=Olá,%20vi%20o%20portfólio%20da%20CS%20Code%20Solutions%20e%20gostaria%20de%20um%20orçamento!" target="_blank" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-csGreen hover:from-emerald-500 hover:to-emerald-400 text-white font-medium text-sm flex items-center space-x-2 shadow-lg shadow-emerald-900/20 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Falar no WhatsApp</span>
+                </a>
+            </div>
+
+            <!-- Botão Mobile Toggle -->
+            <div class="md:hidden flex items-center">
+                <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2 focus:outline-none">
+                    <i id="mobile-icon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-csBorder px-4 pt-2 pb-6 space-y-2">
+            <button onclick="mudarTab('inicio'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">Início</button>
+            <button onclick="mudarTab('historia'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">Minha História</button>
+            <button onclick="mudarTab('projetos'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">Projetos & Categorias</button>
+            <button onclick="mudarTab('clientes'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">Clientes</button>
+            <button onclick="mudarTab('contato'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">Contato</button>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL (ABAS) -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+
+        <!-- 1. ABA INÍCIO / APRESENTAÇÃO -->
+        <section id="tab-inicio" class="tab-content active">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-csBlue/10 border border-csBlue/20 text-csBlue text-xs font-semibold tracking-wide uppercase">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>Inovação e Desenvolvimento Web</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Transformando ideias em <span class="bg-gradient-to-r from-csBlue to-csGreen bg-clip-text text-transparent">experiências digitais</span> de alto nível.
+                    </h1>
+                    <p class="text-lg text-slate-400">
+                        Bem-vindo à <strong class="text-white">CS Code Solutions</strong>. Desenvolvemos soluções sob medida, sites modernos, lojas virtuais e sistemas web focados em performance, conversão e autonomia para o seu negócio.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button onclick="mudarTab('projetos')" class="px-6 py-3 rounded-xl bg-csBlue hover:bg-blue-600 text-white font-semibold flex items-center space-x-2 shadow-lg shadow-blue-500/25 transition-all">
+                            <span>Explorar Projetos</span>
+                            <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </button>
+                        <button onclick="mudarTab('contato')" class="px-6 py-3 rounded-xl glass-panel hover:bg-slate-800 text-slate-200 font-semibold border border-slate-700 transition-all">
+                            Solicitar Orçamento
+                        </button>
+                    </div>
+
+                    <!-- Métricas Rápidas -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80">
+                        <div>
+                            <span class="block text-2xl font-bold text-white">+50</span>
+                            <span class="text-xs text-slate-400">Projetos Entregues</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-bold text-white">100%</span>
+                            <span class="text-xs text-slate-400">Foco em Performance</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-bold text-white">4.9/5</span>
+                            <span class="text-xs text-slate-400">Satisfação Clientes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Interativo / Destaque Visual -->
+                <div class="relative">
+                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-csBlue to-csGreen opacity-30 blur-xl"></div>
+                    <div class="relative glass-panel rounded-2xl p-6 border border-slate-700/80 shadow-2xl space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="text-xs text-slate-500 font-mono">cscodesolutions.local</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-csGreen flex items-center justify-center font-bold">V</div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-white">Visão da Empresa</h4>
+                                        <p class="text-xs text-slate-400">Tecnologia acessível e eficiente</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Cada linha de código é pensada para gerar valor real para marcas que desejam se destacar no mercado digital sem complexidades desnecessárias.
+                                </p>
+                            </div>
+                            <button onclick="mudarTab('historia')" class="w-full py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 font-medium transition-colors flex items-center justify-center space-x-2">
+                                <span>Conhecer Minha História Completa</span>
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABA "MINHA HISTÓRIA" -->
+        <section id="tab-historia" class="tab-content">
+            <div class="max-w-4xl mx-auto space-y-12 py-6">
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Minha História & Propósito</h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">
+                        A trajetória por trás da CS Code Solutions e a paixão por criar ferramentas digitais que impulsionam negócios.
+                    </p>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-8 border border-slate-800 space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-1 flex justify-center">
+                            <div class="w-36 h-36 rounded-2xl bg-gradient-to-tr from-csBlue to-csGreen p-1 shadow-xl">
+                                <div class="w-full h-full bg-slate-900 rounded-xl flex items-center justify-center overflow-hidden">
+                                    <i class="fa-solid fa-user-gear text-5xl text-csGreen"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-2 space-y-4">
+                            <h3 class="text-2xl font-bold text-white">Da Paixão pelo Código à Solução Real</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                A <strong class="text-white">CS Code Solutions</strong> nasceu do desejo de simplificar o desenvolvimento web para pequenas e médias empresas. Com anos de experiência prática criando interfaces responsivas, sistemas locais e lojas virtuais, percebi que o mercado precisava de agilidade, design limpo e autonomia total para os clientes.
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">Desenvolvimento Full-Stack</span>
+                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">UI/UX Design</span>
+                                <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">Sistemas Leves (Local)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-slate-800 pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2 text-csGreen font-semibold">
+                                <i class="fa-solid fa-bullseye"></i>
+                                <span>Nosso Propósito</span>
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Entregar ferramentas digitais intuitivas que permitam aos empresários gerenciarem suas presenças online e projetos sem complicações técnicas ou dependência de servidores complexos.
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2 text-csBlue font-semibold">
+                                <i class="fa-solid fa-handshake"></i>
+                                <span>Valores e Compromisso</span>
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Transparência no atendimento, pontualidade na entrega, código limpo e suporte próximo para garantir que cada cliente alcance seus objetivos de negócio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ABA "PROJETOS" & CATEGORIAS -->
+        <section id="tab-projetos" class="tab-content">
+            <div class="space-y-8 py-4">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800 pb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold tracking-tight">Portfólio de Projetos</h2>
+                        <p class="text-slate-400 text-sm mt-1">Explore os trabalhos realizados e clique para abrir a demonstração interativa.</p>
+                    </div>
+
+                    <!-- Filtros de Categoria (Botões Rápidos) -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filtrarCategoria('todos')" id="filter-todos" class="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-csBlue text-white transition-all filter-btn">Todos</button>
+                        <button onclick="filtrarCategoria('ecommerce')" id="filter-ecommerce" class="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all filter-btn">E-commerce</button>
+                        <button onclick="filtrarCategoria('landing')" id="filter-landing" class="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all filter-btn">Landing Pages</button>
+                        <button onclick="filtrarCategoria('sistemas')" id="filter-sistemas" class="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all filter-btn">Sistemas Web</button>
+                        <button onclick="filtrarCategoria('institucional')" id="filter-institucional" class="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all filter-btn">Institucional</button>
+                    </div>
+                </div>
+
+                <!-- Grid de Cards de Projetos -->
+                <div id="grid-projetos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Os cards serão injetados ou filtrados dinamicamente via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL / PÁGINA DE DEMONSTRAÇÃO INTERATIVA DO PROJETO -->
+        <div id="modal-projeto" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+            <div class="glass-panel w-full max-w-4xl max-h-[90vh] rounded-2xl overflow-hidden border border-slate-700 flex flex-col shadow-2xl">
+                <!-- Header do Modal -->
+                <div class="px-6 py-4 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div id="modal-badge" class="px-2.5 py-1 rounded-md bg-csBlue/20 text-csBlue text-xs font-semibold uppercase">Categoria</div>
+                        <h3 id="modal-titulo" class="text-lg font-bold text-white">Nome do Projeto</h3>
+                    </div>
+                    <button onclick="fecharModalProjeto()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <!-- Corpo de Demonstração Interativa (Sem Banco de Dados) -->
+                <div class="p-6 overflow-y-auto space-y-6 flex-grow bg-slate-950/50">
+                    <div class="aspect-video w-full rounded-xl bg-slate-900 border border-slate-800 overflow-hidden relative flex items-center justify-center">
+                        <img id="modal-imagem" src="" alt="Preview" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                            <p id="modal-descricao-curta" class="text-sm text-slate-200"></p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2 space-y-4">
+                            <h4 class="text-sm font-semibold text-white uppercase tracking-wider">Sobre a Solução Desenvolvida</h4>
+                            <p id="modal-descricao-longa" class="text-sm text-slate-300 leading-relaxed"></p>
+                            
+                            <!-- Área de Interação Local (Simulador sem Backend) -->
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
+                                <h5 class="text-xs font-bold text-csGreen uppercase tracking-wider flex items-center space-x-2">
+                                    <i class="fa-solid fa-terminal"></i>
+                                    <span>Área de Teste / Interação Local (Armazenamento Local)</span>
+                                </h5>
+                                <p class="text-xs text-slate-400">Escreva uma nota ou feedback de teste para este projeto (fica salvo no seu navegador):</p>
+                                <div class="flex gap-2">
+                                    <input type="text" id="input-feedback-local" placeholder="Ex: Excelente design responsivo!" class="flex-grow px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-xs text-white focus:outline-none focus:border-csBlue">
+                                    <button onclick="salvarNotaProjeto()" class="px-4 py-2 rounded-lg bg-csGreen hover:bg-emerald-600 text-slate-950 font-bold text-xs transition-colors">Salvar Nota</button>
+                                </div>
+                                <div id="lista-notas-local" class="space-y-1 text-xs text-slate-300 pt-2"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
+                                <h4 class="text-xs font-bold text-white uppercase tracking-wider">Tecnologias</h4>
+                                <div id="modal-tags" class="flex flex-wrap gap-1.5"></div>
+                            </div>
+                            <button onclick="alert('Simulação de acesso externo iniciada com sucesso!')" class="w-full py-3 rounded-xl bg-csBlue hover:bg-blue-600 text-white font-semibold text-xs transition-colors flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-external-link-alt"></i>
+                                <span>Abrir Demo em Tela Cheia</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ABA "CLIENTES" -->
+        <section id="tab-clientes" class="tab-content">
+            <div class="space-y-12 py-6">
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Parceiros & Clientes</h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">
+                        Empresas e empreendedores que confiaram na CS Code Solutions para impulsionar seus negócios digitais.
+                    </p>
+                </div>
+
+                <!-- Grade de Logos de Clientes -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-csBlue flex items-center justify-center font-bold text-xl">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-200">TechStore BR</span>
+                        <span class="text-[10px] text-slate-500 uppercase">E-commerce</span>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-csGreen flex items-center justify-center font-bold text-xl">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-200">Inova Soluções</span>
+                        <span class="text-[10px] text-slate-500 uppercase">Sistema Web</span>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xl">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-200">Alpha Leads</span>
+                        <span class="text-[10px] text-slate-500 uppercase">Landing Page</span>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-xl">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-200">Grupo Executivo</span>
+                        <span class="text-[10px] text-slate-500 uppercase">Institucional</span>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center space-y-3 border border-slate-800 hover:border-csBlue/50 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-xl">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <span class="text-sm font-semibold text-slate-200">Vitalis Saúde</span>
+                        <span class="text-[10px] text-slate-500 uppercase">Portal Web</span>
+                    </div>
+                </div>
+
+                <!-- Depoimentos -->
+                <div class="space-y-6 pt-6">
+                    <h3 class="text-xl font-bold text-white text-center">O que dizem nossos clientes</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-sm text-slate-300 italic">
+                                "O trabalho da CS Code Solutions superou nossas expectativas. Nossa loja virtual ficou extremamente rápida e as vendas aumentaram no primeiro mês após o lançamento."
+                            </p>
+                            <div class="flex items-center space-x-3 pt-2 border-t border-slate-800/80">
+                                <div class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center font-bold text-csBlue text-xs">TS</div>
+                                <div>
+                                    <h5 class="text-xs font-semibold text-white">Carlos Eduardo</h5>
+                                    <p class="text-[10px] text-slate-400">CEO - TechStore BR</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-sm text-slate-300 italic">
+                                "Sistema web entregue no prazo, código limpo e excelente suporte local. Recomendo muito para quem busca profissionalismo e agilidade."
+                            </p>
+                            <div class="flex items-center space-x-3 pt-2 border-t border-slate-800/80">
+                                <div class="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center font-bold text-csGreen text-xs">IS</div>
+                                <div>
+                                    <h5 class="text-xs font-semibold text-white">Mariana Souza</h5>
+                                    <p class="text-[10px] text-slate-400">Diretora - Inova Soluções</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ABA "CONTATO" -->
+        <section id="tab-contato" class="tab-content">
+            <div class="max-w-3xl mx-auto space-y-8 py-6">
+                <div class="text-center space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Vamos Conversar?</h2>
+                    <p class="text-slate-400 max-w-xl mx-auto">
+                        Entre em contato direto para tirar dúvidas, solicitar um orçamento ou iniciar seu próximo projeto digital.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- WhatsApp Card -->
+                    <a href="https://wa.me/5551999999999?text=Olá,%20gostaria%20de%20um%20orçamento%20com%20a%20CS%20Code%20Solutions." target="_blank" class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-csGreen transition-all flex items-center space-x-4 group">
+                        <div class="w-14 h-14 rounded-xl bg-emerald-500/10 text-csGreen flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 uppercase font-semibold">Atendimento Direto</span>
+                            <h4 class="text-lg font-bold text-white">WhatsApp</h4>
+                            <p class="text-xs text-csGreen mt-0.5">Clique para iniciar conversa</p>
+                        </div>
+                    </a>
+
+                    <!-- E-mail Card -->
+                    <a href="mailto:contato@cscodesolutions.local" class="glass-panel p-6 rounded-2xl border border-slate-800 hover:border-csBlue transition-all flex items-center space-x-4 group">
+                        <div class="w-14 h-14 rounded-xl bg-blue-500/10 text-csBlue flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400 uppercase font-semibold">E-mail Comercial</span>
+                            <h4 class="text-lg font-bold text-white">contato@cscodesolutions.local</h4>
+                            <p class="text-xs text-csBlue mt-0.5">Resposta em até 24h</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Formulário de Mensagem Local -->
+                <div class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-6">
+                    <h3 class="text-lg font-bold text-white">Envie uma Mensagem</h3>
+                    <form onsubmit="enviarMensagemLocal(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-300 font-medium">Seu Nome</label>
+                                <input type="text" id="form-nome" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white focus:outline-none focus:border-csBlue" placeholder="Digite seu nome">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-300 font-medium">Seu E-mail ou Telefone</label>
+                                <input type="text" id="form-contato" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white focus:outline-none focus:border-csBlue" placeholder="E-mail ou WhatsApp">
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-300 font-medium">Mensagem / Projeto Desejado</label>
+                            <textarea id="form-mensagem" rows="4" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white focus:outline-none focus:border-csBlue resize-none" placeholder="Conte um pouco sobre o que você precisa..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-csBlue to-csGreen hover:opacity-90 text-white font-semibold text-sm transition-opacity flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Enviar Mensagem (Salvar Localmente)</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass-panel border-t border-csBorder py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-csBlue to-csGreen flex items-center justify-center">
+                    <i class="fa-solid fa-code text-white text-xs"></i>
+                </div>
+                <span class="text-sm font-bold text-white">CS Code Solutions</span>
+            </div>
+            <p class="text-xs text-slate-400">
+                &copy; 2026 CS Code Solutions. Todos os direitos reservados. Execução Local sem Banco de Dados.
+            </p>
+            <div class="flex space-x-4 text-slate-400 text-sm">
+                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGICA DO SISTEMA -->
+    <script>
+        // Banco de Dados simulado em Array (fácil de editar nomes, imagens, logos)
+        const projetosData = [
+            {
+                id: 1,
+                titulo: "E-commerce TechStore",
+                categoria: "ecommerce",
+                badge: "E-commerce",
+                imagem: "https://images.unsplash.com/photo-1556742049-0a67d553c295?auto=format&fit=crop&w=800&q=80",
+                descricaoCurta: "Loja virtual completa com carrinho de compras, filtros e painel local.",
+                descricaoLonga: "Desenvolvido para uma grande marca de eletrônicos. Conta com navegação por categorias, sistema de busca instantânea e checkout integrado via API, tudo otimizado para conversão móvel.",
+                tags: ["HTML5", "Tailwind CSS", "JavaScript", "LocalStorage"]
+            },
+            {
+                id: 2,
+                titulo: "Dashboard Inova Web",
+                categoria: "sistemas",
+                badge: "Sistemas Web",
+                imagem: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                descricaoCurta: "Sistema de gestão empresarial com gráficos e relatórios dinâmicos.",
+                descricaoLonga: "Painel administrativo robusto para controle de fluxo de caixa, clientes e pedidos. Interface limpa em modo escuro com gráficos interativos e armazenamento local persistente.",
+                tags: ["JavaScript", "Chart.js", "Tailwind CSS", "SPA"]
+            },
+            {
+                id: 3,
+                titulo: "Landing Page Alpha Leads",
+                categoria: "landing",
+                badge: "Landing Page",
+                imagem: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+                descricaoCurta: "Página de alta conversão para lançamento de infoprodutos e serviços.",
+                descricaoLonga: "Landing page focada em performance máxima de carregamento (99+ no Lighthouse), com seções de depoimentos, contagem regressiva e formulário integrado direto com WhatsApp.",
+                tags: ["UI/UX", "Tailwind CSS", "Performance", "Responsive"]
+            },
+            {
+                id: 4,
+                titulo: "Portal Institucional Executivo",
+                categoria: "institucional",
+                badge: "Institucional",
+                imagem: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+                descricaoCurta: "Site corporativo elegante com apresentação de serviços e equipe.",
+                descricaoLonga: "Desenvolvido para empresa do setor financeiro. Apresenta design sóbrio, aba de artigos e notícias, formulário de contato avançado e seções institucionais completas.",
+                tags: ["HTML/CSS", "JavaScript", "SEO", "Corporate"]
+            },
+            {
+                id: 5,
+                titulo: "Marketplace Multi-Vendedor",
+                categoria: "ecommerce",
+                badge: "E-commerce",
+                imagem: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80",
+                descricaoCurta: "Plataforma de comércio eletrônico com múltiplos fornecedores e vitrine.",
+                descricaoLonga: "Solução completa para shoppings virtuais e cooperativas de lojistas, permitindo vitrines separadas por parceiros e gestão simplificada de produtos.",
+                tags: ["E-commerce", "JavaScript", "Filtros Dinâmicos"]
+            },
+            {
+                id: 6,
+                titulo: "Sistema de Agendamento Médico",
+                categoria: "sistemas",
+                badge: "Sistemas Web",
+                imagem: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+                descricaoCurta: "Plataforma local para marcação de consultas e prontuários.",
+                descricaoLonga: "Sistema leve desenvolvido para clínicas particulares organizarem horários de atendimento, médicos disponíveis e cadastro de pacientes com salvamento local.",
+                tags: ["Sistemas Web", "Local Storage", "Agenda"]
+            }
+        ];
+
+        let projetoAtualId = null;
+
+        // Função para Alternar Abas
+        function mudarTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            // Atualizar classes dos botões do menu desktop
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-white', 'bg-slate-800/80'));
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if(activeBtn) activeBtn.classList.add('text-white', 'bg-slate-800/80');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Menu Mobile Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+
+        // Renderizar Projetos no Grid
+        function renderizarProjetos(filtro = 'todos') {
+            const grid = document.getElementById('grid-projetos');
+            grid.innerHTML = '';
+
+            const filtrados = filtro === 'todos' ? projetosData : projetosData.filter(p => p.categoria === filtro);
+
+            filtrados.forEach(proj => {
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-csBlue/50 transition-all group flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="aspect-video w-full overflow-hidden bg-slate-900 relative">
+                            <img src="${proj.imagem}" alt="${proj.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-slate-900/80 backdrop-blur-md text-[10px] font-semibold text-csGreen uppercase border border-slate-700">${proj.badge}</span>
+                        </div>
+                        <div class="p-6 space-y-2">
+                            <h3 class="text-lg font-bold text-white group-hover:text-csBlue transition-colors">${proj.titulo}</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">${proj.descricaoCurta}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-800/80">
+                        <div class="flex flex-wrap gap-1">
+                            ${proj.tags.slice(0, 2).map(t => `<span class="px-2 py-0.5 rounded bg-slate-900 text-[10px] text-slate-400 border border-slate-800">${t}</span>`).join('')}
+                        </div>
+                        <button onclick="abrirModalProjeto(${proj.id})" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-csBlue text-white text-xs font-semibold transition-colors flex items-center space-x-1.5">
+                            <span>Ver Projeto</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filtrar Categoria
+        function filtrarCategoria(cat) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('bg-csBlue', 'text-white');
+                b.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            const activeFilter = document.getElementById('filter-' + cat);
+            if(activeFilter) {
+                activeFilter.classList.remove('bg-slate-800', 'text-slate-300');
+                activeFilter.classList.add('bg-csBlue', 'text-white');
+            }
+            renderizarProjetos(cat);
+        }
+
+        // Abrir Modal de Projeto
+        function abrirModalProjeto(id) {
+            const proj = projetosData.find(p => p.id === id);
+            if(!proj) return;
+
+            projetoAtualId = id;
+            document.getElementById('modal-titulo').textContent = proj.titulo;
+            document.getElementById('modal-badge').textContent = proj.badge;
+            document.getElementById('modal-imagem').src = proj.imagem;
+            document.getElementById('modal-descricao-curta').textContent = proj.descricaoCurta;
+            document.getElementById('modal-descricao-longa').textContent = proj.descricaoLonga;
+
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = proj.tags.map(t => `<span class="px-2.5 py-1 rounded-md bg-slate-800 text-xs text-slate-300 border border-slate-700">${t}</span>`).join('');
+
+            carregarNotasLocalStorage();
+
+            document.getElementById('modal-projeto').classList.remove('hidden');
+        }
+
+        // Fechar Modal
+        function fecharModalProjeto() {
+            document.getElementById('modal-projeto').classList.add('hidden');
+        }
+
+        // Armazenamento Local para Notas do Projeto
+        function salvarNotaProjeto() {
+            const input = document.getElementById('input-feedback-local');
+            const valor = input.value.trim();
+            if(!valor) return;
+
+            let notas = JSON.parse(localStorage.getItem('cs_notas_proj_' + projetoAtualId)) || [];
+            notas.push({ texto: valor, data: new Date().toLocaleDateString() });
+            localStorage.setItem('cs_notas_proj_' + projetoAtualId, JSON.stringify(notas));
+
+            input.value = '';
+            carregarNotasLocalStorage();
+        }
+
+        function carregarNotasLocalStorage() {
+            const container = document.getElementById('lista-notas-local');
+            container.innerHTML = '';
+
+            let notas = JSON.parse(localStorage.getItem('cs_notas_proj_' + projetoAtualId)) || [];
+            if(notas.length === 0) {
+                container.innerHTML = '<span class="text-slate-500 italic">Nenhuma nota salva localmente ainda.</span>';
+                return;
+            }
+
+            notas.forEach((n, idx) => {
+                const div = document.createElement('div');
+                div.className = "flex justify-between items-center p-2 rounded bg-slate-950 border border-slate-900";
+                div.innerHTML = `<span><i class="fa-solid fa-check text-csGreen mr-1.5"></i> ${n.texto}</span> <span class="text-[10px] text-slate-500">${n.data}</span>`;
+                container.appendChild(div);
+            });
+        }
+
+        // Enviar Mensagem Contato (Simulação Local)
+        function enviarMensagemLocal(e) {
+            e.preventDefault();
+            const nome = document.getElementById('form-nome').value;
+            const contato = document.getElementById('form-contato').value;
+            const mensagem = document.getElementById('form-mensagem').value;
+
+            let mensagens = JSON.parse(localStorage.getItem('cs_mensagens_contato')) || [];
+            mensagens.push({ nome, contato, mensagem, data: new Date().toLocaleString() });
+            localStorage.setItem('cs_mensagens_contato', JSON.stringify(mensagens));
+
+            alert(`Obrigado, ${nome}! Sua mensagem foi salva localmente e nossa equipe entrará em contato em breve.`);
+            e.target.reset();
+        }
+
+        // Inicializar Grid ao Carregar a Página
+        window.onload = function() {
+            renderizarProjetos('todos');
+        }
+    </script>
+</body>
+</html>
