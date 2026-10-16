@@ -129,7 +129,8 @@
                     </div>
                     <div class="lg:col-span-5 flex justify-center">
                         <div class="flex flex-col items-center text-center space-y-4">
-                            <img src="logo.png" alt="Logo Destaque" class="h-44 w-44 object-contain drop-shadow-2xl">
+                            <!-- Logo aumentada em cerca de 3x -->
+                            <img src="logo.png" alt="Logo Destaque" class="h-44 w-44 sm:h-56 sm:w-56 object-contain drop-shadow-2xl">
                             <h3 class="text-xl font-bold text-white tracking-wide">CS Code Solutions</h3>
                             <p class="text-sm text-gray-400 max-w-sm">Desenvolvimento ágil, moderno, sem banco de dados complexo e focado na experiência do usuário.</p>
                             <div class="w-full max-w-sm bg-blue-950/40 rounded-xl p-3 border border-blue-800/40 flex justify-around text-xs text-blue-300 shadow-lg">
@@ -178,11 +179,10 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-4">
-                        <div class="md:col-span-5 flex justify-center">
-                            <div class="w-full flex flex-col items-center justify-center space-y-4 md:glass-panel md:p-8 md:rounded-3xl md:border md:border-blue-500/30 md:shadow-2xl">
-                                <img src="logo.png" alt="CS Code Solutions Logo Grande" class="w-full max-w-[280px] sm:max-w-[320px] md:h-44 md:w-44 object-contain drop-shadow-2xl">
-                                <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/25">Inovação & Engenharia</span>
-                            </div>
+                        <!-- Sem o quadrado azul, logo grande preenchendo o espaço -->
+                        <div class="md:col-span-5 flex flex-col items-center justify-center space-y-4">
+                            <img src="logo.png" alt="CS Code Solutions Logo Grande" class="w-full max-w-[280px] sm:max-w-[320px] md:h-64 md:w-64 object-contain drop-shadow-2xl">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/25">Inovação & Engenharia</span>
                         </div>
 
                         <div class="md:col-span-7 space-y-4 text-gray-300 leading-relaxed text-sm sm:text-base">
@@ -258,37 +258,31 @@
 
                 <!-- Grade de Logos de Clientes com Links -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 pt-4">
-                    <!-- 1. CS Code Solutions Personal -->
                     <a href="https://cs-code-solutions.github.io/Personal./" target="_blank" class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800 hover:border-blue-500 transition group cursor-pointer">
                         <img src="00.png" alt="RG Soluções Técnicas" class="h-16 w-16 object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=00.png';">
                         <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">CS Code / Personal</span>
                     </a>
 
-                    <!-- 2. Burger 301 -->
                     <a href="https://cs-code-solutions.github.io/Burger301-TESTE/" target="_blank" class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800 hover:border-blue-500 transition group cursor-pointer">
                         <img src="1.png" alt="Burger 301" class="h-16 w-16 object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=1.png';">
                         <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">Burger 301 - Poema</span>
                     </a>
 
-                    <!-- 3. RicPower -->
                     <a href="https://cs-code-solutions.github.io/RicPower-Finance/" target="_blank" class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800 hover:border-blue-500 transition group cursor-pointer">
                         <img src="2.png" alt="RicPower" class="h-16 w-16 object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=2.png';">
                         <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">RicPower - Automação</span>
                     </a>
 
-                    <!-- 4. Team Vasconcelos (Mantido como link de contato ou WhatsApp caso não tenha link próprio) -->
                     <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20projeto%20Team%20Vasconcelos." target="_blank" class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800 hover:border-blue-500 transition group cursor-pointer">
                         <img src="3.png" alt="Team Vasconcelos" class="h-16 w-16 object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=3.png';">
                         <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">Team Vasconcelos</span>
                     </a>
 
-                    <!-- 5. Ísis Holística -->
                     <a href="https://cs-code-solutions.github.io/Isis-holistica/" target="_blank" class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800 hover:border-blue-500 transition group cursor-pointer">
                         <img src="4.png" alt="Ísis Holistica" class="h-16 w-16 object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=4.png';">
                         <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">Isis Holística</span>
                     </a>
 
-                    <!-- 6. Laser Expert -->
                     <a href="https://cs-code-solutions.github.io/Laser-Expert--/login.html" target="_blank" class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800 hover:border-blue-500 transition group cursor-pointer">
                         <img src="5.png" alt="Laser Expert" class="h-16 w-16 object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=5.png';">
                         <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">Laser Expert</span>
