@@ -16,7 +16,6 @@
             overflow-x: hidden;
         } 
 
-        /* Fundo fixo otimizado para iOS (iPhone) e Android sem perda de qualidade */
         body::before {
             content: '';
             position: fixed;
@@ -34,7 +33,6 @@
             backface-visibility: hidden;
         }
 
-        /* Fundo adaptado para telemóveis caso queira usar cel.jpeg, ou mantém o pc.jpeg */
         @media (max-width: 768px) {
             body::before {
                 background-image: url('cel.jpeg');
@@ -54,12 +52,10 @@
 </head>
 <body class="bg-gray-950/80 text-gray-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-gray-950">
 
-    <!-- Hero Section com a Logo Grande e Menu Logo Abaixo -->
+    <!-- Hero Section -->
     <section class="hero-bg min-h-screen flex flex-col justify-between pt-6 pb-6 px-6 text-center border-b border-gray-800/80">
-        <!-- Espaçador superior -->
         <div></div>
 
-        <!-- Conteúdo Principal do Hero com a Logo Grande -->
         <div class="max-w-3xl mx-auto my-auto space-y-4">
             <div class="flex justify-center">
                 <img src="logo.png" alt="CS Code Solutions" class="w-64 h-64 sm:w-[28rem] sm:h-[28rem] object-contain drop-shadow-2xl">
@@ -73,7 +69,6 @@
             </div>
         </div>
 
-        <!-- Menu de Navegação Abaixo do Hero (Em Pílula) -->
         <nav class="max-w-4xl mx-auto w-full bg-gray-950/90 backdrop-blur border border-gray-800 rounded-2xl p-3 mt-4 flex flex-wrap justify-center gap-6 text-sm font-semibold text-gray-300">
             <a href="#historia" class="hover:text-amber-400 transition">Nossa História</a>
             <a href="#metodo" class="hover:text-amber-400 transition">O Método</a>
@@ -85,446 +80,89 @@
     </section>
 
     <!-- Conteúdo Principal -->
-    <main id="mainSectionsContainer" class="max-w-7xl mx-auto w-full px-6 py-6 space-y-8 flex-grow">
-
-        <!-- SECÇÃO: NOSSA HISTÓRIA / TRAJETÓRIA -->
-        <section id="historia" data-section-id="historia" class="py-6 bg-gray-950/90 backdrop-blur border border-gray-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl">
+    <main class="max-w-7xl mx-auto w-full px-6 py-6 space-y-8 flex-grow">
+        <section id="historia" class="py-6 bg-gray-950/90 backdrop-blur border border-gray-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl">
             <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
                 <div>
                     <span class="text-amber-400 font-semibold tracking-widest uppercase text-xs bg-amber-400/10 px-4 py-1.5 rounded-full border border-amber-400/20 inline-block mb-3">Nossa Trajetória</span>
                     <h2 class="text-3xl font-extrabold text-white mb-1">CS Code Solutions</h2>
                     <p class="text-xs font-bold text-gray-400 tracking-wider mb-5">Engenharia de Software & Inovação</p>
-                    <p class="text-gray-300 mb-4 leading-relaxed text-sm sm:text-base">A nossa trajetória começou com o propósito de transformar ideias complexas em soluções digitais simples, elegantes e de alta performance. Desenvolvemos ecossistemas web estruturados sob medida para impulsionar a eficiência operacional e o crescimento de marcas e negócios.</p>
-                    <p class="text-gray-300 mb-5 leading-relaxed text-sm sm:text-base">Com foco em metodologias ágeis, design moderno e arquitetura robusta baseada no armazenamento local (localStorage), capacitamos parceiros e clientes a alcançarem novos patamares de excelência tecnológica e digital.</p>
-                    <div class="flex gap-6 border-t border-gray-800 pt-5">
-                        <div>
-                            <span class="block text-2xl font-bold text-amber-400">+ Anos</span>
-                            <span class="text-xs text-gray-400">De Experiência</span>
-                        </div>
-                        <div>
-                            <span class="block text-2xl font-bold text-emerald-400">100%</span>
-                            <span class="text-xs text-gray-400">Foco em Performance</span>
-                        </div>
-                    </div>
+                    <p class="text-gray-300 mb-4 leading-relaxed text-sm sm:text-base">A nossa trajetória começou com o propósito de transformar ideias complexas em soluções digitais simples, elegantes e de alta performance.</p>
+                    <p class="text-gray-300 mb-5 leading-relaxed text-sm sm:text-base">Com foco em metodologias ágeis, design moderno e arquitetura robusta baseada em localStorage.</p>
                 </div>
-                <!-- Filosofia de Trabalho Estilizada -->
                 <div class="bg-gray-900/90 p-6 sm:p-8 rounded-2xl border border-gray-800 shadow-xl space-y-4">
                     <h3 class="text-xl font-bold mb-3 text-white">Nossa Filosofia</h3>
-                    <p class="text-gray-300 mb-4 leading-relaxed italic text-sm">"A excelência digital não é um ato, mas um hábito contínuo de inovação, resiliência e entrega de valor real aos nossos clientes e parceiros."</p>
-                    <ul class="space-y-2.5 text-gray-300 text-sm">
-                        <li class="flex items-center gap-3 text-amber-400">✓ <span class="text-gray-300">Soluções digitais adaptadas a cada necessidade</span></li>
-                        <li class="flex items-center gap-3 text-amber-400">✓ <span class="text-gray-300">Arquitetura moderna, limpa e responsiva</span></li>
-                        <li class="flex items-center gap-3 text-amber-400">✓ <span class="text-gray-300">Suporte contínuo e dedicado</span></li>
-                        <li class="flex items-center gap-3 text-amber-400">✓ <span class="text-gray-300">Transparência em todas as etapas do projeto</span></li>
-                    </ul>
+                    <p class="text-gray-300 mb-4 leading-relaxed italic text-sm">"A excelência digital não é um ato, mas um hábito contínuo de inovação e entrega de valor real."</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECÇÃO: O MÉTODO (CARROSSEL ESTÁTICO) -->
-        <section id="metodo" data-section-id="metodo" class="py-6 space-y-6">
+        <section id="metodo" class="py-6 space-y-6">
             <div class="text-center">
-                <span class="text-amber-400 font-semibold tracking-widest uppercase text-xs bg-amber-400/10 px-4 py-1.5 rounded-full border border-amber-400/20 inline-block drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">Metodologia Exclusiva</span>
+                <span class="text-amber-400 font-semibold tracking-widest uppercase text-xs bg-amber-400/10 px-4 py-1.5 rounded-full border border-amber-400/20 inline-block">Metodologia Exclusiva</span>
             </div>
-            
             <div class="max-w-sm mx-auto space-y-4">
                 <div class="text-center space-y-2">
-                    <h4 class="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Método CS Code Solutions</h4>
-                    <p class="text-sm font-bold text-gray-100 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">Acompanhe as imagens abaixo para entender como funciona o nosso método de desenvolvimento.</p>
+                    <h4 class="text-2xl sm:text-3xl font-extrabold text-white">Método CS Code Solutions</h4>
                 </div>
                 <div id="carousel-frame-0" class="relative max-w-sm mx-auto h-[450px] sm:h-[500px] bg-black rounded-3xl overflow-hidden border border-gray-800 flex items-center justify-center p-4 shadow-2xl select-none">
-                    <!-- Botões de Navegação (Setas) -->
                     <button type="button" onclick="manualChangeSlide(0, -1)" class="absolute left-4 bottom-6 bg-black/80 hover:bg-amber-500 text-amber-400 hover:text-gray-950 w-11 h-11 rounded-full flex items-center justify-center font-bold text-lg z-30 transition border border-amber-500/30 shadow-xl cursor-pointer">&#10094;</button>
                     <button type="button" onclick="manualChangeSlide(0, 1)" class="absolute right-4 bottom-6 bg-black/80 hover:bg-amber-500 text-amber-400 hover:text-gray-950 w-11 h-11 rounded-full flex items-center justify-center font-bold text-lg z-30 transition border border-amber-500/30 shadow-xl cursor-pointer">&#10095;</button>
                     
-                    <!-- Slides do Carrossel Exemplo -->
                     <div class="carousel-slide-0 absolute inset-0 transition-opacity duration-1000 flex items-center justify-center opacity-100 z-10">
-                        <img src="_metodo-1.jpg" class="max-h-full max-w-full object-contain pointer-events-none" onerror="this.src='https://via.placeholder.com/400x500?text=Metodo+Passo+1'">
+                        <img src="_metodo-1.jpg" class="max-h-full max-w-full object-contain pointer-events-none">
                     </div>
                     <div class="carousel-slide-0 absolute inset-0 transition-opacity duration-1000 flex items-center justify-center opacity-0 z-0">
-                        <img src="_metodo-2.jpg" class="max-h-full max-w-full object-contain pointer-events-none" onerror="this.src='https://via.placeholder.com/400x500?text=Metodo+Passo+2'">
+                        <img src="_metodo-2.jpg" class="max-h-full max-w-full object-contain pointer-events-none">
                     </div>
-                </div>
-                <div class="text-center pt-1">
-                    <a href="https://wa.me/555181061618?text=Olá,%20tenho%20dúvida%20sobre%20o%20Método%20da%20CS%20Code%20Solutions!" target="_blank" class="bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold px-8 py-3.5 rounded-xl transition shadow-xl text-base inline-block">Tirar Dúvidas sobre o Método</a>
                 </div>
             </div>
         </section>
 
-        <!-- SECÇÃO: MODALIDADES / SERVIÇOS -->
-        <section id="modalidades" data-section-id="modalidades" class="py-6 space-y-6">
+        <section id="modalidades" class="py-6 space-y-6">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-8 space-y-2">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Nossos Serviços</h2>
-                    <p class="text-sm font-bold text-gray-100 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] max-w-xl mx-auto">Opções flexíveis e customizadas para atender perfeitamente às demandas do seu projeto.</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white">Nossos Serviços</h2>
                 </div>
-                
                 <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Card 1 -->
-                    <div class="bg-gray-950 p-6 sm:p-8 rounded-3xl border border-gray-800 flex flex-col justify-between hover:border-amber-500/50 transition shadow-2xl space-y-6">
+                    <div class="bg-gray-950 p-6 sm:p-8 rounded-3xl border border-gray-800 flex flex-col justify-between shadow-2xl space-y-6">
                         <div class="space-y-4">
-                            <span class="bg-amber-400/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/20 inline-block">CONSULTORIA</span>
+                            <span class="bg-amber-400/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-400/20 inline-block">CONSULTORIA</span>
                             <h3 class="text-2xl font-bold text-white">Consultoria em Sistemas Web</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">Desenvolvimento e estruturação de soluções web robustas, otimizadas para conversão e alta performance.</p>
-                            <ul class="space-y-2 pt-2 border-t border-gray-800/60">
-                                <li class="flex items-center gap-2 text-gray-300 text-sm"><span class="text-amber-400">✓</span> Sistemas sob medida e funcionais</li>
-                                <li class="flex items-center gap-2 text-gray-300 text-sm"><span class="text-amber-400">✓</span> Arquitetura limpa e sem dependências complexas</li>
-                                <li class="flex items-center gap-2 text-gray-300 text-sm"><span class="text-amber-400">✓</span> Suporte técnico especializado</li>
-                            </ul>
+                            <p class="text-gray-400 text-sm leading-relaxed">Desenvolvimento e estruturação de soluções web robustas e de alta performance.</p>
                         </div>
-                        <div>
-                            <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Consultoria%20em%20Sistemas%20Web." target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-3.5 rounded-xl text-center transition block shadow-lg text-sm">Tirar Dúvidas - Consultoria</a>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="bg-gray-950 p-6 sm:p-8 rounded-3xl border border-gray-800 flex flex-col justify-between hover:border-amber-500/50 transition shadow-2xl space-y-6">
-                        <div class="space-y-4">
-                            <span class="bg-amber-400/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/20 inline-block">DEV WEB</span>
-                            <h3 class="text-2xl font-bold text-white">Desenvolvimento Full-Stack</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">Criação de portfólios, landing pages e e-commerces interativos com persistência local e design moderno.</p>
-                            <ul class="space-y-2 pt-2 border-t border-gray-800/60">
-                                <li class="flex items-center gap-2 text-gray-300 text-sm"><span class="text-amber-400">✓</span> Interfaces modernas (Tailwind CSS)</li>
-                                <li class="flex items-center gap-2 text-gray-300 text-sm"><span class="text-amber-400">✓</span> Integração e armazenamento local</li>
-                                <li class="flex items-center gap-2 text-gray-300 text-sm"><span class="text-amber-400">✓</span> Entrega rápida e profissional</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Desenvolvimento%20Full-Stack." target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-3.5 rounded-xl text-center transition block shadow-lg text-sm">Tirar Dúvidas - Desenvolvimento</a>
-                        </div>
+                        <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Consultoria." target="_blank" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-3.5 rounded-xl text-center transition block text-sm">Tirar Dúvidas</a>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- SECÇÃO: FERRAMENTAS / PLANILHAS -->
-        <section id="planilhas" data-section-id="planilhas" class="py-6 space-y-6">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-8 space-y-2">
-                    <span class="text-amber-400 font-semibold tracking-widest uppercase text-xs bg-amber-400/10 px-4 py-1.5 rounded-full border border-amber-400/20 inline-block drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">Materiais Prontos</span>
-                    <h3 class="text-3xl md:text-4xl font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">Ferramentas & Planilhas</h3>
-                    <p class="text-sm font-bold text-gray-100 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] max-w-xl mx-auto">Adquira planilhas e sistemas especializados desenvolvidos para acelerar a sua produtividade.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Ferramenta Exemplo -->
-                    <div class="bg-gray-950 p-6 sm:p-8 rounded-3xl border border-gray-800 flex flex-col justify-between hover:border-amber-500/50 transition shadow-2xl">
-                        <div>
-                            <span class="bg-amber-400/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/20">FERRAMENTA</span>
-                            <div class="flex justify-between items-start gap-2 mt-3 mb-2">
-                                <h4 class="text-2xl font-bold text-white">Dashboard Financeiro</h4>
-                                <span class="text-amber-400 font-extrabold text-lg">R$ 29,90</span>
-                            </div>
-                            <p class="text-gray-400 mb-5 text-sm leading-relaxed line-clamp-3">Planilha avançada para controle de fluxo de caixa e gestão de projetos com cálculos automáticos.</p>
-                        </div>
-                        <button type="button" onclick="openSpreadsheetModal('Dashboard Financeiro', 'Planilha avançada para controle de fluxo de caixa e gestão de projetos com cálculos automáticos.', 'R$ 29,90')" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-3.5 rounded-xl text-center transition block shadow-lg text-sm cursor-pointer">Sobre a Ferramenta</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECÇÃO: RELATOS -->
-        <section id="relatos" data-section-id="relatos" class="py-6 space-y-6">
-            <div class="max-w-3xl mx-auto space-y-6 text-center">
-                <div class="space-y-2">
-                    <h3 class="text-3xl md:text-4xl font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] leading-tight">Relatos de Parceiros e<br>Clientes</h3>
-                    <p class="text-sm font-bold text-gray-100 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">Veja o que dizem aqueles que já transformaram seus negócios com a CS Code Solutions.</p>
-                </div>
-                
-                <!-- Container do Carrossel de Relatos -->
-                <div class="relative bg-gray-950/90 backdrop-blur border border-gray-800 rounded-3xl p-6 sm:p-10 shadow-2xl min-h-[220px] flex flex-col justify-between text-left">
-                    <button type="button" onclick="changeTestimonialSlide(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/80 hover:bg-amber-500 text-amber-400 hover:text-gray-950 w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg z-30 transition border border-amber-500/30 shadow-xl cursor-pointer">&#10094;</button>
-                    <button type="button" onclick="changeTestimonialSlide(1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/80 hover:bg-amber-500 text-amber-400 hover:text-gray-950 w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg z-30 transition border border-amber-500/30 shadow-xl cursor-pointer">&#10095;</button>
-
-                    <div id="testimonialSlideContainer" class="px-6 sm:px-10 space-y-3">
-                        <div class="space-y-3">
-                            <p class="text-gray-200 italic text-base sm:text-lg leading-relaxed" id="testimonialText">"O trabalho da CS Code Solutions revolucionou a nossa presença online. O sistema é extremamente rápido e intuitivo!"</p>
-                            <div class="pt-2 border-t border-gray-800/80">
-                                <span class="font-bold text-amber-400 block text-base" id="testimonialAuthor">— Parceiro Comercial</span>
-                                <span class="text-xs text-gray-400 font-medium" id="testimonialService">Desenvolvimento Web</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="testimonialCounter" class="text-xs text-gray-500 pt-4 text-center">1 / 2</div>
-                </div>
-
-                <div class="pt-1">
-                    <button onclick="openTestimonialModal()" class="inline-block border border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-gray-950 font-semibold px-6 py-3 rounded-xl transition text-sm cursor-pointer shadow-lg">Deixar meu Relato / Depoimento</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECÇÃO: PRONTO PARA DAR O PRÓXIMO PASSO? -->
-        <section id="duvidas" data-section-id="duvidas" class="bg-gray-950/90 backdrop-blur border border-gray-800 rounded-3xl p-6 sm:p-10 text-center space-y-6 shadow-2xl">
-            <div class="max-w-xl mx-auto space-y-3">
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Pronto para dar o próximo passo?</h3>
-                <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-                    Entre em contato agora mesmo pelo WhatsApp para tirar dúvidas, solicitar um orçamento ou iniciar o seu projeto tecnológico.
-                </p>
-            </div>
-            <div class="max-w-md mx-auto space-y-3 pt-1">
-                <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%20CS%20Code%20Solutions!" target="_blank" class="block w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-4 rounded-2xl transition shadow-xl text-base">
-                    Chamar no WhatsApp
-                </a>
-                <a href="https://www.instagram.com/cs_code_solutions?vrfl=Ym1mNDMzYTYxa3d6" target="_blank" class="block w-full bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-95 text-white font-bold py-4 rounded-2xl transition shadow-xl text-base">
-                    Instagram Oficial
-                </a>
-            </div>
-        </section>
-
     </main>
 
-    <!-- MODAL SOBRE FERRAMENTA -->
-    <div id="spreadsheetModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-gray-800 rounded-3xl p-6 sm:p-8 max-w-md w-full relative shadow-2xl space-y-6">
-            <button onclick="closeSpreadsheetModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
-            <div>
-                <span class="bg-amber-400/10 text-amber-400 text-xs font-bold px-2.5 py-1 rounded-lg border border-amber-400/20">Detalhes da Ferramenta</span>
-                <h3 class="text-2xl font-bold text-white mt-2" id="modalSpreadsheetTitle">Nome da Ferramenta</h3>
-                <p class="text-amber-400 font-extrabold text-xl mt-1" id="modalSpreadsheetPrice">R$ 29,90</p>
-            </div>
-            <p class="text-gray-300 text-sm leading-relaxed" id="modalSpreadsheetDesc">Descrição detalhada.</p>
-            <div class="pt-4 border-t border-gray-800 flex gap-3">
-                <button type="button" onclick="openPixModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-3.5 rounded-xl transition shadow-lg text-sm cursor-pointer">Comprar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SEGUNDA MODAL: QR CODE PIX, COPIA E COLA E COMPROVANTE VIA WHATSAPP -->
-    <div id="pixModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-gray-800 rounded-3xl p-6 sm:p-8 max-w-md w-full relative shadow-2xl space-y-4 text-center">
-            <button onclick="closePixModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
-            <div>
-                <span class="bg-emerald-500/15 text-emerald-400 text-xs font-bold px-2.5 py-1 rounded-lg border border-emerald-500/30">Pagamento Pix</span>
-                <h3 class="text-xl font-bold text-white mt-2" id="pixModalTitle">Nome da Ferramenta</h3>
-                <p class="text-amber-400 font-extrabold text-2xl mt-1" id="pixModalPrice">R$ 29,90</p>
-            </div>
-            <div class="bg-white p-3 rounded-2xl inline-block shadow-inner">
-                <img id="pixQrCodeImg" src="" alt="QR Code Pix" class="w-36 h-36 mx-auto object-contain">
-            </div>
-            <p class="text-gray-300 text-xs leading-relaxed">
-                Escaneie o QR Code ou copie o código Pix Copia e Cola abaixo para efetuar o pagamento com o valor correto:
-            </p>
-
-            <div class="flex items-center gap-2 bg-gray-900 border border-gray-800 rounded-xl p-2">
-                <input type="text" id="pixKeyInput" readonly class="w-full bg-transparent text-gray-200 text-xs px-2 focus:outline-none select-all font-mono">
-                <button type="button" onclick="copyPixKey()" id="copyPixBtn" class="bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold px-3.5 py-2 rounded-lg text-xs transition whitespace-nowrap cursor-pointer">Copiar Pix</button>
-            </div>
-
-            <div class="pt-1">
-                <a id="whatsappPixLink" href="#" target="_blank" class="block w-full bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-extrabold py-3.5 rounded-xl transition shadow-lg text-sm">
-                    Concluir via WhatsApp com comprovante pix 📱
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE DEPOIMENTO -->
-    <div id="testimonialModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-gray-800 rounded-3xl p-6 sm:p-8 max-w-md w-full relative shadow-2xl">
-            <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
-            <h3 class="text-2xl font-bold mb-2 text-white">Deixar o seu Relato</h3>
-            <p class="text-gray-400 text-sm mb-6">Partilhe a sua experiência com a CS Code Solutions.</p>
-            <form onsubmit="submitTestimonial(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-amber-400 mb-1">Nome Completo / Empresa</label>
-                    <input type="text" id="clientName" required class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 text-sm" placeholder="Ex: Ana Silva">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-amber-400 mb-1">Serviço Contratado</label>
-                    <select id="clientService" required class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 text-sm">
-                        <option value="Desenvolvimento Web / Sistema">Desenvolvimento Web / Sistema</option>
-                        <option value="Consultoria Tecnológica">Consultoria Tecnológica</option>
-                        <option value="Ferramenta / Planilha">Ferramenta / Planilha</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-amber-400 mb-1">O seu Relato</label>
-                    <textarea id="clientMessage" required rows="4" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 text-sm resize-none" placeholder="Conte como foi a sua experiência..."></textarea>
-                </div>
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold py-3.5 rounded-xl transition shadow-xl text-base mt-2 cursor-pointer">Enviar Depoimento</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-950/90 backdrop-blur border-t border-gray-800 py-6 text-center text-xs text-gray-500 space-y-1.5">
+    <footer class="bg-gray-950/90 backdrop-blur border-t border-gray-800 py-6 text-center text-xs text-gray-500">
         <p>&copy; 2026 CS Code Solutions. Todos os direitos reservados.</p>
-        <p class="text-gray-600">Powered by <a href="https://www.instagram.com/cs_code_solutions?vrfl=Ym1mNDMzYTYxa3d6" target="_blank" class="text-gray-400 hover:text-amber-400 transition">CS Code Solutions</a></p>
     </footer>
 
-    <!-- Lógica JavaScript Estática (Sem Firebase) -->
     <script>
-        const activePixKey = "83430164087";
-
-        // Carrossel estático
         let currentSlideIndex = 0;
-        const totalSlides = 2;
         let carouselTimer = null;
-
         function initCarousel() {
-            carouselTimer = setInterval(() => {
-                changeSlide(0, 1);
-            }, 6000);
+            carouselTimer = setInterval(() => { changeSlide(0, 1); }, 6000);
         }
-
         function changeSlide(groupIndex, direction) {
             const slides = document.querySelectorAll(`.carousel-slide-${groupIndex}`);
             if (!slides.length) return;
-
             slides[currentSlideIndex].classList.remove('opacity-100', 'z-10');
             slides[currentSlideIndex].classList.add('opacity-0', 'z-0');
-
             currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
-
             slides[currentSlideIndex].classList.remove('opacity-0', 'z-0');
             slides[currentSlideIndex].classList.add('opacity-100', 'z-10');
         }
-
         window.manualChangeSlide = function(groupIndex, direction) {
             if (carouselTimer) clearInterval(carouselTimer);
             changeSlide(groupIndex, direction);
-            carouselTimer = setInterval(() => {
-                changeSlide(0, 1);
-            }, 6000);
+            carouselTimer = setInterval(() => { changeSlide(0, 1); }, 6000);
         }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            initCarousel();
-        });
-
-        // Relatos estáticos / rotativos
-        const staticTestimonials = [
-            { message: "O trabalho da CS Code Solutions revolucionou a nossa presença online. O sistema é extremamente rápido e intuitivo!", name: "Parceiro Comercial", service: "Desenvolvimento Web" },
-            { message: "Profissionalismo impecável. Entregou o projeto no prazo e com um design moderno que aumentou consideravelmente as nossas conversões.", name: "Gestão de E-commerce", service: "Consultoria Tecnológica" }
-        ];
-        let currentTestimonialIndex = 0;
-
-        window.changeTestimonialSlide = function(direction) {
-            currentTestimonialIndex = (currentTestimonialIndex + direction + staticTestimonials.length) % staticTestimonials.length;
-            const t = staticTestimonials[currentTestimonialIndex];
-            document.getElementById('testimonialText').textContent = `"${t.message}"`;
-            document.getElementById('testimonialAuthor').textContent = `— ${t.name}`;
-            document.getElementById('testimonialService').textContent = t.service;
-            document.getElementById('testimonialCounter').textContent = `${currentTestimonialIndex + 1} / ${staticTestimonials.length}`;
-        }
-
-        // Modais
-        let selectedName = '';
-        let selectedPrice = '';
-
-        window.openSpreadsheetModal = function(name, desc, price) {
-            selectedName = name;
-            selectedPrice = price;
-            document.getElementById('modalSpreadsheetTitle').textContent = name;
-            document.getElementById('modalSpreadsheetPrice').textContent = price;
-            document.getElementById('modalSpreadsheetDesc').textContent = desc;
-            document.getElementById('spreadsheetModal').classList.remove('hidden');
-        }
-
-        window.closeSpreadsheetModal = function() {
-            document.getElementById('spreadsheetModal').classList.add('hidden');
-        }
-
-        function calcularCRC16(payload) {
-            let polinomio = 0x1021;
-            let resultado = 0xFFFF;
-            for (let i = 0; i < payload.length; i++) {
-                let c = payload.charCodeAt(i);
-                resultado ^= (c << 8);
-                for (let j = 0; j < 8; j++) {
-                    if ((resultado & 0x8000) !== 0) {
-                        resultado = ((resultado << 1) ^ polinomio) & 0xFFFF;
-                    } else {
-                        resultado = (resultado << 1) & 0xFFFF;
-                    }
-                }
-            }
-            return resultado.toString(16).toUpperCase().padStart(4, '0');
-        }
-
-        function gerarPayloadPix(chavePix, nomeRecebedor, cidadeRecebedor, valorStr) {
-            let valorLimpo = valorStr.replace(/[^\d,.-]/g, '').replace(',', '.');
-            if (isNaN(valorLimpo) || valorLimpo === '') valorLimpo = '0.00';
-
-            const formatField = (id, value) => {
-                const len = value.length.toString().padStart(2, '0');
-                return `${id}${len}${value}`;
-            };
-
-            let gui = 'br.gov.bcb.pix';
-            let accInfo = formatField('00', gui) + formatField('01', chavePix);
-            
-            let payload = '';
-            payload += formatField('00', '01');
-            payload += formatField('26', accInfo);
-            payload += formatField('52', '0000');
-            payload += formatField('53', '986');
-            
-            if (parseFloat(valorLimpo) > 0) {
-                payload += formatField('54', Number(valorLimpo).toFixed(2));
-            }
-            
-            payload += formatField('58', 'BR');
-            payload += formatField('59', nomeRecebedor.substring(0, 25));
-            payload += formatField('60', cidadeRecebedor.substring(0, 15));
-            
-            let additionalData = formatField('05', 'FERRAMENTA');
-            payload += formatField('62', additionalData);
-            payload += '6304';
-            
-            let crc = calcularCRC16(payload);
-            return payload + crc;
-        }
-
-        window.openPixModal = function() {
-            closeSpreadsheetModal();
-            document.getElementById('pixModalTitle').textContent = selectedName;
-            document.getElementById('pixModalPrice').textContent = selectedPrice;
-
-            const payloadPixCompleto = gerarPayloadPix(activePixKey, "CS Code Solutions", "Porto Alegre", selectedPrice);
-
-            document.getElementById('pixKeyInput').value = payloadPixCompleto;
-            document.getElementById('pixQrCodeImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(payloadPixCompleto)}`;
-
-            const message = encodeURIComponent(`Olá, acabei de efetuar o pagamento Pix no valor de ${selectedPrice} referente à ferramenta "${selectedName}" e envio aqui o comprovante!`);
-            document.getElementById('whatsappPixLink').href = `https://wa.me/555181061618?text=${message}`;
-            document.getElementById('pixModal').classList.remove('hidden');
-        }
-
-        window.copyPixKey = function() {
-            const pixInput = document.getElementById('pixKeyInput');
-            const copyBtn = document.getElementById('copyPixBtn');
-            pixInput.select();
-            navigator.clipboard.writeText(pixInput.value).then(() => {
-                copyBtn.textContent = "Copiado! ✓";
-                copyBtn.className = "bg-emerald-500 text-gray-950 font-bold px-3.5 py-2 rounded-lg text-xs transition whitespace-nowrap cursor-pointer";
-                setTimeout(() => {
-                    copyBtn.textContent = "Copiar Pix";
-                    copyBtn.className = "bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold px-3.5 py-2 rounded-lg text-xs transition whitespace-nowrap cursor-pointer";
-                }, 3000);
-            });
-        }
-
-        window.closePixModal = function() {
-            document.getElementById('pixModal').classList.add('hidden');
-        }
-
-        window.openTestimonialModal = function() {
-            document.getElementById('testimonialModal').classList.remove('hidden');
-        }
-
-        window.closeTestimonialModal = function() {
-            document.getElementById('testimonialModal').classList.add('hidden');
-        }
-
-        window.submitTestimonial = function(e) {
-            e.preventDefault();
-            alert('Relato enviado com sucesso! Obrigado pelo feedback.');
-            closeTestimonialModal();
-            e.target.reset();
-        }
+        document.addEventListener("DOMContentLoaded", () => { initCarousel(); });
     </script>
 </body>
 </html>
