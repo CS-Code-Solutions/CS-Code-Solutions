@@ -120,32 +120,6 @@
             box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.25);
         }
 
-        /* Card exclusivo para SaaS Próprios com destaque Ciano/Esmeralda */
-        .saas-card {
-            position: relative;
-            background: linear-gradient(145deg, rgba(13, 25, 44, 0.9), rgba(7, 13, 24, 0.95));
-            border: 1px solid rgba(6, 182, 212, 0.22);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden;
-        }
-        .saas-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(16, 185, 129, 0.14), transparent 45%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-        .saas-card:hover::before {
-            opacity: 1;
-        }
-        .saas-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(16, 185, 129, 0.55);
-            box-shadow: 0 24px 48px -15px rgba(6, 182, 212, 0.28);
-        }
-
         /* Dropdown suave */
         .dropdown-menu {
             opacity: 0;
@@ -197,13 +171,13 @@
             </div>
 
             <!-- Navegação Desktop (Atalhos One-Page) -->
-            <nav class="hidden md:flex items-center space-x-1 lg:space-x-1.5 bg-white/[0.03] p-1.5 rounded-2xl border border-white/5">
-                <button onclick="irParaSecao('inicio')" data-target="inicio" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 text-white bg-blue-600 shadow-lg shadow-blue-600/25 cursor-pointer">Início</button>
-                <button onclick="irParaSecao('historia')" data-target="historia" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Minha História</button>
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 bg-white/[0.03] p-1.5 rounded-2xl border border-white/5">
+                <button onclick="irParaSecao('inicio')" data-target="inicio" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 text-white bg-blue-600 shadow-lg shadow-blue-600/25 cursor-pointer">Início</button>
+                <button onclick="irParaSecao('historia')" data-target="historia" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Minha História</button>
                 
                 <!-- Menu Cascata Projetos -->
                 <div class="dropdown-container relative">
-                    <button onclick="irParaSecao('projetos')" data-target="projetos" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-1.5 cursor-pointer">
+                    <button onclick="irParaSecao('projetos')" data-target="projetos" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-1.5 cursor-pointer">
                         Projetos <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
                     </button>
                     <!-- Dropdown -->
@@ -226,12 +200,8 @@
                     </div>
                 </div>
 
-                <button onclick="irParaSecao('saas-proprios')" data-target="saas-proprios" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-1.5 cursor-pointer">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    <span>SaaS Próprios</span>
-                </button>
-                <button onclick="irParaSecao('clientes')" data-target="clientes" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Clientes</button>
-                <button onclick="irParaSecao('contato')" data-target="contato" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Contato</button>
+                <button onclick="irParaSecao('clientes')" data-target="clientes" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Clientes</button>
+                <button onclick="irParaSecao('contato')" data-target="contato" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Contato</button>
             </nav>
 
             <!-- Ação Rápida WhatsApp -->
@@ -255,9 +225,6 @@
             <button onclick="irParaSecao('inicio'); toggleMobileMenu();" data-target="inicio" class="mobile-nav-btn block w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-blue-400 bg-blue-500/10">Início</button>
             <button onclick="irParaSecao('historia'); toggleMobileMenu();" data-target="historia" class="mobile-nav-btn block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5">Minha História</button>
             <button onclick="irParaSecao('projetos'); toggleMobileMenu();" data-target="projetos" class="mobile-nav-btn block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5">Projetos & Categorias</button>
-            <button onclick="irParaSecao('saas-proprios'); toggleMobileMenu();" data-target="saas-proprios" class="mobile-nav-btn block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5 flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> SaaS Próprios (OSync & NexOS)
-            </button>
             <button onclick="irParaSecao('clientes'); toggleMobileMenu();" data-target="clientes" class="mobile-nav-btn block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5">Clientes</button>
             <button onclick="irParaSecao('contato'); toggleMobileMenu();" data-target="contato" class="mobile-nav-btn block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5">Contato</button>
             <div class="pt-2">
@@ -299,7 +266,7 @@
                         </h1>
                         
                         <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                            Bem-vindo ao portfólio oficial da <strong class="text-white">CS Code Solutions</strong>. Projetamos sistemas web robustos, plataformas de gestão, e-commerces e soluções SaaS próprias para escalar a sua operação.
+                            Bem-vindo ao portfólio oficial da <strong class="text-white">CS Code Solutions</strong>. Projetamos sistemas web robustos, plataformas de gestão, e-commerces e aplicações de alta performance para escalar a sua operação.
                         </p>
                         
                         <div class="flex flex-wrap gap-4 pt-3">
@@ -308,9 +275,9 @@
                                 <span>Explorar Projetos</span>
                                 <i class="fa-solid fa-arrow-down text-xs transition-transform group-hover:translate-y-0.5"></i>
                             </button>
-                            <button onclick="irParaSecao('saas-proprios')" class="glass-panel hover:bg-white/10 text-emerald-300 font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 border border-emerald-500/30 hover:border-emerald-400/60 hover:-translate-y-0.5 flex items-center gap-2.5 cursor-pointer">
-                                <i class="fa-solid fa-cubes text-emerald-400"></i> 
-                                <span>Conhecer SaaS Próprios</span>
+                            <button onclick="irParaSecao('contato')" class="glass-panel hover:bg-white/10 text-gray-200 font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 border border-white/10 hover:border-white/25 hover:-translate-y-0.5 flex items-center gap-2.5 cursor-pointer">
+                                <i class="fa-solid fa-paper-plane text-blue-400"></i> 
+                                <span>Solicitar Orçamento</span>
                             </button>
                         </div>
                     </div>
@@ -426,13 +393,13 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 3: PROJETOS SOB MEDIDA -->
+        <!-- SEÇÃO 3: PROJETOS -->
         <section id="projetos" class="reveal space-y-10">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div class="space-y-2">
                     <span class="text-xs font-mono uppercase tracking-widest text-blue-400">Portfólio Interativo</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Nossos Projetos</h2>
-                    <p class="text-gray-400 text-sm sm:text-base">Explore as soluções desenvolvidas sob medida e clique para testar a demonstração.</p>
+                    <p class="text-gray-400 text-sm sm:text-base">Explore as soluções desenvolvidas e clique para testar a demonstração.</p>
                 </div>
                 
                 <!-- Filtros de Categoria -->
@@ -451,141 +418,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 4: SAAS PRÓPRIOS (OSYNC & NEXOS) -->
-        <section id="saas-proprios" class="reveal space-y-10">
-            <div class="glass-panel rounded-[2rem] p-8 sm:p-12 border border-cyan-500/25 relative overflow-hidden">
-                <!-- Iluminação de destaque para produtos proprietários -->
-                <div class="absolute -top-32 right-10 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-32 left-10 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-                <div class="relative z-10 space-y-10">
-                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-8">
-                        <div class="space-y-2.5 max-w-2xl">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
-                                <i class="fa-solid fa-crown text-[11px]"></i>
-                                <span>ECOSSISTEMA PROPRIETÁRIO</span>
-                            </div>
-                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">SaaS Próprios</h2>
-                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-                                Plataformas desenvolvidas e mantidas pela <strong class="text-white">CS Code Solutions</strong>. Conheça a utilidade do <strong class="text-cyan-300">OSync</strong> e do <strong class="text-emerald-300">NexOS</strong> para otimizar operações, manutenção e gestão em tempo real[cite: 1].
-                            </p>
-                        </div>
-                        <div class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-4 py-2 rounded-xl self-start md:self-end">
-                            <i class="fa-solid fa-cloud mr-1.5"></i> Cloud SaaS • Multi-dispositivo
-                        </div>
-                    </div>
-
-                    <!-- Grade dos Produtos SaaS: OSync e NexOS -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        
-                        <!-- CARD 1: OSync (log.png) -->
-                        <div class="saas-card rounded-3xl p-7 sm:p-9 flex flex-col justify-between space-y-6 group">
-                            <div class="space-y-5">
-                                <div class="flex items-start justify-between gap-4">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-500/15 border border-cyan-400/30 flex items-center justify-center p-2 shadow-lg shadow-cyan-500/10 group-hover:scale-105 transition-transform shrink-0">
-                                            <img src="log.png" alt="Logo OSync" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-arrows-rotate text-cyan-400 text-2xl\'></i>';">
-                                        </div>
-                                        <div>
-                                            <div class="flex flex-wrap items-center gap-2">
-                                                <h3 class="text-2xl font-extrabold text-white tracking-tight">OSync</h3>
-                                                <span class="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">SaaS Operacional</span>
-                                            </div>
-                                            <p class="text-xs font-mono text-cyan-400 mt-0.5">Sincronização Operacional, O.S. & Alertas em Tempo Real[cite: 1]</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <p class="text-sm text-gray-300 leading-relaxed">
-                                    <strong class="text-white">Para que serve:</strong> Centraliza solicitações e Ordens de Serviço (O.S.) por setor, conecta equipes em tempo real e dispara notificações imediatas para agilizar respostas operacionais e reduzir tempo de parada[cite: 1].
-                                </p>
-
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 text-xs text-gray-300">
-                                    <div class="flex items-center gap-2 bg-white/[0.03] px-3 py-2 rounded-xl border border-white/5">
-                                        <i class="fa-solid fa-clipboard-check text-cyan-400"></i>
-                                        <span>Gestão de O.S. & Solicitações[cite: 1]</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-white/[0.03] px-3 py-2 rounded-xl border border-white/5">
-                                        <i class="fa-solid fa-bell text-cyan-400"></i>
-                                        <span>Alertas Push & Sonoros Real-Time</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-white/[0.03] px-3 py-2 rounded-xl border border-white/5">
-                                        <i class="fa-solid fa-qrcode text-cyan-400"></i>
-                                        <span>Consulta Rápida via QR Code[cite: 1]</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-white/[0.03] px-3 py-2 rounded-xl border border-white/5">
-                                        <i class="fa-solid fa-chart-line text-cyan-400"></i>
-                                        <span>Indicadores & Custos em Tempo Real[cite: 1]</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                                <span class="text-xs font-mono text-gray-400">Logo: <code class="text-cyan-300">log.png</code></span>
-                                <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20conhecer%20melhor%20o%20SaaS%20OSync." target="_blank" class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-cyan-600/25 flex items-center gap-2">
-                                    <span>Solicitar Acesso / Demo</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- CARD 2: NexOS (dsffd.png) -->
-                        <div class="saas-card rounded-3xl p-7 sm:p-9 flex flex-col justify-between space-y-6 group">
-                            <div class="space-y-5">
-                                <div class="flex items-start justify-between gap-4">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600/20 to-teal-500/15 border border-emerald-400/30 flex items-center justify-center p-2 shadow-lg shadow-emerald-500/10 group-hover:scale-105 transition-transform shrink-0">
-                                            <img src="dsffd.png" alt="Logo NexOS" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-gears text-emerald-400 text-2xl\'></i>';">
-                                        </div>
-                                        <div>
-                                            <div class="flex flex-wrap items-center gap-2">
-                                                <h3 class="text-2xl font-extrabold text-white tracking-tight">NexOS</h3>
-                                                <span class="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">Gestão & Controle</span>
-                                            </div>
-                                            <p class="text-xs font-mono text-emerald-400 mt-0.5">Controle de Ativos, Planos Preventivos & Rastreabilidade[cite: 1]</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <p class="text-sm text-gray-300 leading-relaxed">
-                                    <strong class="text-white">Para que serve:</strong> Estrutura o controle de ativos (máquinas e equipamentos), planos de manutenção, histórico de intervenções e relatórios técnicos com foco em rastreabilidade, auditoria e previsibilidade operacional[cite: 1].
-                                </p>
-
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 text-xs text-gray-300">
-                                    <div class="flex items-center gap-2 bg-white/[0.03] px-3 py-2 rounded-xl border border-white/5">
-                                        <i class="fa-solid fa-industry text-emerald-400"></i>
-                                        <span>Controle de Máquinas & Ativos[cite: 1]</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-white/[0.03] px-3 py-2 rounded-xl border border-white/5">
-                                        <i class="fa-solid fa-calendar-check text-emerald-400"></i>
-                                        <span>Planos & Histórico de Manutenção[cite: 1]</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-white/[0.03] px-3 py-2 rounded-xl border border-white/5">
-                                        <i class="fa-solid fa-clipboard-list text-emerald-400"></i>
-                                        <span>Relatórios Técnicos & Auditoria[cite: 1]</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 bg-white/[0.03] px-3 py-2 rounded-xl border border-white/5">
-                                        <i class="fa-solid fa-shield-halved text-emerald-400"></i>
-                                        <span>Rastreabilidade & Fluxo Automatizado[cite: 1]</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                                <span class="text-xs font-mono text-gray-400">Logo: <code class="text-emerald-300">dsffd.png</code></span>
-                                <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20conhecer%20melhor%20o%20SaaS%20NexOS." target="_blank" class="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition-all duration-300 shadow-lg shadow-emerald-600/25 flex items-center gap-2">
-                                    <span>Solicitar Acesso / Demo</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO 5: CLIENTES -->
+        <!-- SEÇÃO 4: CLIENTES -->
         <section id="clientes" class="reveal">
             <div class="glass-panel rounded-[2rem] p-8 sm:p-12 border border-blue-500/20 space-y-10">
                 <div class="text-center max-w-2xl mx-auto space-y-3">
@@ -642,7 +475,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO 6: CONTATO -->
+        <!-- SEÇÃO 5: CONTATO -->
         <section id="contato" class="reveal">
             <div class="glass-panel rounded-[2rem] p-8 sm:p-12 border border-blue-500/25 max-w-4xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -689,7 +522,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-gray-400 mb-1.5">Como podemos ajudar?</label>
-                                <textarea id="contato-msg" rows="3" placeholder="Descreva brevemente seu projeto ou qual SaaS deseja testar..." required class="w-full bg-darkCard/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"></textarea>
+                                <textarea id="contato-msg" rows="3" placeholder="Descreva brevemente seu projeto..." required class="w-full bg-darkCard/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"></textarea>
                             </div>
                             <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 cursor-pointer flex items-center justify-center gap-2">
                                 <span>Enviar Mensagem</span>
@@ -867,4 +700,253 @@
                     btn.classList.remove('text-gray-400', 'font-medium');
                     btn.classList.add('text-white', 'bg-blue-600', 'shadow-lg', 'shadow-blue-600/25', 'font-semibold');
                 } else {
-                    btn.classList.remove('text-white', 'bg-blue-600', 'shadow-lg', 'shadow-blue-600/25
+                    btn.classList.remove('text-white', 'bg-blue-600', 'shadow-lg', 'shadow-blue-600/25', 'font-semibold');
+                    btn.classList.add('text-gray-400', 'font-medium');
+                }
+            });
+
+            // Mobile
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                if (btn.dataset.target === secaoId) {
+                    btn.classList.remove('text-gray-300', 'font-medium');
+                    btn.classList.add('text-blue-400', 'bg-blue-500/10', 'font-semibold');
+                } else {
+                    btn.classList.remove('text-blue-400', 'bg-blue-500/10', 'font-semibold');
+                    btn.classList.add('text-gray-300', 'font-medium');
+                }
+            });
+        }
+
+        // Atualiza a Barra LED e o Scrollspy ao rolar a página
+        function atualizarScrollEBarraLed() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            
+            // Cálculo da porcentagem da barra LED (0% no topo, 100% no final)
+            const progresso = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+            const barraLed = document.getElementById('led-scroll-bar');
+            if (barraLed) {
+                barraLed.style.width = `${progresso}%`;
+            }
+
+            // Sombra dinâmica no cabeçalho
+            const header = document.getElementById('main-header');
+            if (scrollTop > 20) {
+                header.classList.add('shadow-2xl', 'bg-darkBg/90');
+            } else {
+                header.classList.remove('shadow-2xl', 'bg-darkBg/90');
+            }
+
+            // Scrollspy: identifica qual seção está visível na tela
+            const secoes = ['inicio', 'historia', 'projetos', 'clientes', 'contato'];
+            let secaoAtual = 'inicio';
+
+            // Se chegou bem perto do fim da página, ativa 'contato'
+            if ((window.innerHeight + scrollTop) >= document.documentElement.scrollHeight - 40) {
+                secaoAtual = 'contato';
+            } else {
+                for (const id of secoes) {
+                    const sec = document.getElementById(id);
+                    if (sec) {
+                        const topo = sec.offsetTop - 180;
+                        if (scrollTop >= topo) {
+                            secaoAtual = id;
+                        }
+                    }
+                }
+            }
+            atualizarBotaoAtivo(secaoAtual);
+        }
+
+        // Efeito de brilho seguindo o cursor nos cards modernos
+        function ativarEfeitoSpotlight() {
+            document.querySelectorAll('.modern-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        }
+
+        // Scroll Reveal Observer
+        function iniciarScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function renderizarProjetos(filtro = 'todos') {
+            const grade = document.getElementById('grade-projetos');
+            grade.innerHTML = '';
+
+            const filtrados = filtro === 'todos' ? projetosData : projetosData.filter(p => p.categoria === filtro);
+
+            filtrados.forEach((projeto, index) => {
+                const card = document.createElement('div');
+                card.className = 'modern-card rounded-3xl flex flex-col group';
+                card.style.animationDelay = `${index * 70}ms`;
+                
+                const acaoClique = projeto.urlExecutavel ? `abrirVisualizadorProjeto('${projeto.urlExecutavel}')` : `abrirModalProjeto(${projeto.id})`;
+
+                card.innerHTML = `
+                    <div class="aspect-video overflow-hidden relative cursor-pointer" onclick="${acaoClique}">
+                        <img src="${projeto.imagem}" alt="${projeto.titulo}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-3.5 right-3.5 text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-darkBg/80 text-blue-400 border border-blue-500/30 backdrop-blur-md">
+                            ${projeto.categoriaNome}
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between space-y-5">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">${projeto.titulo}</h3>
+                            <p class="text-xs sm:text-sm text-gray-400 line-clamp-2 leading-relaxed">${projeto.descricao}</p>
+                        </div>
+                        <button onclick="${acaoClique}" class="w-full bg-white/[0.04] hover:bg-blue-600 text-blue-400 hover:text-white font-semibold py-3 rounded-xl text-xs transition-all duration-300 border border-white/10 hover:border-blue-500 flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-eye"></i> 
+                            <span>${projeto.urlExecutavel ? 'Executar Aplicação Completa' : 'Ver Demonstração Interativa'}</span>
+                        </button>
+                    </div>
+                `;
+                grade.appendChild(card);
+            });
+
+            ativarEfeitoSpotlight();
+        }
+
+        function filtrarCategoria(categoria) {
+            renderizarProjetos(categoria);
+
+            document.querySelectorAll('#projetos button[id^="filtro-"]').forEach(btn => {
+                btn.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer';
+            });
+            const btnAtivo = document.getElementById(`filtro-${categoria}`);
+            if(btnAtivo) {
+                btnAtivo.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 bg-blue-600 text-white shadow-md shadow-blue-600/25 cursor-pointer';
+            }
+        }
+
+        function abrirVisualizadorProjeto(caminhoUrl) {
+            const modal = document.getElementById('modal-visualizador');
+            const iframe = document.getElementById('iframe-projeto');
+            iframe.src = caminhoUrl;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharVisualizadorProjeto() {
+            const modal = document.getElementById('modal-visualizador');
+            const iframe = document.getElementById('iframe-projeto');
+            modal.classList.add('hidden');
+            iframe.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function mudarModoVisualizacao(modo) {
+            const wrapper = document.getElementById('container-iframe-wrapper');
+            const btnDesktop = document.getElementById('btn-modo-desktop');
+            const btnMobile = document.getElementById('btn-modo-mobile');
+
+            if (modo === 'mobile') {
+                wrapper.className = "w-full max-w-sm flex-grow bg-gray-950 rounded-b-2xl border border-t-0 border-white/10 flex items-center justify-center overflow-hidden relative shadow-2xl transition-all duration-500 my-4 h-[80vh]";
+                btnMobile.className = "px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white transition cursor-pointer flex items-center gap-1.5";
+                btnDesktop.className = "px-3.5 py-1.5 rounded-xl text-xs font-medium bg-white/5 text-gray-300 hover:text-white transition cursor-pointer flex items-center gap-1.5";
+            } else {
+                wrapper.className = "w-full max-w-7xl flex-grow bg-gray-950 rounded-b-2xl border border-t-0 border-white/10 flex items-center justify-center overflow-hidden relative shadow-2xl transition-all duration-500";
+                btnDesktop.className = "px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white transition cursor-pointer flex items-center gap-1.5";
+                btnMobile.className = "px-3.5 py-1.5 rounded-xl text-xs font-medium bg-white/5 text-gray-300 hover:text-white transition cursor-pointer flex items-center gap-1.5";
+            }
+        }
+
+        function abrirModalProjeto(id) {
+            const projeto = projetosData.find(p => p.id === id);
+            if (!projeto) return;
+
+            projetoAtualId = id;
+            document.getElementById('modal-titulo').textContent = projeto.titulo;
+            document.getElementById('modal-categoria').textContent = projeto.categoriaNome;
+            document.getElementById('modal-descricao').textContent = projeto.descricao;
+            document.getElementById('modal-imagem').src = projeto.imagem;
+
+            carregarFeedbacksLocalStorage();
+            document.getElementById('modal-projeto').classList.remove('hidden');
+        }
+
+        function fecharModalProjeto() {
+            document.getElementById('modal-projeto').classList.add('hidden');
+        }
+
+        function salvarFeedbackProjeto() {
+            const input = document.getElementById('input-feedback-projeto');
+            const valor = input.value.trim();
+            if (!valor) return;
+
+            const chaveStorage = `feedbacks_projeto_${projetoAtualId}`;
+            let lista = JSON.parse(localStorage.getItem(chaveStorage)) || [];
+            lista.push({ texto: valor, data: new Date().toLocaleDateString('pt-BR') });
+            localStorage.setItem(chaveStorage, JSON.stringify(lista));
+
+            input.value = '';
+            carregarFeedbacksLocalStorage();
+        }
+
+        function carregarFeedbacksLocalStorage() {
+            const chaveStorage = `feedbacks_projeto_${projetoAtualId}`;
+            let lista = JSON.parse(localStorage.getItem(chaveStorage)) || [];
+            const container = document.getElementById('lista-feedbacks');
+            container.innerHTML = '';
+
+            if (lista.length === 0) {
+                container.innerHTML = '<span class="text-gray-500 italic">Nenhum feedback registrado ainda.</span>';
+                return;
+            }
+
+            lista.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'bg-darkCard/80 p-2.5 rounded-xl border border-white/5 flex justify-between items-center';
+                div.innerHTML = `<span>${item.texto}</span> <span class="text-[10px] font-mono text-gray-500">${item.data}</span>`;
+                container.appendChild(div);
+            });
+        }
+
+        function enviarMensagem(event) {
+            event.preventDefault();
+            const nome = document.getElementById('contato-nome').value;
+            const info = document.getElementById('contato-info').value;
+            const msg = document.getElementById('contato-msg').value;
+
+            let mensagens = JSON.parse(localStorage.getItem('cs_contatos')) || [];
+            mensagens.push({ nome, info, msg, data: new Date().toLocaleString('pt-BR') });
+            localStorage.setItem('cs_contatos', JSON.stringify(mensagens));
+
+            document.getElementById('form-contato').reset();
+            const sucesso = document.getElementById('mensagem-sucesso');
+            sucesso.classList.remove('hidden');
+            setTimeout(() => sucesso.classList.add('hidden'), 5000);
+        }
+
+        window.addEventListener('scroll', atualizarScrollEBarraLed, { passive: true });
+        window.addEventListener('resize', atualizarScrollEBarraLed, { passive: true });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarProjetos('todos');
+            iniciarScrollReveal();
+            ativarEfeitoSpotlight();
+            atualizarScrollEBarraLed();
+        });
+    </script>
+</body>
+</html>
