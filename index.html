@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS Code Solutions - Portfólio de Projetos</title>
-    <!-- Favicon com o icon.png -->
+    <title>CS Code Solutions — Engenharia & Soluções Digitais</title>
     <link rel="icon" type="image/png" href="icon.png">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,130 +18,267 @@
             darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
                     colors: {
-                        darkBg: '#0b0f19',
-                        darkCard: '#131c2e',
+                        darkBg: '#060913',
+                        darkCard: '#0d1424',
                         accentBlue: '#3b82f6',
+                        accentCyan: '#06b6d4',
                         accentEmerald: '#10b981',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'gradient-x': 'gradientX 6s ease infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        gradientX: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        }
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome para ícones -->
+    
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        .glass-panel {
-            background: rgba(19, 28, 46, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(59, 130, 246, 0.15);
+        /* Fundo com grade tecnológica sutil */
+        .bg-tech-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
         }
+
+        /* Painel Glassmorphism Refinado */
+        .glass-panel {
+            background: rgba(13, 20, 36, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+        }
+
+        /* Card interativo com brilho no hover */
+        .modern-card {
+            position: relative;
+            background: linear-gradient(145deg, rgba(17, 26, 46, 0.8), rgba(10, 15, 28, 0.9));
+            border: 1px solid rgba(59, 130, 246, 0.12);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        .modern-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.12), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .modern-card:hover::before {
+            opacity: 1;
+        }
+        .modern-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(59, 130, 246, 0.45);
+            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.25);
+        }
+
+        /* Animação de entrada das abas */
+        .tab-enter {
+            animation: tabFadeSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes tabFadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(18px) scale(0.99);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Dropdown suave */
         .dropdown-menu {
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .dropdown-container:hover .dropdown-menu {
-            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Barra de rolagem customizada */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #060913; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
     </style>
 </head>
-<body class="bg-darkBg text-gray-100 min-h-screen flex flex-col font-sans selection:bg-accentBlue selection:text-white">
+<body class="bg-darkBg bg-tech-grid text-gray-100 min-h-screen flex flex-col font-sans selection:bg-accentBlue selection:text-white overflow-x-hidden relative">
+
+    <!-- Luzes de Ambiente Fixas no Fundo -->
+    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow -z-10"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow -z-10"></div>
 
     <!-- BARRA DE NAVEGAÇÃO -->
-    <header class="glass-panel sticky top-0 z-50 border-b border-gray-800">
+    <header id="main-header" class="glass-panel sticky top-0 z-50 border-b border-white/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <!-- Logo com texto (logo2.png) - Aumentada para ocupar a linha verde -->
-            <div class="flex items-center cursor-pointer" onclick="mudarAba('inicio')">
-                <img src="logo2.png" alt="CS Code Solutions Logo" class="h-20 sm:h-22 w-auto object-contain">
+            <!-- Logo com texto -->
+            <div class="flex items-center cursor-pointer group" onclick="mudarAba('inicio')">
+                <img src="logo2.png" alt="CS Code Solutions Logo" class="h-20 sm:h-22 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
             </div>
 
             <!-- Navegação Desktop -->
-            <nav class="hidden md:flex items-center space-x-1 lg:space-x-4">
-                <button onclick="mudarAba('inicio')" id="btn-inicio" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition text-blue-400 bg-blue-500/15">Início</button>
-                <button onclick="mudarAba('historia')" id="btn-historia" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition text-gray-300 hover:text-white hover:bg-gray-800/50">Minha História</button>
+            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 bg-white/[0.03] p-1.5 rounded-2xl border border-white/5">
+                <button onclick="mudarAba('inicio')" id="btn-inicio" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 text-white bg-blue-600 shadow-lg shadow-blue-600/25">Início</button>
+                <button onclick="mudarAba('historia')" id="btn-historia" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5">Minha História</button>
                 
                 <!-- Menu Cascata Projetos -->
-                <div class="dropdown-container relative py-2">
-                    <button onclick="mudarAba('projetos')" id="btn-projetos" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition text-gray-300 hover:text-white hover:bg-gray-800/50 flex items-center gap-1">
-                        Projetos <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                <div class="dropdown-container relative">
+                    <button onclick="mudarAba('projetos')" id="btn-projetos" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 flex items-center gap-1.5">
+                        Projetos <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
                     </button>
                     <!-- Dropdown -->
-                    <div class="dropdown-menu absolute top-full left-0 w-56 glass-panel rounded-xl shadow-2xl py-2 border border-blue-500/20 mt-1">
-                        <a href="#" onclick="filtrarCategoria('todos'); mudarAba('projetos');" class="block px-4 py-2 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">Todos os Projetos</a>
-                        <a href="#" onclick="filtrarCategoria('e-commerce'); mudarAba('projetos');" class="block px-4 py-2 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">Lojas Virtuais / E-commerce</a>
-                        <a href="#" onclick="filtrarCategoria('landing-page'); mudarAba('projetos');" class="block px-4 py-2 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">Landing Pages</a>
-                        <a href="#" onclick="filtrarCategoria('sistema-web'); mudarAba('projetos');" class="block px-4 py-2 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">Sistemas Web</a>
-                        <a href="#" onclick="filtrarCategoria('institucional'); mudarAba('projetos');" class="block px-4 py-2 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">Sites Institucionais</a>
+                    <div class="dropdown-menu absolute top-full left-0 w-60 glass-panel rounded-2xl shadow-2xl py-2 border border-blue-500/20 mt-2">
+                        <a href="#" onclick="filtrarCategoria('todos'); mudarAba('projetos'); return false;" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">
+                            <i class="fa-solid fa-border-all text-xs opacity-70"></i> Todos os Projetos
+                        </a>
+                        <a href="#" onclick="filtrarCategoria('e-commerce'); mudarAba('projetos'); return false;" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">
+                            <i class="fa-solid fa-cart-shopping text-xs opacity-70"></i> Lojas Virtuais / E-commerce
+                        </a>
+                        <a href="#" onclick="filtrarCategoria('landing-page'); mudarAba('projetos'); return false;" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">
+                            <i class="fa-solid fa-rocket text-xs opacity-70"></i> Landing Pages
+                        </a>
+                        <a href="#" onclick="filtrarCategoria('sistema-web'); mudarAba('projetos'); return false;" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">
+                            <i class="fa-solid fa-microchip text-xs opacity-70"></i> Sistemas Web
+                        </a>
+                        <a href="#" onclick="filtrarCategoria('institucional'); mudarAba('projetos'); return false;" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-blue-600/20 hover:text-blue-400 transition">
+                            <i class="fa-solid fa-building text-xs opacity-70"></i> Sites Institucionais
+                        </a>
                     </div>
                 </div>
 
-                <button onclick="mudarAba('clientes')" id="btn-clientes" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition text-gray-300 hover:text-white hover:bg-gray-800/50">Clientes</button>
-                <button onclick="mudarAba('contato')" id="btn-contato" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition text-gray-300 hover:text-white hover:bg-gray-800/50">Contato</button>
+                <button onclick="mudarAba('clientes')" id="btn-clientes" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5">Clientes</button>
+                <button onclick="mudarAba('contato')" id="btn-contato" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5">Contato</button>
             </nav>
 
             <!-- Ação Rápida WhatsApp -->
             <div class="hidden lg:flex items-center">
-                <a href="https://wa.me/555181061618?text=Olá,%20vi%20o%20portfólio%20da%20CS%20Code%20Solutions%20e%20gostaria%20de%20conversar." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl font-medium text-sm transition shadow-lg shadow-emerald-600/20 flex items-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> Falar no WhatsApp
+                <a href="https://wa.me/555181061618?text=Olá,%20vi%20o%20portfólio%20da%20CS%20Code%20Solutions%20e%20gostaria%20de%20conversar." target="_blank" class="group relative overflow-hidden bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-lg shadow-emerald-600/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg transition-transform duration-300 group-hover:scale-110"></i> 
+                    <span>Falar no WhatsApp</span>
                 </a>
             </div>
 
             <!-- Botão Menu Mobile -->
             <div class="md:hidden flex items-center">
-                <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2">
-                    <i class="fa-solid fa-bars text-2xl"></i>
+                <button onclick="toggleMobileMenu()" id="mobile-menu-btn" class="text-gray-300 hover:text-white p-2.5 rounded-xl bg-white/5 border border-white/10 transition">
+                    <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Menu Mobile -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-gray-800 px-4 pt-2 pb-4 space-y-2">
-            <button onclick="mudarAba('inicio'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-blue-400">Início</button>
-            <button onclick="mudarAba('historia'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300">Minha História</button>
-            <button onclick="mudarAba('projetos'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300">Projetos & Categorias</button>
-            <button onclick="mudarAba('clientes'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300">Clientes</button>
-            <button onclick="mudarAba('contato'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-300">Contato</button>
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10 px-4 pt-3 pb-5 space-y-1.5 transition-all">
+            <button onclick="mudarAba('inicio'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-blue-400 bg-blue-500/10">Início</button>
+            <button onclick="mudarAba('historia'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5">Minha História</button>
+            <button onclick="mudarAba('projetos'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5">Projetos & Categorias</button>
+            <button onclick="mudarAba('clientes'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5">Clientes</button>
+            <button onclick="mudarAba('contato'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5">Contato</button>
+            <div class="pt-2">
+                <a href="https://wa.me/555181061618?text=Olá,%20vi%20o%20portfólio%20da%20CS%20Code%20Solutions%20e%20gostaria%20de%20conversar." target="_blank" class="w-full justify-center bg-emerald-600 text-white px-4 py-3 rounded-xl font-semibold text-sm flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Falar no WhatsApp
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         <!-- ABA: INÍCIO -->
-        <section id="aba-inicio" class="tab-content space-y-12">
-            <div class="glass-panel rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-blue-500/20 shadow-2xl">
-                <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -left-20 -top-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <section id="aba-inicio" class="tab-content tab-enter space-y-14">
+            <div class="glass-panel rounded-[2rem] p-8 sm:p-14 relative overflow-hidden border border-blue-500/20 shadow-2xl">
+                <!-- Brilhos internos -->
+                <div class="absolute -right-24 -bottom-24 w-[420px] h-[420px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-24 -top-24 w-[420px] h-[420px] bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 
-                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                     <div class="lg:col-span-7 space-y-6">
-                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-blue-500/15 text-blue-400 border border-blue-500/20">
-                            <i class="fa-solid fa-code"></i> Inovação e Tecnologia Web
-                        </span>
-                        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                            Soluções Digitais <span class="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Sob Medida</span> que Impulsionam Negócios
+                        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/25 shadow-inner">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>INOVAÇÃO & ENGENHARIA WEB</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+                            Soluções Digitais <br class="hidden sm:block">
+                            <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-[length:200%_auto] animate-gradient-x bg-clip-text text-transparent">
+                                Sob Medida
+                            </span> 
+                            para o seu Negócio
                         </h1>
-                        <p class="text-gray-300 text-lg leading-relaxed">
-                            Bem-vindo ao portfólio oficial da <strong>CS Code Solutions</strong>. Desenvolvemos sistemas web robustos, e-commerces e aplicações completas sob medida para elevar a sua empresa ao próximo nível digital.
+                        
+                        <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                            Bem-vindo ao portfólio oficial da <strong class="text-white">CS Code Solutions</strong>. Projetamos sistemas web robustos, plataformas de gestão, e-commerces e aplicações de alta performance para escalar a sua operação.
                         </p>
-                        <div class="flex flex-wrap gap-4 pt-2">
-                            <button onclick="mudarAba('projetos')" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg shadow-blue-600/30 flex items-center gap-2 cursor-pointer">
-                                <i class="fa-solid fa-folder-open"></i> Ver Nossos Projetos
+                        
+                        <div class="flex flex-wrap gap-4 pt-3">
+                            <button onclick="mudarAba('projetos')" class="group bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 flex items-center gap-2.5 cursor-pointer">
+                                <i class="fa-solid fa-folder-open transition-transform group-hover:scale-110"></i> 
+                                <span>Explorar Projetos</span>
+                                <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
                             </button>
-                            <button onclick="mudarAba('contato')" class="glass-panel hover:bg-gray-800 text-gray-200 font-medium px-6 py-3 rounded-xl transition border border-gray-700 flex items-center gap-2 cursor-pointer">
-                                <i class="fa-solid fa-paper-plane"></i> Fale Conosco
+                            <button onclick="mudarAba('contato')" class="glass-panel hover:bg-white/10 text-gray-200 font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 border border-white/10 hover:border-white/25 hover:-translate-y-0.5 flex items-center gap-2.5 cursor-pointer">
+                                <i class="fa-solid fa-paper-plane text-blue-400"></i> 
+                                <span>Solicitar Orçamento</span>
                             </button>
                         </div>
                     </div>
+
                     <div class="lg:col-span-5 flex justify-center">
-                        <div class="flex flex-col items-center text-center space-y-4">
-                            <!-- Logo principal ampliada para ocupar todo o círculo vermelho -->
-                            <img src="logo.png" alt="Logo Destaque" class="w-64 h-64 sm:w-72 sm:h-72 object-contain drop-shadow-2xl">
-                            <h3 class="text-xl font-bold text-white tracking-wide">CS Code Solutions</h3>
-                            <p class="text-sm text-gray-400 max-w-sm">Desenvolvimento ágil, moderno, com banco de dados seguro e focado na experiência do usuário.</p>
-                            <div class="w-full max-w-sm bg-blue-950/40 rounded-xl p-3 border border-blue-800/40 flex justify-around text-xs text-blue-300 shadow-lg">
-                                <div><strong class="block text-white text-base">Banco</strong> de Dados</div>
-                                <div><strong class="block text-white text-base">Alta</strong> Performance</div>
-                                <div><strong class="block text-white text-base">Sistemas</strong> Sob Medida</div>
+                        <div class="flex flex-col items-center text-center space-y-5 relative">
+                            <!-- Halo luminoso atrás da logo -->
+                            <div class="absolute top-8 w-56 h-56 bg-blue-500/20 rounded-full blur-2xl -z-10 animate-pulse-slow"></div>
+                            
+                            <img src="logo.png" alt="Logo Destaque" class="w-60 h-60 sm:w-72 sm:h-72 object-contain drop-shadow-[0_20px_35px_rgba(59,130,246,0.3)] animate-float">
+                            
+                            <div class="space-y-1">
+                                <h3 class="text-xl font-bold text-white tracking-wide">CS Code Solutions</h3>
+                                <p class="text-xs sm:text-sm text-gray-400 max-w-xs">Arquitetura moderna, banco de dados seguro e foco total em experiência do usuário.</p>
+                            </div>
+                            
+                            <div class="w-full max-w-sm bg-darkBg/80 backdrop-blur-md rounded-2xl p-3.5 border border-blue-500/20 grid grid-cols-3 divide-x divide-white/10 text-xs shadow-xl">
+                                <div class="px-2"><strong class="block text-white text-sm sm:text-base font-bold">Cloud & DB</strong><span class="text-blue-400">Escalável</span></div>
+                                <div class="px-2"><strong class="block text-white text-sm sm:text-base font-bold">Alta</strong><span class="text-emerald-400">Performance</span></div>
+                                <div class="px-2"><strong class="block text-white text-sm sm:text-base font-bold">100%</strong><span class="text-cyan-400">Sob Medida</span></div>
                             </div>
                         </div>
                     </div>
@@ -145,78 +287,87 @@
 
             <!-- Destaques Rápidos -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-panel p-6 rounded-2xl border border-gray-800 hover:border-blue-500/30 transition">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 text-xl mb-4">
+                <div class="modern-card reveal p-7 rounded-3xl">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-blue-500/20 flex items-center justify-center text-blue-400 text-xl mb-5">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Projetos Categorizados</h3>
-                    <p class="text-sm text-gray-400">Navegue facilmente por E-commerces, Landing Pages e Sistemas Web organizados por categorias.</p>
+                    <p class="text-sm text-gray-400 leading-relaxed">Navegue facilmente por E-commerces, Landing Pages e Sistemas Web organizados por segmento e funcionalidade.</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl border border-gray-800 hover:border-emerald-500/30 transition">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-4">
+                
+                <div class="modern-card reveal p-7 rounded-3xl" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl mb-5">
                         <i class="fa-solid fa-database"></i>
                     </div>
                     <h3 class="text-lg font-bold text-white mb-2">Arquitetura Robusta</h3>
-                    <p class="text-sm text-gray-400">Aplicações integradas com banco de dados estruturado e alta performance para escalabilidade do seu negócio.</p>
+                    <p class="text-sm text-gray-400 leading-relaxed">Aplicações integradas com banco de dados em nuvem, segurança e alta velocidade de resposta para sua operação.</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl border border-gray-800 hover:border-purple-500/30 transition">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-4">
-                        <i class="fa-solid fa-graduation-cap"></i>
+                
+                <div class="modern-card reveal p-7 rounded-3xl" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl mb-5">
+                        <i class="fa-solid fa-brain"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Fundação & IA</h3>
-                    <p class="text-sm text-gray-400">Conheça nossa trajetória em GTI, ADS e especializações avançadas em Inteligência Artificial.</p>
+                    <h3 class="text-lg font-bold text-white mb-2">Engenharia & IA</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Soluções fundamentadas em formação superior em GTI, ADS e especializações práticas em Inteligência Artificial.</p>
                 </div>
             </div>
         </section>
 
         <!-- ABA: MINHA HISTÓRIA -->
         <section id="aba-historia" class="tab-content hidden space-y-8">
-            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-blue-500/20">
-                <div class="max-w-4xl mx-auto space-y-8">
+            <div class="glass-panel rounded-[2rem] p-8 sm:p-12 border border-blue-500/20">
+                <div class="max-w-4xl mx-auto space-y-10">
                     <div class="text-center space-y-3">
-                        <h2 class="text-3xl font-extrabold text-white">Trajetória Acadêmica e Tecnológica</h2>
-                        <p class="text-gray-400">A evolução profissional e tecnológica por trás da CS Code Solutions.</p>
+                        <span class="text-xs font-mono uppercase tracking-widest text-blue-400">Sobre a CS Code Solutions</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Trajetória Acadêmica e Tecnológica</h2>
+                        <p class="text-gray-400 max-w-xl mx-auto">A união entre visão estratégica de gestão e engenharia de software moderna.</p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-2">
                         <div class="md:col-span-5 flex flex-col items-center justify-center space-y-4">
-                            <img src="logo.png" alt="CS Code Solutions Logo Grande" class="w-full max-w-[280px] sm:max-w-[320px] md:h-64 md:w-64 object-contain drop-shadow-2xl">
-                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/25">Inovação & Engenharia</span>
+                            <div class="p-4 rounded-full bg-gradient-to-b from-blue-500/10 to-transparent border border-blue-500/20">
+                                <img src="logo.png" alt="CS Code Solutions Logo Grande" class="w-56 h-56 sm:w-64 sm:h-64 object-contain drop-shadow-2xl animate-float">
+                            </div>
+                            <span class="text-xs font-mono font-semibold px-4 py-1.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/25">Inovação & Engenharia</span>
                         </div>
 
-                        <div class="md:col-span-7 space-y-4 text-gray-300 leading-relaxed text-sm sm:text-base">
+                        <div class="md:col-span-7 space-y-5 text-gray-300 leading-relaxed text-sm sm:text-base">
                             <p>
-                                A <strong>CS Code Solutions</strong> reflete uma jornada sólida de aprendizado e especialização em tecnologia. Minha base técnica foi construída através de formações superiores em <strong>Gestão da Tecnologia da Informação (GTI)</strong> e <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong>, unindo visão estratégica de negócios com o desenvolvimento prático de software.
+                                A <strong class="text-white">CS Code Solutions</strong> reflete uma jornada sólida de aprendizado e especialização em tecnologia. Nossa base técnica foi construída através de formações superiores em <strong class="text-blue-300">Gestão da Tecnologia da Informação (GTI)</strong> e <strong class="text-blue-300">Análise e Desenvolvimento de Sistemas (ADS)</strong>, unindo visão estratégica de negócios com o desenvolvimento prático de software.
                             </p>
                             <p>
-                                Mantendo-me na vanguarda da inovação, especializei-me também através de <strong>cursos avançados em Inteligência Artificial (IA)</strong>, integrando recursos inteligentes, automações e soluções modernas aos projetos desenvolvidos.
+                                Mantendo-nos na vanguarda da inovação, aprofundamos nossa atuação com <strong class="text-emerald-300">especializações em Inteligência Artificial (IA)</strong>, integrando automações inteligentes, fluxos otimizados e interfaces modernas aos projetos entregues.
                             </p>
-                            <div class="flex flex-wrap gap-2 pt-2">
-                                <span class="px-3 py-1 rounded-xl text-xs font-medium bg-blue-500/15 text-blue-300 border border-blue-500/20">ADS & GTI</span>
-                                <span class="px-3 py-1 rounded-xl text-xs font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/20">Inteligência Artificial (IA)</span>
-                                <span class="px-3 py-1 rounded-xl text-xs font-medium bg-purple-500/15 text-purple-300 border border-purple-500/20">Full-Stack & Sistemas Web</span>
+                            <div class="flex flex-wrap gap-2.5 pt-2">
+                                <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/25">ADS & GTI</span>
+                                <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/25">Inteligência Artificial</span>
+                                <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/25">Sistemas Web & Cloud</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="pt-8 border-t border-gray-800 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                            <div class="flex items-center gap-3 text-blue-400 font-semibold">
-                                <i class="fa-solid fa-graduation-cap text-lg"></i>
+                    <div class="pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="modern-card p-6 rounded-2xl space-y-3">
+                            <div class="flex items-center gap-3 text-blue-400 font-bold">
+                                <div class="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
                                 <span>Formação Acadêmica</span>
                             </div>
-                            <p class="text-sm text-gray-300">
-                                Graduações em <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong> e <strong>Gestão da Tecnologia da Informação (GTI)</strong>, proporcionando profundo conhecimento em arquitetura de sistemas, engenharia de software e gestão de projetos tecnológicos.
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Graduações em <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong> e <strong>Gestão da Tecnologia da Informação (GTI)</strong>, garantindo domínio em arquitetura de sistemas, banco de dados e engenharia de software.
                             </p>
                         </div>
 
-                        <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                            <div class="flex items-center gap-3 text-emerald-400 font-semibold">
-                                <i class="fa-solid fa-brain text-lg"></i>
-                                <span>Especialização em Inteligência Artificial</span>
+                        <div class="modern-card p-6 rounded-2xl space-y-3">
+                            <div class="flex items-center gap-3 text-emerald-400 font-bold">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+                                    <i class="fa-solid fa-brain"></i>
+                                </div>
+                                <span>Especialização em IA</span>
                             </div>
-                            <p class="text-sm text-gray-300">
-                                Cursos e capacitações focados em <strong>Inteligência Artificial</strong>, aplicação de modelos preditivos, automações inteligentes e integração de ferramentas de IA para otimização de fluxos de trabalho e desenvolvimento web.
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Capacitações focadas em <strong>Inteligência Artificial</strong>, automações inteligentes e integração de ferramentas modernas para acelerar processos e resultados comerciais.
                             </p>
                         </div>
                     </div>
@@ -226,76 +377,81 @@
 
         <!-- ABA: PROJETOS -->
         <section id="aba-projetos" class="tab-content hidden space-y-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-white">Nossos Projetos</h2>
-                    <p class="text-gray-400">Explore os trabalhos realizados e clique em um projeto para interagir na demonstração.</p>
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="space-y-2">
+                    <span class="text-xs font-mono uppercase tracking-widest text-blue-400">Portfólio Interativo</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Nossos Projetos</h2>
+                    <p class="text-gray-400 text-sm sm:text-base">Explore as soluções desenvolvidas e clique para testar a demonstração.</p>
                 </div>
+                
                 <!-- Filtros de Categoria -->
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="filtrarCategoria('todos')" id="filtro-todos" class="px-4 py-2 rounded-xl text-sm font-medium transition bg-blue-600 text-white cursor-pointer">Todos</button>
-                    <button onclick="filtrarCategoria('e-commerce')" id="filtro-e-commerce" class="px-4 py-2 rounded-xl text-sm font-medium transition glass-panel text-gray-300 hover:text-white cursor-pointer">E-commerce</button>
-                    <button onclick="filtrarCategoria('landing-page')" id="filtro-landing-page" class="px-4 py-2 rounded-xl text-sm font-medium transition glass-panel text-gray-300 hover:text-white cursor-pointer">Landing Pages</button>
-                    <button onclick="filtrarCategoria('sistema-web')" id="filtro-sistema-web" class="px-4 py-2 rounded-xl text-sm font-medium transition glass-panel text-gray-300 hover:text-white cursor-pointer">Sistemas Web</button>
-                    <button onclick="filtrarCategoria('institucional')" id="filtro-institucional" class="px-4 py-2 rounded-xl text-sm font-medium transition glass-panel text-gray-300 hover:text-white cursor-pointer">Institucional</button>
+                <div class="flex flex-wrap gap-2 bg-white/[0.03] p-1.5 rounded-2xl border border-white/10">
+                    <button onclick="filtrarCategoria('todos')" id="filtro-todos" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 bg-blue-600 text-white shadow-md shadow-blue-600/25 cursor-pointer">Todos</button>
+                    <button onclick="filtrarCategoria('e-commerce')" id="filtro-e-commerce" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">E-commerce</button>
+                    <button onclick="filtrarCategoria('landing-page')" id="filtro-landing-page" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Landing Pages</button>
+                    <button onclick="filtrarCategoria('sistema-web')" id="filtro-sistema-web" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Sistemas Web</button>
+                    <button onclick="filtrarCategoria('institucional')" id="filtro-institucional" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer">Institucional</button>
                 </div>
             </div>
 
             <!-- Grade de Projetos -->
-            <div id="grade-projetos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="grade-projetos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
                 <!-- Preenchido via JavaScript -->
             </div>
         </section>
 
         <!-- ABA: CLIENTES -->
         <section id="aba-clientes" class="tab-content hidden space-y-8">
-            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-blue-500/20 space-y-8">
+            <div class="glass-panel rounded-[2rem] p-8 sm:p-12 border border-blue-500/20 space-y-10">
                 <div class="text-center max-w-2xl mx-auto space-y-3">
-                    <h2 class="text-3xl font-extrabold text-white">Nossos Clientes e Parceiros</h2>
+                    <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">Parcerias de Sucesso</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Nossos Clientes e Parceiros</h2>
                     <p class="text-gray-400">Empresas e empreendedores que confiam nas soluções desenvolvidas pela CS Code Solutions.</p>
                 </div>
 
                 <!-- Grade de Logos de Clientes (Sem Links) -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 pt-4">
-                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800">
-                        <img src="00.png" alt="RG Soluções Técnicas" class="h-16 w-16 object-contain filter grayscale hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=00.png';">
-                        <span class="text-xs font-semibold text-gray-400 text-center">RG Soluções Técnicas</span>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 pt-2">
+                    <div class="modern-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 group">
+                        <img src="00.png" alt="RG Soluções Técnicas" class="h-16 w-16 object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=RG';">
+                        <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">RG Soluções Técnicas</span>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800">
-                        <img src="1.png" alt="Burger 301" class="h-16 w-16 object-contain filter grayscale hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=1.png';">
-                        <span class="text-xs font-semibold text-gray-400 text-center">Burger 301 - Poema</span>
+                    <div class="modern-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 group">
+                        <img src="1.png" alt="Burger 301" class="h-16 w-16 object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=B301';">
+                        <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">Burger 301 - Poema</span>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800">
-                        <img src="2.png" alt="RicPower" class="h-16 w-16 object-contain filter grayscale hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=2.png';">
-                        <span class="text-xs font-semibold text-gray-400 text-center">RicPower - Automação</span>
+                    <div class="modern-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 group">
+                        <img src="2.png" alt="RicPower" class="h-16 w-16 object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=RicPower';">
+                        <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">RicPower - Automação</span>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800">
-                        <img src="3.png" alt="Team Vasconcelos" class="h-16 w-16 object-contain filter grayscale hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=3.png';">
-                        <span class="text-xs font-semibold text-gray-400 text-center">Team Vasconcelos</span>
+                    <div class="modern-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 group">
+                        <img src="3.png" alt="Team Vasconcelos" class="h-16 w-16 object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=Team';">
+                        <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">Team Vasconcelos</span>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800">
-                        <img src="4.png" alt="Ísis Holistica" class="h-16 w-16 object-contain filter grayscale hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=4.png';">
-                        <span class="text-xs font-semibold text-gray-400 text-center">Isis Holística</span>
+                    <div class="modern-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 group">
+                        <img src="4.png" alt="Ísis Holistica" class="h-16 w-16 object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=Isis';">
+                        <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">Isis Holística</span>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-3 border border-gray-800">
-                        <img src="5.png" alt="Laser Expert" class="h-16 w-16 object-contain filter grayscale hover:grayscale-0 transition" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=5.png';">
-                        <span class="text-xs font-semibold text-gray-400 text-center">Laser Expert</span>
+                    <div class="modern-card p-6 rounded-2xl flex flex-col items-center justify-center gap-3 group">
+                        <img src="5.png" alt="Laser Expert" class="h-16 w-16 object-contain filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" onerror="this.onerror=null; this.src='https://via.placeholder.com/80?text=Laser';">
+                        <span class="text-xs font-semibold text-gray-400 group-hover:text-white text-center transition">Laser Expert</span>
                     </div>
                 </div>
 
-                <div class="pt-8 border-t border-gray-800 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                        <p class="text-gray-300 italic">"O trabalho da CS Code Solutions revolucionou a nossa presença online. O sistema é extremamente rápido e intuitivo para nossos clientes."</p>
-                        <div class="text-sm font-bold text-white">— Direção, Empresa Parceira</div>
+                <div class="pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="modern-card p-6 rounded-2xl space-y-3">
+                        <div class="text-blue-400 text-lg"><i class="fa-solid fa-quote-left"></i></div>
+                        <p class="text-gray-300 text-sm sm:text-base italic leading-relaxed">"O trabalho da CS Code Solutions revolucionou a nossa presença online. O sistema é extremamente rápido e intuitivo para nossos clientes."</p>
+                        <div class="text-xs font-mono font-bold text-blue-400 pt-1">— DIREÇÃO, EMPRESA PARCEIRA</div>
                     </div>
-                    <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-3">
-                        <p class="text-gray-300 italic">"Profissionalismo impecável. Entregou o e-commerce no prazo e com um design moderno que aumentou nossas conversões."</p>
-                        <div class="text-sm font-bold text-white">— Gestão, Projeto E-commerce</div>
+                    <div class="modern-card p-6 rounded-2xl space-y-3">
+                        <div class="text-emerald-400 text-lg"><i class="fa-solid fa-quote-left"></i></div>
+                        <p class="text-gray-300 text-sm sm:text-base italic leading-relaxed">"Profissionalismo impecável. Entregou o projeto no prazo e com um design moderno que aumentou nossas conversões."</p>
+                        <div class="text-xs font-mono font-bold text-emerald-400 pt-1">— GESTÃO, PROJETO DIGITAL</div>
                     </div>
                 </div>
             </div>
@@ -303,58 +459,60 @@
 
         <!-- ABA: CONTATO -->
         <section id="aba-contato" class="tab-content hidden space-y-8">
-            <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-blue-500/25 max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-panel rounded-[2rem] p-8 sm:p-12 border border-blue-500/25 max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div class="space-y-6">
-                        <div>
-                            <h2 class="text-3xl font-extrabold text-white">Entre em Contato</h2>
-                            <p class="text-gray-400 mt-2">Vamos conversar sobre o seu próximo projeto? Envie uma mensagem direta ou entre em contato pelos canais abaixo.</p>
+                        <div class="space-y-2">
+                            <span class="text-xs font-mono uppercase tracking-widest text-blue-400">Atendimento Direto</span>
+                            <h2 class="text-3xl font-extrabold text-white">Vamos tirar sua ideia do papel?</h2>
+                            <p class="text-gray-400 text-sm leading-relaxed">Envie uma mensagem ou fale diretamente conosco pelos canais oficiais para receber uma proposta personalizada.</p>
                         </div>
                         <div class="space-y-4 pt-2">
-                            <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="flex items-center gap-4 p-4 rounded-2xl glass-panel hover:border-emerald-500/50 transition">
-                                <div class="w-12 h-12 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400 text-xl">
+                            <a href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="modern-card flex items-center gap-4 p-4 rounded-2xl group">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center text-emerald-400 text-xl transition-transform group-hover:scale-110">
                                     <i class="fa-brands fa-whatsapp"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs text-gray-400 font-medium">WhatsApp Direto</div>
-                                    <div class="text-white font-bold">+55 (51) 8106-1618</div>
+                                    <div class="text-xs text-gray-400 font-medium">WhatsApp Comercial</div>
+                                    <div class="text-white font-bold group-hover:text-emerald-400 transition">+55 (51) 8106-1618</div>
                                 </div>
                             </a>
 
-                            <a href="https://www.instagram.com/cs_code_solutions?vrfl=Ym1mNDMzYTYxa3d6" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl glass-panel hover:border-pink-500/50 transition">
-                                <div class="w-12 h-12 rounded-xl bg-pink-500/15 flex items-center justify-center text-pink-400 text-xl">
+                            <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" class="modern-card flex items-center gap-4 p-4 rounded-2xl group">
+                                <div class="w-12 h-12 rounded-xl bg-pink-500/15 border border-pink-500/25 flex items-center justify-center text-pink-400 text-xl transition-transform group-hover:scale-110">
                                     <i class="fa-brands fa-instagram"></i>
                                 </div>
                                 <div>
-                                    <div class="text-xs text-gray-400 font-medium">Instagram</div>
-                                    <div class="text-white font-bold">@cs_code_solutions</div>
+                                    <div class="text-xs text-gray-400 font-medium">Instagram Oficial</div>
+                                    <div class="text-white font-bold group-hover:text-pink-400 transition">@cs_code_solutions</div>
                                 </div>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Formulário Local -->
-                    <div class="glass-panel p-6 rounded-2xl border border-gray-800 space-y-4">
+                    <!-- Formulário -->
+                    <div class="bg-darkBg/70 p-7 rounded-3xl border border-white/10 space-y-5 shadow-xl">
                         <h3 class="text-xl font-bold text-white">Envie uma Mensagem</h3>
                         <form id="form-contato" onsubmit="enviarMensagem(event)" class="space-y-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">Seu Nome</label>
-                                <input type="text" id="contato-nome" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Seu Nome</label>
+                                <input type="text" id="contato-nome" placeholder="Ex: João Silva" required class="w-full bg-darkCard/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">Seu E-mail ou Telefone</label>
-                                <input type="text" id="contato-info" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition">
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Seu WhatsApp ou E-mail</label>
+                                <input type="text" id="contato-info" placeholder="(51) 99999-9999" required class="w-full bg-darkCard/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-gray-400 mb-1">Mensagem</label>
-                                <textarea id="contato-msg" rows="3" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition"></textarea>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Como podemos ajudar?</label>
+                                <textarea id="contato-msg" rows="3" placeholder="Descreva brevemente seu projeto..." required class="w-full bg-darkCard/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"></textarea>
                             </div>
-                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 rounded-xl transition shadow-lg shadow-blue-600/20 cursor-pointer">
-                                Enviar Mensagem
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 cursor-pointer flex items-center justify-center gap-2">
+                                <span>Enviar Mensagem</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
                             </button>
                         </form>
-                        <div id="mensagem-sucesso" class="hidden p-3 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs rounded-xl text-center">
-                            Mensagem salva com sucesso! Entraremos em contato em breve.
+                        <div id="mensagem-sucesso" class="hidden p-3.5 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-medium rounded-xl text-center animate-bounce">
+                            <i class="fa-solid fa-circle-check mr-1"></i> Mensagem registrada com sucesso! Retornaremos em breve.
                         </div>
                     </div>
                 </div>
@@ -363,89 +521,90 @@
 
     </main>
 
-    <!-- MODAL DE DEMONSTRAÇÃO DO PROJETO (SIMPLES) -->
-    <div id="modal-projeto" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-        <div class="glass-panel max-w-3xl w-full rounded-3xl p-6 sm:p-8 border border-blue-500/30 shadow-2xl relative space-y-6 my-8">
-            <button onclick="fecharModalProjeto()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-xl cursor-pointer">
+    <!-- MODAL DE DEMONSTRAÇÃO DO PROJETO -->
+    <div id="modal-projeto" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto transition-opacity duration-300">
+        <div class="glass-panel max-w-3xl w-full rounded-3xl p-6 sm:p-8 border border-blue-500/30 shadow-2xl relative space-y-6 my-8 tab-enter">
+            <button onclick="fecharModalProjeto()" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 flex items-center justify-center transition cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="flex items-center gap-4">
-                <div id="modal-icone-cat" class="w-12 h-12 rounded-2xl bg-blue-500/15 flex items-center justify-center text-blue-400 text-xl">
+                <div id="modal-icone-cat" class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-blue-500/25 flex items-center justify-center text-blue-400 text-xl">
                     <i class="fa-solid fa-code"></i>
                 </div>
                 <div>
-                    <span id="modal-categoria" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">Categoria</span>
-                    <h3 id="modal-titulo" class="text-2xl font-bold text-white mt-1">Nome do Projeto</h3>
+                    <span id="modal-categoria" class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20">Categoria</span>
+                    <h3 id="modal-titulo" class="text-2xl font-bold text-white mt-1.5">Nome do Projeto</h3>
                 </div>
             </div>
 
-            <div class="rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 aspect-video flex items-center justify-center relative">
-                <img id="modal-imagem" src="" alt="Miniatura do Projeto" class="w-full h-full object-cover">
-                <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg text-xs text-gray-300 border border-white/10">
-                    <i class="fa-solid fa-eye text-emerald-400"></i> Demonstração Interativa
+            <div class="rounded-2xl overflow-hidden border border-white/10 bg-gray-900/50 aspect-video flex items-center justify-center relative group">
+                <img id="modal-imagem" src="" alt="Miniatura do Projeto" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute bottom-3 left-3 bg-darkBg/80 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-xs text-gray-200 border border-white/10 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Demonstração Interativa</span>
                 </div>
             </div>
 
-            <p id="modal-descricao" class="text-gray-300 text-sm leading-relaxed">
+            <p id="modal-descricao" class="text-gray-300 text-sm sm:text-base leading-relaxed">
                 Descrição detalhada do projeto...
             </p>
 
-            <div class="glass-panel p-4 rounded-2xl border border-blue-500/25 space-y-3">
+            <div class="bg-darkBg/60 p-5 rounded-2xl border border-blue-500/20 space-y-3">
                 <h4 class="text-sm font-bold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-database text-blue-400"></i> Simulação de Interação do Cliente
+                    <i class="fa-solid fa-comment-dots text-blue-400"></i> Simulação de Interação do Cliente
                 </h4>
                 <p class="text-xs text-gray-400">Escreva uma nota ou feedback de teste para este projeto:</p>
                 <div class="flex gap-2">
-                    <input type="text" id="input-feedback-projeto" placeholder="Digite sua nota ou teste..." class="flex-grow bg-darkBg border border-gray-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
-                    <button onclick="salvarFeedbackProjeto()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-medium transition cursor-pointer">Salvar Nota</button>
+                    <input type="text" id="input-feedback-projeto" placeholder="Digite sua nota ou teste..." class="flex-grow bg-darkCard border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500">
+                    <button onclick="salvarFeedbackProjeto()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2.5 rounded-xl text-xs font-semibold transition cursor-pointer">Salvar Nota</button>
                 </div>
-                <div id="lista-feedbacks" class="space-y-1.5 pt-1 text-xs text-gray-300 max-h-28 overflow-y-auto">
-                    <!-- Feedbacks salvos -->
-                </div>
+                <div id="lista-feedbacks" class="space-y-1.5 pt-1 text-xs text-gray-300 max-h-28 overflow-y-auto"></div>
             </div>
 
-            <div class="flex justify-end gap-3 pt-2">
-                <button onclick="fecharModalProjeto()" class="glass-panel hover:bg-gray-800 text-gray-300 px-5 py-2.5 rounded-xl text-sm font-medium transition border border-gray-700 cursor-pointer">Fechar</button>
-                <a id="modal-link-acao" href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20um%20projeto%20semelhante%20a%20este." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition shadow-lg shadow-emerald-600/20 flex items-center gap-2">
-                    <i class="fa-brands fa-whatsapp"></i> Solicitar Semelhante
+            <div class="flex flex-wrap justify-end gap-3 pt-2">
+                <button onclick="fecharModalProjeto()" class="bg-white/5 hover:bg-white/10 text-gray-300 px-5 py-2.5 rounded-xl text-sm font-medium transition border border-white/10 cursor-pointer">Fechar</button>
+                <a id="modal-link-acao" href="https://wa.me/555181061618?text=Olá,%20gostaria%20de%20um%20projeto%20semelhante%20a%20este." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition shadow-lg shadow-emerald-600/25 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Solicitar Semelhante
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- MODAL FLUVIANTE / VISUALIZADOR EM TELA CHEIA (IFRAME) -->
+    <!-- MODAL VISUALIZADOR EM TELA CHEIA (IFRAME) -->
     <div id="modal-visualizador" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-2 sm:p-6">
-        <div class="w-full max-w-7xl glass-panel px-4 py-3 rounded-t-2xl border-b border-gray-800 flex items-center justify-between">
+        <div class="w-full max-w-7xl glass-panel px-4 py-3 rounded-t-2xl border-b border-white/10 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
                 <span class="text-sm font-bold text-white">Visualizador de Projeto Interativo</span>
             </div>
 
             <div class="flex items-center gap-2">
-                <button onclick="mudarModoVisualizacao('desktop')" id="btn-modo-desktop" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600 text-white transition cursor-pointer"><i class="fa-solid fa-desktop"></i> Desktop</button>
-                <button onclick="mudarModoVisualizacao('mobile')" id="btn-modo-mobile" class="px-3 py-1.5 rounded-lg text-xs font-medium glass-panel text-gray-300 hover:text-white transition cursor-pointer"><i class="fa-solid fa-mobile-screen"></i> Mobile</button>
-                <div class="h-5 w-[1px] bg-gray-700 mx-1"></div>
-                <button onclick="fecharVisualizadorProjeto()" class="text-gray-400 hover:text-white px-3 py-1.5 rounded-lg glass-panel hover:bg-red-500/20 hover:text-red-400 transition text-sm cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="mudarModoVisualizacao('desktop')" id="btn-modo-desktop" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white transition cursor-pointer flex items-center gap-1.5"><i class="fa-solid fa-desktop"></i> Desktop</button>
+                <button onclick="mudarModoVisualizacao('mobile')" id="btn-modo-mobile" class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-white/5 text-gray-300 hover:text-white transition cursor-pointer flex items-center gap-1.5"><i class="fa-solid fa-mobile-screen"></i> Mobile</button>
+                <div class="h-5 w-[1px] bg-white/10 mx-1"></div>
+                <button onclick="fecharVisualizadorProjeto()" class="text-gray-400 hover:text-red-400 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-red-500/20 transition text-sm cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
         </div>
 
-        <div class="w-full max-w-7xl flex-grow bg-gray-950 rounded-b-2xl border border-t-0 border-gray-800 flex items-center justify-center overflow-hidden relative shadow-2xl transition-all duration-300" id="container-iframe-wrapper">
+        <div class="w-full max-w-7xl flex-grow bg-gray-950 rounded-b-2xl border border-t-0 border-white/10 flex items-center justify-center overflow-hidden relative shadow-2xl transition-all duration-300" id="container-iframe-wrapper">
             <iframe id="iframe-projeto" src="" class="w-full h-full border-0 transition-all duration-300"></iframe>
         </div>
     </div>
 
     <!-- RODAPÉ -->
-    <footer class="glass-panel border-t border-gray-800 mt-16 py-8">
+    <footer class="glass-panel border-t border-white/5 mt-20 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div class="flex items-center space-x-3">
-                <img src="logo.png" alt="Logo Rodapé" class="h-10 w-10 object-contain rounded-lg">
-                <span class="text-sm font-bold text-gray-300">CS Code Solutions</span>
+                <img src="logo.png" alt="Logo Rodapé" class="h-10 w-10 object-contain">
+                <span class="text-sm font-bold text-gray-200">CS Code Solutions</span>
             </div>
-            <p class="text-xs text-gray-500">© 2026 CS Code Solutions. Todos os direitos reservados. Sistemas Web Profissionais.</p>
+            <p class="text-xs text-gray-400">
+                © 2026 — <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" class="text-blue-400 hover:text-emerald-400 font-semibold transition">Powered by CS Code Solutions</a>
+            </p>
             <div class="flex items-center space-x-4">
-                <a href="https://www.instagram.com/cs_code_solutions?vrfl=Ym1mNDMzYTYxa3d6" target="_blank" class="text-gray-400 hover:text-pink-400 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
-                <a href="https://wa.me/555181061618?text=Olá" target="_blank" class="text-gray-400 hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-pink-500/20 text-gray-400 hover:text-pink-400 flex items-center justify-center transition"><i class="fa-brands fa-instagram text-base"></i></a>
+                <a href="https://wa.me/555181061618?text=Olá" target="_blank" class="w-9 h-9 rounded-full bg-white/5 hover:bg-emerald-500/20 text-gray-400 hover:text-emerald-400 flex items-center justify-center transition"><i class="fa-brands fa-whatsapp text-base"></i></a>
             </div>
         </div>
     </footer>
@@ -506,22 +665,60 @@
 
         let projetoAtualId = null;
 
+        // Efeito de brilho seguindo o cursor nos cards modernos
+        function ativarEfeitoSpotlight() {
+            document.querySelectorAll('.modern-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        }
+
+        // Scroll Reveal Observer
+        function iniciarScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
         function mudarAba(nomeAba) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.getElementById(`aba-${nomeAba}`).classList.remove('hidden');
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('tab-enter');
+            });
+            
+            const abaAlvo = document.getElementById(`aba-${nomeAba}`);
+            abaAlvo.classList.remove('hidden');
+            // Força reinício da animação CSS
+            void abaAlvo.offsetWidth;
+            abaAlvo.classList.add('tab-enter');
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('text-blue-400', 'bg-blue-500/15');
-                btn.classList.add('text-gray-300');
+                btn.classList.remove('text-white', 'bg-blue-600', 'shadow-lg', 'shadow-blue-600/25', 'font-semibold');
+                btn.classList.add('text-gray-400', 'font-medium');
             });
 
             const btnAtivo = document.getElementById(`btn-${nomeAba}`);
             if (btnAtivo) {
-                btnAtivo.classList.remove('text-gray-300');
-                btnAtivo.classList.add('text-blue-400', 'bg-blue-500/15');
+                btnAtivo.classList.remove('text-gray-400', 'font-medium');
+                btnAtivo.classList.add('text-white', 'bg-blue-600', 'shadow-lg', 'shadow-blue-600/25', 'font-semibold');
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => {
+                iniciarScrollReveal();
+                ativarEfeitoSpotlight();
+            }, 50);
         }
 
         function toggleMobileMenu() {
@@ -535,42 +732,47 @@
 
             const filtrados = filtro === 'todos' ? projetosData : projetosData.filter(p => p.categoria === filtro);
 
-            filtrados.forEach(projeto => {
+            filtrados.forEach((projeto, index) => {
                 const card = document.createElement('div');
-                card.className = 'glass-panel rounded-2xl overflow-hidden border border-gray-800 hover:border-blue-500/40 transition flex flex-col group';
+                card.className = 'modern-card rounded-3xl flex flex-col group tab-enter';
+                card.style.animationDelay = `${index * 70}ms`;
                 
                 const acaoClique = projeto.urlExecutavel ? `abrirVisualizadorProjeto('${projeto.urlExecutavel}')` : `abrirModalProjeto(${projeto.id})`;
 
                 card.innerHTML = `
                     <div class="aspect-video overflow-hidden relative cursor-pointer" onclick="${acaoClique}">
-                        <img src="${projeto.imagem}" alt="${projeto.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 right-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/80 text-white backdrop-blur-md">
+                        <img src="${projeto.imagem}" alt="${projeto.titulo}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-3.5 right-3.5 text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-darkBg/80 text-blue-400 border border-blue-500/30 backdrop-blur-md">
                             ${projeto.categoriaNome}
                         </span>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                    <div class="p-6 flex flex-col flex-grow justify-between space-y-5">
                         <div class="space-y-2">
-                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">${projeto.titulo}</h3>
-                            <p class="text-xs text-gray-400 line-clamp-2">${projeto.descricao}</p>
+                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">${projeto.titulo}</h3>
+                            <p class="text-xs sm:text-sm text-gray-400 line-clamp-2 leading-relaxed">${projeto.descricao}</p>
                         </div>
-                        <button onclick="${acaoClique}" class="w-full glass-panel hover:bg-blue-600/20 hover:border-blue-500/50 text-blue-400 font-medium py-2.5 rounded-xl text-xs transition border border-gray-700 flex items-center justify-center gap-2 cursor-pointer">
-                            <i class="fa-solid fa-eye"></i> ${projeto.urlExecutavel ? 'Executar Aplicação Completa' : 'Ver Demonstração Interativa'}
+                        <button onclick="${acaoClique}" class="w-full bg-white/[0.04] hover:bg-blue-600 text-blue-400 hover:text-white font-semibold py-3 rounded-xl text-xs transition-all duration-300 border border-white/10 hover:border-blue-500 flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-eye"></i> 
+                            <span>${projeto.urlExecutavel ? 'Executar Aplicação Completa' : 'Ver Demonstração Interativa'}</span>
                         </button>
                     </div>
                 `;
                 grade.appendChild(card);
             });
+
+            ativarEfeitoSpotlight();
         }
 
         function filtrarCategoria(categoria) {
             renderizarProjetos(categoria);
 
             document.querySelectorAll('#aba-projetos button[id^="filtro-"]').forEach(btn => {
-                btn.className = 'px-4 py-2 rounded-xl text-sm font-medium transition glass-panel text-gray-300 hover:text-white cursor-pointer';
+                btn.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 text-gray-400 hover:text-white hover:bg-white/5 cursor-pointer';
             });
             const btnAtivo = document.getElementById(`filtro-${categoria}`);
             if(btnAtivo) {
-                btnAtivo.className = 'px-4 py-2 rounded-xl text-sm font-medium transition bg-blue-600 text-white cursor-pointer';
+                btnAtivo.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 bg-blue-600 text-white shadow-md shadow-blue-600/25 cursor-pointer';
             }
         }
 
@@ -596,13 +798,13 @@
             const btnMobile = document.getElementById('btn-modo-mobile');
 
             if (modo === 'mobile') {
-                wrapper.className = "w-full max-w-sm flex-grow bg-gray-950 rounded-b-2xl border border-t-0 border-gray-800 flex items-center justify-center overflow-hidden relative shadow-2xl transition-all duration-300 my-4 h-[80vh]";
-                btnMobile.className = "px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600 text-white transition cursor-pointer";
-                btnDesktop.className = "px-3 py-1.5 rounded-lg text-xs font-medium glass-panel text-gray-300 hover:text-white transition cursor-pointer";
+                wrapper.className = "w-full max-w-sm flex-grow bg-gray-950 rounded-b-2xl border border-t-0 border-white/10 flex items-center justify-center overflow-hidden relative shadow-2xl transition-all duration-500 my-4 h-[80vh]";
+                btnMobile.className = "px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white transition cursor-pointer flex items-center gap-1.5";
+                btnDesktop.className = "px-3.5 py-1.5 rounded-xl text-xs font-medium bg-white/5 text-gray-300 hover:text-white transition cursor-pointer flex items-center gap-1.5";
             } else {
-                wrapper.className = "w-full max-w-7xl flex-grow bg-gray-950 rounded-b-2xl border border-t-0 border-gray-800 flex items-center justify-center overflow-hidden relative shadow-2xl transition-all duration-300";
-                btnDesktop.className = "px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600 text-white transition cursor-pointer";
-                btnMobile.className = "px-3 py-1.5 rounded-lg text-xs font-medium glass-panel text-gray-300 hover:text-white transition cursor-pointer";
+                wrapper.className = "w-full max-w-7xl flex-grow bg-gray-950 rounded-b-2xl border border-t-0 border-white/10 flex items-center justify-center overflow-hidden relative shadow-2xl transition-all duration-500";
+                btnDesktop.className = "px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white transition cursor-pointer flex items-center gap-1.5";
+                btnMobile.className = "px-3.5 py-1.5 rounded-xl text-xs font-medium bg-white/5 text-gray-300 hover:text-white transition cursor-pointer flex items-center gap-1.5";
             }
         }
 
@@ -651,8 +853,8 @@
 
             lista.forEach(item => {
                 const div = document.createElement('div');
-                div.className = 'bg-darkBg/60 p-2 rounded-lg border border-gray-800 flex justify-between items-center';
-                div.innerHTML = `<span>${item.texto}</span> <span class="text-[10px] text-gray-500">${item.data}</span>`;
+                div.className = 'bg-darkCard/80 p-2.5 rounded-xl border border-white/5 flex justify-between items-center';
+                div.innerHTML = `<span>${item.texto}</span> <span class="text-[10px] font-mono text-gray-500">${item.data}</span>`;
                 container.appendChild(div);
             });
         }
@@ -673,8 +875,20 @@
             setTimeout(() => sucesso.classList.add('hidden'), 5000);
         }
 
+        // Efeito sutil no cabeçalho ao rolar a página
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-2xl', 'bg-darkBg/90');
+            } else {
+                header.classList.remove('shadow-2xl', 'bg-darkBg/90');
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             renderizarProjetos('todos');
+            iniciarScrollReveal();
+            ativarEfeitoSpotlight();
         });
     </script>
 </body>
