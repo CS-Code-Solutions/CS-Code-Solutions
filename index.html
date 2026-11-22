@@ -149,6 +149,22 @@
             scroll-margin-top: 115px;
         }
 
+        /* Logo moeda interativa com mola */
+        .coin-stage {
+            perspective: 900px;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .coin-logo {
+            transform-style: preserve-3d;
+            will-change: transform;
+            cursor: grab;
+        }
+        .coin-logo.is-dragging {
+            cursor: grabbing;
+        }
+
         /* Barra de rolagem customizada */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #060913; }
@@ -343,8 +359,8 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-2">
                         <div class="md:col-span-5 flex flex-col items-center justify-center space-y-4">
-                            <div class="w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-gradient-to-b from-blue-500/10 to-transparent border border-blue-500/20 flex items-center justify-center overflow-hidden">
-                                <img src="logo.png" alt="CS Code Solutions Logo Grande" class="w-full h-full object-contain scale-[1.65] drop-shadow-2xl animate-float">
+                            <div id="coin-stage" class="coin-stage w-64 h-64 sm:w-72 sm:h-72 rounded-full bg-gradient-to-b from-blue-500/10 to-transparent border border-blue-500/20 flex items-center justify-center overflow-hidden">
+                                <img id="coin-logo" src="logo.png" alt="CS Code Solutions Logo Grande" class="coin-logo w-full h-full object-contain drop-shadow-2xl">
                             </div>
                             <span class="text-xs font-mono font-semibold px-4 py-1.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/25">Inovação & Engenharia</span>
                         </div>
@@ -359,7 +375,7 @@
                             <div class="flex flex-wrap gap-2.5 pt-2">
                                 <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/25">ADS & GTI</span>
                                 <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/25">Inteligência Artificial</span>
-                                <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-blue-500/25">Sistemas Web & Cloud</span>
+                                <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/25">Sistemas Web & Cloud</span>
                             </div>
                         </div>
                     </div>
@@ -687,13 +703,131 @@
                 titulo: "Atelier Bella Casa — Catálogo Online",
                 categoria: "e-commerce",
                 categoriaNome: "E-commerce",
-                imagem: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+                imagem: "https://images.unsplash.com/photo-1522771739844-6a9f6dd5b104?auto=format&fit=crop&w=800&q=80",
                 descricao: "Catálogo interativo de cama, mesa, banho e utilidades com filtro por categoria, variações e checkout via WhatsApp.",
                 urlExecutavel: "catalogo-ficticio/catalogo.html"
             }
         ];
 
         let projetoAtualId = null;
+
+        // Logo interativo: arrastar, girar como moeda e voltar por mola ao soltar
+        function iniciarLogoMoedaInterativo() {
+            const stage = document.getElementById('coin-stage');
+            const logo = document.getElementById('coin-logo');
+            if (!stage || !logo) return;
+
+            const baseScale = 1.65;
+            const maxDrag = 48;
+            const stiffness = 0.14;
+            const damping = 0.78;
+
+            let x = 0, y = 0, vx = 0, vy = 0;
+            let rotY = 0, vRotY = 0;
+            let tiltX = 0, vTiltX = 0;
+
+            let isDragging = false;
+            let movedDistance = 0;
+            let lastX = 0, lastY = 0;
+            let lastTime = 0;
+            let spinTarget = 0;
+
+            function aplicarTransformacao() {
+                logo.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${baseScale}) rotateX(${tiltX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+            }
+
+            stage.addEventListener('pointerdown', (e) => {
+                isDragging = true;
+                movedDistance = 0;
+                lastX = e.clientX;
+                lastY = e.clientY;
+                lastTime = performance.now();
+                spinTarget = rotY;
+                logo.classList.add('is-dragging');
+                stage.setPointerCapture(e.pointerId);
+            });
+
+            stage.addEventListener('pointermove', (e) => {
+                const now = performance.now();
+                const dt = Math.max(8, now - lastTime);
+                const dx = e.clientX - lastX;
+                const dy = e.clientY - lastY;
+
+                if (!isDragging) {
+                    const rect = stage.getBoundingClientRect();
+                    const nx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+                    const ny = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+                    rotY += (nx * 24 - rotY) * 0.12;
+                    tiltX += (-ny * 14 - tiltX) * 0.12;
+                    lastX = e.clientX;
+                    lastY = e.clientY;
+                    lastTime = now;
+                    return;
+                }
+
+                movedDistance += Math.hypot(dx, dy);
+                x = Math.max(-maxDrag, Math.min(maxDrag, x + dx * 0.75));
+                y = Math.max(-maxDrag, Math.min(maxDrag, y + dy * 0.75));
+
+                // Girar como moeda conforme arrasta na horizontal
+                rotY += dx * 1.35;
+                spinTarget = rotY;
+                tiltX = Math.max(-22, Math.min(22, tiltX - dy * 0.45));
+
+                vRotY = (dx / dt) * 18;
+                lastX = e.clientX;
+                lastY = e.clientY;
+                lastTime = now;
+            });
+
+            function soltarLogo() {
+                if (!isDragging) return;
+                isDragging = false;
+                logo.classList.remove('is-dragging');
+
+                // Se foi um clique/toque rápido sem arrastar, dá um giro de moeda completo
+                if (movedDistance < 6) {
+                    spinTarget += 360;
+                }
+            }
+
+            stage.addEventListener('pointerup', soltarLogo);
+            stage.addEventListener('pointercancel', soltarLogo);
+            stage.addEventListener('pointerleave', () => {
+                if (!isDragging) {
+                    tiltX *= 0.85;
+                }
+            });
+
+            function loopFisica() {
+                if (!isDragging) {
+                    // Puxado de volta para o centro por mola
+                    vx = (vx + (-x) * stiffness) * damping;
+                    vy = (vy + (-y) * stiffness) * damping;
+                    x += vx;
+                    y += vy;
+
+                    // Retorna inclinação X para 0
+                    vTiltX = (vTiltX + (-tiltX) * stiffness) * damping;
+                    tiltX += vTiltX;
+
+                    // Giro como moeda com inércia e retorno suave ao ângulo base múltiplo de 360
+                    if (Math.abs(vRotY) > 0.25) {
+                        rotY += vRotY;
+                        vRotY *= 0.94;
+                        spinTarget = Math.round(rotY / 360) * 360;
+                    } else {
+                        rotY += (spinTarget - rotY) * 0.12;
+                    }
+                }
+
+                aplicarTransformacao();
+                requestAnimationFrame(loopFisica);
+            }
+
+            aplicarTransformacao();
+            requestAnimationFrame(loopFisica);
+        }
 
         // Rolagem suave para as seções (Atalhos One-Page)
         function irParaSecao(secaoId) {
@@ -815,7 +949,7 @@
 
                 card.innerHTML = `
                     <div class="aspect-video overflow-hidden relative cursor-pointer" onclick="${acaoClique}">
-                        <img src="${projeto.imagem}" alt="${projeto.titulo}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80';" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="${projeto.imagem}" alt="${projeto.titulo}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
                         <span class="absolute top-3.5 right-3.5 text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-darkBg/80 text-blue-400 border border-blue-500/30 backdrop-blur-md">
                             ${projeto.categoriaNome}
@@ -954,6 +1088,7 @@
         window.addEventListener('resize', atualizarScrollEBarraLed, { passive: true });
 
         document.addEventListener('DOMContentLoaded', () => {
+            iniciarLogoMoedaInterativo();
             renderizarProjetos('todos');
             iniciarScrollReveal();
             ativarEfeitoSpotlight();
