@@ -12,6 +12,8 @@
         .bg-rose-gold { background-color: #B87352; }
         .bg-rose-gold-dark { background-color: #8C4E33; }
         .border-rose-gold { border-color: #B87352; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .login-footer p { font-size: 11px; color: #6B7280; }
         .login-footer a { color: #f28c28; text-decoration: none; }
     </style>
@@ -64,13 +66,13 @@
     <!-- MODAL DE DETALHES DO PRODUTO / CARROSSEL -->
     <div id="modal-produto" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-3 md:p-4 hidden backdrop-blur-sm">
         <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden flex flex-col relative max-h-[92vh]">
-            <button id="btn-fechar-modal-prod" class="absolute top-3 right-3 z-10 bg-black/50 text-white w-8 h-8 rounded-full font-bold hover:bg-black transition">✕</button>
+            <button id="btn-fechar-modal-prod" type="button" class="absolute top-3 right-3 z-10 bg-black/50 text-white w-8 h-8 rounded-full font-bold hover:bg-black transition cursor-pointer">✕</button>
             
             <div class="overflow-y-auto p-4 md:p-6 space-y-3 md:space-y-4">
                 <div class="relative bg-gray-100 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
                     <img id="modal-img-destaque" src="" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80';" class="w-full h-full object-cover">
-                    <button id="btn-carrossel-prev" class="absolute left-2 bg-white/80 hover:bg-white p-2 rounded-full text-xs font-bold shadow text-gray-800">❮</button>
-                    <button id="btn-carrossel-next" class="absolute right-2 bg-white/80 hover:bg-white p-2 rounded-full text-xs font-bold shadow text-gray-800">❯</button>
+                    <button id="btn-carrossel-prev" type="button" class="absolute left-2 bg-white/80 hover:bg-white p-2 rounded-full text-xs font-bold shadow text-gray-800 cursor-pointer">❮</button>
+                    <button id="btn-carrossel-next" type="button" class="absolute right-2 bg-white/80 hover:bg-white p-2 rounded-full text-xs font-bold shadow text-gray-800 cursor-pointer">❯</button>
                     <span id="carrossel-contador" class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">1 / 1</span>
                     <span id="modal-tarja-indisponivel" class="absolute inset-0 bg-black/50 text-white font-black text-sm flex items-center justify-center uppercase tracking-widest hidden">Esgotado / Indisponível</span>
                 </div>
@@ -99,7 +101,7 @@
             <div id="etapa-carrinho-itens" class="p-4 md:p-6 flex flex-col h-full space-y-4">
                 <div class="flex justify-between items-center border-b pb-3 border-rose-100">
                     <h3 class="text-base md:text-lg font-extrabold text-rose-gold">🛒 Meu Carrinho</h3>
-                    <button id="btn-fechar-carrinho" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+                    <button id="btn-fechar-carrinho" type="button" class="text-gray-400 hover:text-gray-600 font-bold cursor-pointer">✕</button>
                 </div>
 
                 <div id="container-itens-carrinho" class="overflow-y-auto max-h-[50vh] divide-y divide-rose-100 space-y-2 pr-1"></div>
@@ -120,7 +122,7 @@
             <div id="etapa-carrinho-dados" class="p-4 md:p-6 flex flex-col h-full space-y-4 hidden">
                 <div class="flex justify-between items-center border-b pb-3 border-rose-100">
                     <h3 class="text-base md:text-lg font-extrabold text-rose-gold">📋 Dados para Entrega</h3>
-                    <button id="btn-fechar-carrinho-2" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+                    <button id="btn-fechar-carrinho-2" type="button" class="text-gray-400 hover:text-gray-600 font-bold cursor-pointer">✕</button>
                 </div>
 
                 <form id="form-cliente-whatsapp" class="space-y-3 text-left overflow-y-auto max-h-[55vh] pr-1">
@@ -168,6 +170,7 @@
 
     <script>
         const fallbackFotoCasa = "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80";
+        const telefoneWhatsApp = "555181061618";
 
         const produtosFicticios = [
             {
@@ -176,3 +179,360 @@
                 categoria: "cobertores",
                 valor: 159.90,
                 exibirVitrine: true,
+                disponivel: true,
+                variacoes: ["Casal Queen — Rose Gold", "Casal Padrão — Cinza Pérola"],
+                imagens: [
+                    "https://images.unsplash.com/photo-1522771739844-6a9f6dd5b104?auto=format&fit=crop&w=800&q=80",
+                    fallbackFotoCasa
+                ]
+            },
+            {
+                id: "prod-2",
+                nome: "Coberdron Sherpa Premium",
+                categoria: "coberdron",
+                valor: 219.90,
+                exibirVitrine: true,
+                disponivel: true,
+                variacoes: ["Queen — Areia", "King — Chocolate"],
+                imagens: [
+                    "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
+                    fallbackFotoCasa
+                ]
+            },
+            {
+                id: "prod-3",
+                nome: "Jogo de Lençol Percal 200 Fios",
+                categoria: "lencois",
+                valor: 139.90,
+                exibirVitrine: true,
+                disponivel: true,
+                variacoes: ["Queen 4 Peças — Branco", "Casal 4 Peças — Azul Serenity"],
+                imagens: [
+                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: "prod-4",
+                nome: "Jogo de Toalhas Banho Egípcio",
+                categoria: "toalhas",
+                valor: 119.90,
+                exibirVitrine: true,
+                disponivel: true,
+                variacoes: ["5 Peças — Rosé", "5 Peças — Off-White"],
+                imagens: [
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: "prod-5",
+                nome: "Conjunto Lingerie Renda Delicada",
+                categoria: "lingeries",
+                valor: 79.90,
+                exibirVitrine: true,
+                disponivel: true,
+                variacoes: ["Tamanho M — Vinho", "Tamanho G — Preto"],
+                imagens: [fallbackFotoCasa]
+            },
+            {
+                id: "prod-6",
+                nome: "Chaleira Elétrica Inox 1,8L",
+                categoria: "eletrodomesticos",
+                valor: 129.90,
+                exibirVitrine: true,
+                disponivel: true,
+                variacoes: ["220V — Inox", "110V — Inox"],
+                imagens: [
+                    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
+                ]
+            },
+            {
+                id: "prod-7",
+                nome: "Kit Organizadores de Closet",
+                categoria: "outros",
+                valor: 89.90,
+                exibirVitrine: true,
+                disponivel: true,
+                variacoes: ["6 Peças — Linho Bege"],
+                imagens: [
+                    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"
+                ]
+            }
+        ];
+
+        let categoriaAtual = "todos";
+        let produtoSelecionado = null;
+        let indiceImagemAtual = 0;
+        let carrinho = JSON.parse(localStorage.getItem("bella_casa_carrinho")) || [];
+
+        function formatarMoeda(valor) {
+            return Number(valor || 0).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+        }
+
+        function salvarCarrinho() {
+            localStorage.setItem("bella_casa_carrinho", JSON.stringify(carrinho));
+            atualizarBadgeCarrinho();
+        }
+
+        function atualizarBadgeCarrinho() {
+            const badge = document.getElementById("badge-carrinho");
+            const totalQtd = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+            if (totalQtd > 0) {
+                badge.textContent = totalQtd;
+                badge.classList.remove("hidden");
+            } else {
+                badge.classList.add("hidden");
+            }
+        }
+
+        function filtrarCategoria(categoria) {
+            categoriaAtual = categoria;
+            document.querySelectorAll(".btn-cat").forEach((btn) => {
+                const isAtivo = btn.getAttribute("onclick")?.includes(`'${categoria}'`);
+                btn.className = isAtivo
+                    ? "btn-cat px-3.5 py-1.5 md:px-4 md:py-2 rounded-xl bg-rose-gold text-white shadow-sm cursor-pointer"
+                    : "btn-cat px-3.5 py-1.5 md:px-4 md:py-2 rounded-xl text-gray-700 hover:bg-white/50 cursor-pointer";
+            });
+            renderizarVitrine();
+        }
+
+        function renderizarVitrine() {
+            const grid = document.getElementById("grid-produtos");
+            grid.innerHTML = "";
+
+            const lista = produtosFicticios.filter((p) => {
+                if (!p.exibirVitrine) return false;
+                if (categoriaAtual === "todos") return true;
+                return p.categoria === categoriaAtual;
+            });
+
+            if (lista.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500 text-sm font-medium">Nenhum produto nesta categoria no momento.</div>`;
+                return;
+            }
+
+            lista.forEach((prod) => {
+                const fotoCapa = (prod.imagens && prod.imagens[0]) || fallbackFotoCasa;
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-2xl shadow-sm hover:shadow-md border border-rose-100 overflow-hidden flex flex-col justify-between transition cursor-pointer group";
+                card.onclick = () => abrirModalProduto(prod.id);
+
+                card.innerHTML = `
+                    <div class="relative aspect-square bg-rose-50/50 overflow-hidden">
+                        <img src="${fotoCapa}" alt="${prod.nome}" onerror="this.onerror=null;this.src='${fallbackFotoCasa}';" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        ${!prod.disponivel ? `<span class="absolute inset-0 bg-black/50 text-white text-xs font-extrabold flex items-center justify-center uppercase">Esgotado</span>` : ""}
+                    </div>
+                    <div class="p-3 md:p-4 space-y-1.5">
+                        <span class="text-[10px] font-bold uppercase text-rose-gold tracking-wide">${prod.categoria}</span>
+                        <h3 class="text-xs md:text-sm font-bold text-gray-800 line-clamp-2">${prod.nome}</h3>
+                        <p class="text-sm md:text-base font-black text-rose-gold pt-0.5">${formatarMoeda(prod.valor)}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function abrirModalProduto(id) {
+            const prod = produtosFicticios.find((p) => p.id === id);
+            if (!prod) return;
+
+            produtoSelecionado = prod;
+            indiceImagemAtual = 0;
+
+            document.getElementById("modal-categoria").textContent = prod.categoria;
+            document.getElementById("modal-nome").textContent = prod.nome;
+            document.getElementById("modal-valor").textContent = formatarMoeda(prod.valor);
+            document.getElementById("modal-variacao-desc").textContent = prod.variacoes && prod.variacoes.length
+                ? `Opções: ${prod.variacoes.join(" • ")}`
+                : "";
+
+            const tarja = document.getElementById("modal-tarja-indisponivel");
+            const btnAdd = document.getElementById("btn-add-carrinho");
+            if (prod.disponivel) {
+                tarja.classList.add("hidden");
+                btnAdd.disabled = false;
+                btnAdd.classList.remove("opacity-50", "cursor-not-allowed");
+            } else {
+                tarja.classList.remove("hidden");
+                btnAdd.disabled = true;
+                btnAdd.classList.add("opacity-50", "cursor-not-allowed");
+            }
+
+            atualizarCarrosselModal();
+            document.getElementById("modal-produto").classList.remove("hidden");
+        }
+
+        function atualizarCarrosselModal() {
+            if (!produtoSelecionado) return;
+            const fotos = produtoSelecionado.imagens && produtoSelecionado.imagens.length
+                ? produtoSelecionado.imagens
+                : [fallbackFotoCasa];
+
+            indiceImagemAtual = ((indiceImagemAtual % fotos.length) + fotos.length) % fotos.length;
+            document.getElementById("modal-img-destaque").src = fotos[indiceImagemAtual];
+            document.getElementById("carrossel-contador").textContent = `${indiceImagemAtual + 1} / ${fotos.length}`;
+
+            const miniaturas = document.getElementById("modal-miniaturas");
+            miniaturas.innerHTML = "";
+            fotos.forEach((url, idx) => {
+                const thumb = document.createElement("img");
+                thumb.src = url;
+                thumb.onerror = function () { this.onerror = null; this.src = fallbackFotoCasa; };
+                thumb.className = `w-14 h-14 rounded-xl object-cover cursor-pointer border-2 shrink-0 ${idx === indiceImagemAtual ? "border-rose-gold" : "border-transparent opacity-60"}`;
+                thumb.onclick = () => {
+                    indiceImagemAtual = idx;
+                    atualizarCarrosselModal();
+                };
+                miniaturas.appendChild(thumb);
+            });
+        }
+
+        function fecharModalProduto() {
+            document.getElementById("modal-produto").classList.add("hidden");
+            produtoSelecionado = null;
+        }
+
+        function adicionarAoCarrinho() {
+            if (!produtoSelecionado || !produtoSelecionado.disponivel) return;
+            const variacaoPadrao = produtoSelecionado.variacoes && produtoSelecionado.variacoes[0]
+                ? produtoSelecionado.variacoes[0]
+                : "Padrão";
+
+            const existente = carrinho.find((i) => i.id === produtoSelecionado.id && i.variacao === variacaoPadrao);
+            if (existente) {
+                existente.quantidade += 1;
+            } else {
+                carrinho.push({
+                    id: produtoSelecionado.id,
+                    nome: produtoSelecionado.nome,
+                    variacao: variacaoPadrao,
+                    valor: Number(produtoSelecionado.valor),
+                    imagem: (produtoSelecionado.imagens && produtoSelecionado.imagens[0]) || fallbackFotoCasa,
+                    quantidade: 1
+                });
+            }
+
+            salvarCarrinho();
+            fecharModalProduto();
+            abrirCarrinho();
+        }
+
+        function abrirCarrinho() {
+            document.getElementById("etapa-carrinho-itens").classList.remove("hidden");
+            document.getElementById("etapa-carrinho-dados").classList.add("hidden");
+            renderizarItensCarrinho();
+            document.getElementById("modal-carrinho").classList.remove("hidden");
+        }
+
+        function fecharCarrinho() {
+            document.getElementById("modal-carrinho").classList.add("hidden");
+        }
+
+        function alterarQtdItem(index, delta) {
+            if (!carrinho[index]) return;
+            carrinho[index].quantidade += delta;
+            if (carrinho[index].quantidade <= 0) {
+                carrinho.splice(index, 1);
+            }
+            salvarCarrinho();
+            renderizarItensCarrinho();
+        }
+
+        function renderizarItensCarrinho() {
+            const container = document.getElementById("container-itens-carrinho");
+            const totalEl = document.getElementById("carrinho-total-valor");
+            container.innerHTML = "";
+
+            if (carrinho.length === 0) {
+                container.innerHTML = `<p class="text-center text-xs text-gray-500 py-8">Seu carrinho está vazio.</p>`;
+                totalEl.textContent = formatarMoeda(0);
+                return;
+            }
+
+            let total = 0;
+            carrinho.forEach((item, idx) => {
+                const subtotal = item.valor * item.quantidade;
+                total += subtotal;
+
+                const row = document.createElement("div");
+                row.className = "py-2.5 flex items-center justify-between gap-3";
+                row.innerHTML = `
+                    <div class="flex items-center gap-2.5 min-w-0">
+                        <img src="${item.imagem}" onerror="this.onerror=null;this.src='${fallbackFotoCasa}';" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-rose-100">
+                        <div class="min-w-0">
+                            <p class="text-xs font-bold text-gray-800 truncate">${item.nome}</p>
+                            <p class="text-[10px] text-gray-500 truncate">${item.variacao}</p>
+                            <p class="text-xs font-extrabold text-rose-gold">${formatarMoeda(subtotal)}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                        <button type="button" onclick="alterarQtdItem(${idx}, -1)" class="w-6 h-6 rounded-lg bg-rose-50 text-rose-gold font-bold text-xs cursor-pointer">-</button>
+                        <span class="text-xs font-bold w-5 text-center">${item.quantidade}</span>
+                        <button type="button" onclick="alterarQtdItem(${idx}, 1)" class="w-6 h-6 rounded-lg bg-rose-50 text-rose-gold font-bold text-xs cursor-pointer">+</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            totalEl.textContent = formatarMoeda(total);
+        }
+
+        document.getElementById("btn-fechar-modal-prod").onclick = fecharModalProduto;
+        document.getElementById("btn-continuar-comprando-modal").onclick = fecharModalProduto;
+        document.getElementById("btn-carrossel-prev").onclick = () => { indiceImagemAtual -= 1; atualizarCarrosselModal(); };
+        document.getElementById("btn-carrossel-next").onclick = () => { indiceImagemAtual += 1; atualizarCarrosselModal(); };
+        document.getElementById("btn-add-carrinho").onclick = adicionarAoCarrinho;
+
+        document.getElementById("btn-abrir-carrinho").onclick = abrirCarrinho;
+        document.getElementById("btn-fechar-carrinho").onclick = fecharCarrinho;
+        document.getElementById("btn-fechar-carrinho-2").onclick = fecharCarrinho;
+        document.getElementById("btn-continuar-comprando-carrinho").onclick = fecharCarrinho;
+
+        document.getElementById("btn-avancar-checkout").onclick = () => {
+            if (carrinho.length === 0) return;
+            document.getElementById("etapa-carrinho-itens").classList.add("hidden");
+            document.getElementById("etapa-carrinho-dados").classList.remove("hidden");
+        };
+
+        document.getElementById("btn-voltar-carrinho").onclick = () => {
+            document.getElementById("etapa-carrinho-dados").classList.add("hidden");
+            document.getElementById("etapa-carrinho-itens").classList.remove("hidden");
+        };
+
+        document.getElementById("form-cliente-whatsapp").onsubmit = (e) => {
+            e.preventDefault();
+            if (carrinho.length === 0) return;
+
+            const nome = document.getElementById("cli-nome").value.trim();
+            const endereco = document.getElementById("cli-endereco").value.trim();
+            const pagamento = document.getElementById("cli-pagamento").value;
+            const obs = document.getElementById("cli-obs").value.trim();
+
+            const total = carrinho.reduce((acc, i) => acc + i.valor * i.quantidade, 0);
+            const itensTexto = carrinho
+                .map((i) => `• ${i.quantidade}x ${i.nome} (${i.variacao}) — ${formatarMoeda(i.valor * i.quantidade)}`)
+                .join("\n");
+
+            const mensagem = [
+                "Olá! Gostaria de fazer um pedido no *Atelier Bella Casa*:",
+                "",
+                itensTexto,
+                "",
+                `*Total:* ${formatarMoeda(total)}`,
+                `*Cliente:* ${nome}`,
+                `*Endereço:* ${endereco}`,
+                `*Pagamento:* ${pagamento}`,
+                obs ? `*Observações:* ${obs}` : ""
+            ].filter(Boolean).join("\n");
+
+            const url = `https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank");
+        };
+
+        atualizarBadgeCarrinho();
+        renderizarVitrine();
+    </script>
+</body>
+</html>
