@@ -703,7 +703,7 @@
                 titulo: "Atelier Bella Casa — Catálogo Online",
                 categoria: "e-commerce",
                 categoriaNome: "E-commerce",
-                imagem: "https://images.unsplash.com/photo-1522771739844-6a9f6dd5b104?auto=format&fit=crop&w=800&q=80",
+                imagem: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
                 descricao: "Catálogo interativo de cama, mesa, banho e utilidades com filtro por categoria, variações e checkout via WhatsApp.",
                 urlExecutavel: "catalogo-ficticio/catalogo.html"
             }
@@ -949,7 +949,7 @@
 
                 card.innerHTML = `
                     <div class="aspect-video overflow-hidden relative cursor-pointer" onclick="${acaoClique}">
-                        <img src="${projeto.imagem}" alt="${projeto.titulo}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="${projeto.imagem}" alt="${projeto.titulo}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80';" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
                         <span class="absolute top-3.5 right-3.5 text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-darkBg/80 text-blue-400 border border-blue-500/30 backdrop-blur-md">
                             ${projeto.categoriaNome}
