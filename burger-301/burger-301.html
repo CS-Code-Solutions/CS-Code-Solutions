@@ -31,16 +31,19 @@
     <meta http-equiv="Expires" content="0">
 
     <!-- CONFIGURAÇÕES DE APLICAÇÃO INSTALÁVEL (PWA) -->
-    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#f28c28">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Burger 301">
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
     
     <!-- FAVICON (ÍCONE DA ABA DO NAVEGADOR)-->
     <link rel="icon" href="imagens/icone.png" type="image/png">
 <style>
+    html, body {
+        min-height: 100%;
+        background-color: #121212;
+    }
     .botao-instagram-rodape {
         display: inline-flex;
         align-items: center;
@@ -114,9 +117,9 @@
     <nav id="menu-lateral" class="menu-lateral">
         <button type="button" id="btn-fechar-menu" class="btn-fechar-menu">✕</button>
         <ul class="menu-lista">
-            <li><a href="#" onclick="fecharMenuEColar('hamburgueres')">🍔 Hambúrgueres</a></li>
-            <li><a href="#" onclick="fecharMenuEColar('porcoes')">🍟 Porções</a></li>
-            <li><a href="#" onclick="fecharMenuEColar('rodape-duvidas')">❓ Dúvidas</a></li>
+            <li><a href="#" onclick="fecharMenuEColar('hamburgueres'); return false;">🍔 Hambúrgueres</a></li>
+            <li><a href="#" onclick="fecharMenuEColar('porcoes'); return false;">🍟 Porções</a></li>
+            <li><a href="#" onclick="fecharMenuEColar('rodape-duvidas'); return false;">❓ Dúvidas</a></li>
         </ul>
     </nav>
 
@@ -425,9 +428,8 @@
         })();
     </script>
 
-  <!-- JAVASCRIPT PRINCIPAL -->
-<script type="module" src="script.js?v=2"></script>
-
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script type="module" src="script.js?v=3"></script>
 </body>
 
 </html>
