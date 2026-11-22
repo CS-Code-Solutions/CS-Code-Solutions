@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Sereno | Loja Esotérica e Espaço Terapêutico</title>
+
+    <!-- Meta Tags Essenciais para SEO e Redes Sociais -->
+    <meta name="description" content="Portal Sereno - Loja de produtos holísticos, incensos, cristais, aromas e bem-estar.">
+    <meta name="keywords" content="holística, incensos, esoterismo, bem-estar, terapias, cristais">
+    <meta name="author" content="Portal Sereno">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Portal Sereno">
+    <meta property="og:title" content="Portal Sereno | Bem-estar e Equilíbrio">
+    <meta property="og:description" content="Encontre paz e equilíbrio. Descubra nossa coleção de incensos, cristais e artigos holísticos.">
+    <meta property="og:url" content="https://cs-code-solutions.github.io/CS-Code-Solutions/">
+    <meta property="og:image" content="https://cs-code-solutions.github.io/CS-Code-Solutions/logo.png">
+
+    <!-- Favicon SVG Fictício -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230E8685'/><circle cx='50' cy='50' r='22' fill='none' stroke='%23C5A880' stroke-width='5'/><circle cx='50' cy='50' r='7' fill='%23ffffff'/></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        #hero-banner-bg {
+            position: relative;
+            width: 100%;
+            min-height: 540px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: #0b2e2d;
+            overflow: hidden;
+        }
+
+        @media (min-width: 640px) {
+            #hero-banner-bg {
+                min-height: 520px;
+            }
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(7, 34, 33, 0.72) 0%, rgba(7, 34, 33, 0.62) 100%);
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .hero-overlay {
+                background: linear-gradient(to right, rgba(7, 34, 33, 0.82) 0%, rgba(7, 34, 33, 0.48) 60%, rgba(7, 34, 33, 0.2) 100%);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        #modal-carousel-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: #0b2e2d;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+
+        .carousel-bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.72));
+            z-index: 1;
+        }
+
+        .carousel-content {
+            position: absolute;
+            inset-x: 0;
+            bottom: 24px;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- BARRA DE AVISO SUPERIOR -->
+    <div class="bg-[#0E8685] text-white text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide">
+        Mais que produtos, energia para o seu dia a dia! Conheça nossa curadoria esotérica e terapias holísticas.
+    </div>
+
+    <!-- CABEÇALHO -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-2.5 sm:py-3 flex justify-between items-center gap-3">
+            <!-- Logo Fictício -->
+            <div class="flex items-center gap-2.5 sm:gap-3 cursor-pointer py-1 shrink-0" onclick="mudarAba('view-home')">
+                <svg class="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="64" height="64" rx="18" fill="#0E8685"/>
+                    <circle cx="32" cy="32" r="16" stroke="#C5A880" stroke-width="2.5"/>
+                    <polygon points="32,12 37,27 52,32 37,37 32,52 27,37 12,32 27,27" fill="#FFFFFF" fill-opacity="0.92"/>
+                    <circle cx="32" cy="32" r="4" fill="#0E8685"/>
+                </svg>
+                <div class="leading-tight">
+                    <span class="block text-base sm:text-xl font-extrabold text-gray-900 tracking-tight whitespace-nowrap">Portal Sereno</span>
+                    <span class="block text-[10px] font-bold uppercase tracking-widest text-[#0E8685] whitespace-nowrap">Holística & Terapias</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold items-center text-gray-700">
+                <button onclick="mudarAba('view-home')" class="hover:text-[#0E8685] transition cursor-pointer">Início</button>
+                <button onclick="abrirModalBanner()" class="text-[#0E8685] hover:underline font-bold transition cursor-pointer">Destaques</button>
+                
+                <!-- MENU CASCATA (DROPDOWN) DESKTOP DINÂMICO -->
+                <div class="relative group">
+                    <button onclick="mudarAba('view-produtos'); filtrarProdutos('todos');" class="hover:text-[#0E8685] transition flex items-center gap-1 py-2 cursor-pointer">
+                        Loja esotérica ▾
+                    </button>
+                    <div id="desktop-submenu-categorias" class="absolute top-full left-0 w-56 bg-white border border-gray-100 shadow-xl rounded-2xl py-2 hidden group-hover:block z-50"></div>
+                </div>
+
+                <button onclick="mudarAba('view-terapias')" class="hover:text-[#0E8685] transition cursor-pointer">Espaço terapêutico</button>
+                <button onclick="mudarAba('view-quem-somos')" class="hover:text-[#0E8685] transition cursor-pointer">Nossa essência</button>
+            </nav>
+
+            <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+                <button onclick="toggleCartModal()" aria-label="Abrir carrinho" class="relative bg-gray-100 p-2.5 rounded-full hover:bg-gray-200 transition cursor-pointer">
+                    🛒
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-[#C5A880] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+                <button id="btn-menu-loja" onclick="toggleMobileMenu()" aria-label="Abrir menu" class="md:hidden bg-gray-100 p-2.5 rounded-lg text-gray-700 font-bold cursor-pointer">☰</button>
+            </div>
+        </div>
+
+        <!-- MENU MOBILE COM CASCATA EXPANSÍVEL DINÂMICA -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-2 shadow-lg absolute w-full z-50">
+            <button onclick="mudarAba('view-home')" class="block w-full text-left py-2 font-semibold text-gray-700 hover:text-[#0E8685]">Início</button>
+            <button onclick="abrirModalBanner()" class="block w-full text-left py-2 font-bold text-[#0E8685]">Destaques</button>
+            
+            <div class="border-y border-gray-100 py-2 space-y-1">
+                <button onclick="toggleMobileLojaSubmenu()" class="flex justify-between items-center w-full py-1 font-semibold text-gray-700 hover:text-[#0E8685]">
+                    <span>Loja Esotérica</span>
+                    <span id="mobile-submenu-arrow">▼</span>
+                </button>
+                <div id="mobile-loja-submenu" class="hidden pl-4 space-y-2 pt-2"></div>
+            </div>
+
+            <button onclick="mudarAba('view-terapias')" class="block w-full text-left py-2 font-semibold text-gray-700 hover:text-[#0E8685]">Espaço Terapêutico</button>
+            <button onclick="mudarAba('view-quem-somos')" class="block w-full text-left py-2 font-semibold text-gray-700 hover:text-[#0E8685]">Nossa Essência</button>
+        </div>
+    </header>
+
+    <!-- BARRA DE VALORES -->
+    <div class="bg-white border-b border-gray-100 py-3 px-4 hidden sm:block">
+        <div class="max-w-7xl mx-auto flex justify-around items-center text-xs text-gray-600 font-medium">
+            <span class="flex items-center gap-1.5">🍃 Curadoria com propósito</span>
+            <span class="flex items-center gap-1.5">💎 Produtos com significado</span>
+            <span class="flex items-center gap-1.5">🤍 Atendimento acolhedor</span>
+            <span class="flex items-center gap-1.5">💬 Compre pelo WhatsApp</span>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL (MAIN LANDMARK) -->
+    <main class="flex-grow">
+
+        <!-- INÍCIO (PÁGINA PRINCIPAL) -->
+        <section id="view-home" class="app-view w-full">
+            <div id="hero-banner-bg">
+                <div class="hero-overlay"></div>
+                <img class="hero-bg-image" src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1600&q=80" alt="Portal Sereno" width="1280" height="520" onerror="this.style.display='none'">
+                <div class="max-w-7xl mx-auto px-5 sm:px-6 w-full hero-content py-12 sm:py-20 text-white">
+                    <div class="max-w-xl space-y-4">
+                        <span class="bg-[#0E8685] text-white text-xs font-bold uppercase px-3.5 py-1.5 rounded-full tracking-wider shadow inline-block">Seja bem-vindo(a)</span>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight drop-shadow-lg">O equilíbrio começa nos pequenos rituais.</h2>
+                        <p class="text-sm md:text-base opacity-95 leading-relaxed drop-shadow">Explore nossa curadoria esotérica com cristais, aromas, decoração e agende seu momento de cuidado terapêutico.</p>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="mudarAba('view-produtos'); filtrarProdutos('todos');" class="bg-[#0E8685] hover:bg-opacity-90 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition text-xs cursor-pointer">Explorar Loja ➔</button>
+                            <button onclick="abrirModalBanner()" class="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white font-bold px-6 py-3 rounded-xl border border-white/30 shadow-lg transition text-xs cursor-pointer">Ver Destaques</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 py-12 w-full">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-8">
+                    <div>
+                        <span class="text-xs font-bold text-[#0E8685] uppercase tracking-wider">ESCOLHIDOS COM CARINHO</span>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-1">Seleção Portal Sereno</h3>
+                    </div>
+                    <button onclick="mudarAba('view-produtos'); filtrarProdutos('todos');" class="text-sm font-bold text-[#0E8685] hover:underline self-start sm:self-auto whitespace-nowrap cursor-pointer">Ver todos os produtos ➔</button>
+                </div>
+                <div id="home-destaques-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"></div>
+            </div>
+        </section>
+
+        <!-- MODAL DO BANNER / CARROSSEL DE DESTAQUES -->
+        <div id="modal-banner" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full p-6 relative">
+                <button onclick="fecharModalBanner()" class="absolute top-4 right-4 z-30 text-gray-500 hover:text-gray-800 font-bold bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm cursor-pointer">✕</button>
+                <div class="mb-4">
+                    <span class="text-xs font-bold text-[#0E8685] uppercase tracking-wider">ESPAÇO DE DESTAQUES</span>
+                    <h3 class="text-2xl font-bold text-gray-900">Rituais e Novidades</h3>
+                </div>
+                
+                <div id="modal-carousel-wrapper" onclick="clicarBannerAtual()">
+                    <div class="carousel-overlay"></div>
+                    <img id="carousel-bg" class="carousel-bg-image" src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=80" alt="Banner Fundo" width="800" height="420" onerror="this.style.display='none'">
+                    <div class="max-w-xl mx-auto px-4 carousel-content text-center text-white pb-6">
+                        <span id="carousel-badge" class="bg-[#C5A880] text-white text-xs font-bold uppercase px-3 py-1 rounded-full tracking-wider shadow mb-2 inline-block">LOJA ESOTÉRICA</span>
+                        <h2 id="carousel-title" class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2 leading-tight drop-shadow-md">O equilíbrio começa nos pequenos rituais.</h2>
+                        <p id="carousel-desc" class="text-xs sm:text-sm opacity-95 mb-4 drop-shadow">Encontre produtos com significado para a sua jornada.</p>
+                        <button onclick="event.stopPropagation(); clicarBannerAtual();" class="pointer-events-auto bg-[#0E8685] text-white font-bold px-5 py-2.5 rounded-xl shadow text-xs hover:bg-opacity-90 transition cursor-pointer">Acessar Seção ➔</button>
+                    </div>
+                    <button onclick="event.stopPropagation(); mudarSlide(-1);" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full z-20 cursor-pointer">❮</button>
+                    <button onclick="event.stopPropagation(); mudarSlide(1);" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-2 rounded-full z-20 cursor-pointer">❯</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOSSA ESSÊNCIA -->
+        <section id="view-quem-somos" class="app-view hidden py-16 px-4 bg-white">
+            <div class="max-w-5xl mx-auto space-y-12">
+                <div class="space-y-3">
+                    <span class="text-[#0E8685] font-bold text-xs uppercase tracking-wider">RAIZES E PROPÓSITO</span>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Nossa essência</h3>
+                    <p class="text-gray-500 text-sm">Mais que uma loja. Um encontro com você.</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-8 bg-[#F8F9FA] p-6 md:p-12 rounded-3xl border border-gray-100 shadow-sm">
+                    <div class="w-28 md:w-36 flex-shrink-0 flex justify-center">
+                        <svg class="w-28 h-28 md:w-36 md:h-36 drop-shadow-md" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="64" height="64" rx="20" fill="#0E8685"/>
+                            <circle cx="32" cy="32" r="17" stroke="#C5A880" stroke-width="2.5"/>
+                            <polygon points="32,11 37,27 53,32 37,37 32,53 27,37 11,32 27,27" fill="#FFFFFF" fill-opacity="0.92"/>
+                            <circle cx="32" cy="32" r="4" fill="#0E8685"/>
+                        </svg>
+                    </div>
+                    <div class="text-center md:text-left space-y-4">
+                        <h4 class="text-2xl font-bold text-gray-900">Portal Sereno</h4>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            Nascemos do propósito de conectar você com sua melhor energia, equilíbrio e bem-estar. Em Bento Gonçalves, RS, reunimos produtos esotéricos e um espaço acolhedor dedicado ao autoconhecimento.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed text-sm">
+                            De cristais, aromas, acessórios e objetos com significado, nossa curadoria convida você a desacelerar e habitar o presente.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BOTÃO DO INSTAGRAM -->
+                <div class="bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] p-1 rounded-3xl shadow-lg">
+                    <div class="bg-white rounded-[22px] p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-4 text-center sm:text-left">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center text-white text-2xl shadow flex-shrink-0 mx-auto sm:mx-0">
+                                📷
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Siga-nos no Instagram</h4>
+                                <p class="text-xs text-gray-600">Acompanhe nossas novidades, rituais e dicas diárias @portalsereno.terapias</p>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noreferrer" class="bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-95 text-white font-bold px-6 py-3 rounded-xl shadow transition text-xs whitespace-nowrap flex items-center gap-2">
+                            Seguir no Instagram
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO DE LOCALIZAÇÃO E MAPA -->
+                <div class="bg-gray-50 rounded-3xl border border-gray-100 p-6 md:p-8 space-y-6 shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-200 pb-6">
+                        <div>
+                            <span class="text-xs font-bold text-[#0E8685] uppercase tracking-wider">LOCALIZAÇÃO</span>
+                            <h4 class="text-2xl font-bold text-gray-900 mt-1">Venha nos visitar</h4>
+                            <p class="text-sm text-gray-600 mt-1">📍 Rua das Acácias, 148 - Sala 04 - Centro, Bento Gonçalves - RS, 95700-000</p>
+                        </div>
+                        <a href="https://maps.google.com/?q=Rua+das+Acácias,+148+-+Centro,+Bento+Gonçalves+-+RS,+95700-000" target="_blank" rel="noreferrer" class="bg-[#0E8685] hover:bg-opacity-90 text-white font-bold px-5 py-3 rounded-xl shadow transition text-xs flex items-center gap-2 whitespace-nowrap">
+                            Abrir no Maps
+                        </a>
+                    </div>
+
+                    <div class="w-full h-80 rounded-2xl overflow-hidden shadow-inner border border-gray-200">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3483.8!2d-51.519!3d-29.168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDEwJzA0LjgiUyA1McKwMzEnMDguNCJX!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-2">
+                        <span class="text-2xl">🍃</span>
+                        <h5 class="font-bold text-gray-900">Curadoria com significado</h5>
+                        <p class="text-xs text-gray-600 leading-relaxed">Elementos naturais, aromas e objetos que acompanham sua jornada.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-2">
+                        <span class="text-2xl">🤍</span>
+                        <h5 class="font-bold text-gray-900">Acolhimento</h5>
+                        <p class="text-xs text-gray-600 leading-relaxed">Um olhar atento para cada pessoa e sua história.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-2">
+                        <span class="text-2xl">💎</span>
+                        <h5 class="font-bold text-gray-900">Sua própria essência</h5>
+                        <p class="text-xs text-gray-600 leading-relaxed">Um convite ao equilíbrio, à presença e ao autoconhecimento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUTOS -->
+        <section id="view-produtos" class="app-view hidden max-w-7xl mx-auto px-4 py-12 w-full">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl md:text-3xl font-bold text-[#0E8685]">Loja Esotérica</h3>
+                <p class="text-gray-600 mt-2">Explore nossa curadoria de produtos esotéricos e vibracionais.</p>
+                <div class="max-w-md mx-auto my-6 space-y-3">
+                    <input type="text" id="input-busca" oninput="pesquisarProdutos(this.value)" placeholder="🔍 Pesquisar por nome ou propriedade..." class="w-full px-4 py-3 rounded-2xl border border-gray-200 text-sm focus:outline-none focus:border-[#0E8685] shadow-sm">
+                    
+                    <div class="relative">
+                        <select id="select-filtro-categorias" aria-label="Filtrar por categoria" onchange="filtrarProdutos(this.value)" class="w-full appearance-none bg-white px-4 py-3 pr-10 rounded-2xl border border-gray-200 text-sm font-semibold text-gray-700 focus:outline-none focus:border-[#0E8685] shadow-sm cursor-pointer">
+                            <option value="todos">Todas as Categorias</option>
+                        </select>
+                        <span class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-xs text-[#0E8685]">▼</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="grid-produtos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"></div>
+
+            <!-- PAGINAÇÃO DA LOJA -->
+            <div class="flex justify-center items-center gap-4 mt-12 pt-6 border-t border-gray-200 text-xs font-bold text-gray-700">
+                <button onclick="mudarPaginaLoja(-1)" id="btn-loja-ant" class="w-10 h-10 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition shadow-sm text-base cursor-pointer">‹</button>
+                <span id="loja-paginacao-info" class="text-sm font-semibold text-gray-600">Página 1 de 1</span>
+                <button onclick="mudarPaginaLoja(1)" id="btn-loja-prox" class="w-10 h-10 rounded-xl bg-[#0E8685] hover:bg-opacity-90 text-white flex items-center justify-center transition shadow text-base cursor-pointer">›</button>
+            </div>
+        </section>
+
+        <!-- ESPAÇO TERAPÊUTICO -->
+        <section id="view-terapias" class="app-view hidden py-16 px-4 bg-white">
+            <div class="max-w-5xl mx-auto space-y-12">
+                <div class="space-y-3">
+                    <span class="text-[#0E8685] font-bold text-xs uppercase tracking-wider">ATENDIMENTO ESPECIALIZADO</span>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Espaço terapêutico</h3>
+                    <p class="text-gray-500 text-sm">Práticas integrativas voltadas à harmonização e ao equilíbrio.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 p-6 rounded-3xl border border-gray-100 space-y-3">
+                        <span class="text-2xl">🤍</span>
+                        <h4 class="text-lg font-bold text-gray-900">Humanoterapia</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Um espaço de acolhimento e reconexão pessoal, com práticas voltadas ao bem-estar e ao autoconhecimento.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-3xl border border-gray-100 space-y-3">
+                        <span class="text-2xl">🌿</span>
+                        <h4 class="text-lg font-bold text-gray-900">Psicanálise</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Escuta e investigação do inconsciente para compreender vivências, emoções e sua história.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-3xl border border-gray-100 space-y-3">
+                        <span class="text-2xl">✨</span>
+                        <h4 class="text-lg font-bold text-gray-900">Radiestesia e radiônica</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Práticas integrativas voltadas à harmonização e ao equilíbrio, respeitando sua jornada pessoal.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-[#0E8685] text-white p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+                    <div class="space-y-1 text-center md:text-left">
+                        <span class="text-xs uppercase tracking-widest opacity-90 font-bold">SEU PRÓXIMO PASSO</span>
+                        <h4 class="text-2xl font-bold">Reserve um momento de cuidado.</h4>
+                        <p class="text-xs opacity-90">Consulte valores, duração das sessões e horários com nossa equipe.</p>
+                    </div>
+                    <a href="https://wa.me/5551981061618?text=Olá,%20querida%20equipe%20do%20Portal%20Sereno!%20Gostaria%20de%20saber%20mais%20sobre%20os%20horários%20e%20valores%20para%20o%20Espaço%20Terapêutico.%20Gratidão!" target="_blank" rel="noreferrer" class="bg-[#25D366] text-white font-bold px-6 py-3.5 rounded-xl shadow transition hover:bg-opacity-90 whitespace-nowrap text-sm flex items-center gap-2">
+                        Agendar pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL DE DETALHES DO PRODUTO -->
+        <div id="modal-produto" class="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 hidden">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full p-6 md:p-8 pt-14 md:pt-8 relative max-h-[90vh] overflow-y-auto">
+                <button onclick="fecharModalProduto()" class="absolute top-3 right-3 z-20 text-gray-500 hover:text-gray-800 font-bold text-lg bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm cursor-pointer">✕</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="space-y-4">
+                        <div id="modal-img-container" class="relative h-72 bg-gray-100 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center">
+                            <img id="modal-img" src="" alt="Produto" width="500" height="500" class="w-full h-full object-cover">
+                            <div id="modal-badge-texto" class="absolute hidden bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md max-w-[80%] text-center"></div>
+                        </div>
+                        <div id="modal-variacoes-container" class="space-y-2">
+                            <label class="block text-xs font-bold text-gray-700 uppercase">Escolha a Variação / Detalhe:</label>
+                            <div id="modal-variantes-lista" class="flex flex-wrap gap-2"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-4 flex flex-col justify-between">
+                        <div>
+                            <span id="modal-categoria" class="bg-teal-50 text-[#0E8685] text-xs font-bold px-3 py-1 rounded-full uppercase"></span>
+                            <h3 id="modal-nome" class="text-2xl font-bold text-gray-900 mt-2"></h3>
+                            <p id="modal-preco" class="text-3xl font-extrabold text-[#C5A880] mt-2"></p>
+                            <p id="modal-descricao" class="text-gray-600 text-sm mt-4 leading-relaxed"></p>
+                        </div>
+                        <button onclick="adicionarProdutoAoCarrinhoModal()" class="w-full bg-[#0E8685] hover:bg-opacity-90 text-white font-bold py-3.5 rounded-xl shadow-lg transition text-sm cursor-pointer">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL DO CARRINHO DE COMPRAS -->
+        <div id="modal-carrinho" class="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 hidden">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 pt-14 md:pt-8 relative max-h-[90vh] flex flex-col">
+                <button onclick="toggleCartModal()" class="absolute top-3 right-3 z-20 text-gray-500 hover:text-gray-800 font-bold text-lg bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm cursor-pointer">✕</button>
+                <h3 class="text-2xl font-bold text-[#0E8685] mb-4">Seu Carrinho 🛒</h3>
+                
+                <div id="carrinho-itens-lista" class="flex-grow overflow-y-auto space-y-4 divide-y divide-gray-100 max-h-[50vh] pr-1"></div>
+
+                <div class="border-t pt-4 mt-4 space-y-3">
+                    <div class="flex justify-between items-center text-lg font-bold text-gray-900">
+                        <span>Total:</span>
+                        <span id="carrinho-total" class="text-[#C5A880] text-2xl font-extrabold">R$ 0,00</span>
+                    </div>
+                    <button onclick="abrirCheckout()" class="w-full bg-[#0E8685] hover:bg-opacity-90 text-white font-bold py-3.5 rounded-xl shadow-lg transition text-sm flex items-center justify-center gap-2 cursor-pointer">
+                        Prosseguir com Pedido
+                    </button>
+                    <button onclick="mudarAba('view-produtos'); toggleCartModal();" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 rounded-xl transition text-sm cursor-pointer">
+                        Continuar Comprando
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL DE CHECKOUT -->
+        <div id="modal-checkout" class="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 hidden">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 md:p-8 pt-14 md:pt-8 relative max-h-[90vh] overflow-y-auto">
+                <button onclick="toggleCheckoutModal()" class="absolute top-3 right-3 z-20 text-gray-500 hover:text-gray-800 font-bold text-lg bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full flex items-center justify-center transition shadow-sm cursor-pointer">✕</button>
+                <h3 class="text-2xl font-bold text-[#0E8685] mb-4">Dados para Entrega 📋</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Nome Completo</label>
+                        <input type="text" id="chk-nome" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#0E8685]" placeholder="Seu nome completo">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">CPF</label>
+                        <input type="text" id="chk-cpf" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#0E8685]" placeholder="000.000.000-00">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Telefone de Contato</label>
+                        <input type="text" id="chk-telefone" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#0E8685]" placeholder="(51) 99999-9999">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Endereço para Entrega</label>
+                        <textarea id="chk-endereco" rows="2" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#0E8685]" placeholder="Rua, número, complemento, bairro, cidade e CEP"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Forma de Pagamento Desejada</label>
+                        <select id="chk-pagamento" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#0E8685] bg-white">
+                            <option value="Pix">Pix</option>
+                            <option value="Cartão de Crédito">Cartão de Crédito</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                            <option value="A combinar">A combinar</option>
+                        </select>
+                    </div>
+                    <button onclick="finalizarPedidoWhatsApp()" class="w-full bg-[#25D366] hover:bg-opacity-90 text-white font-bold py-3.5 rounded-xl shadow-lg transition text-sm flex items-center justify-center gap-2 cursor-pointer">
+                        Finalizar Pedido via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL DE SUCESSO -->
+        <div id="modal-sucesso" class="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4 hidden">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 md:p-8 relative text-center space-y-4">
+                <div class="text-5xl mb-2">✨</div>
+                <h3 class="text-2xl font-bold text-[#0E8685]">Pedido Enviado!</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Seu pedido será analisado com todo o cuidado e, o mais breve possível, entraremos em contato para compartilhar todas as informações necessárias.
+                </p>
+                <button onclick="concluirPedido()" class="w-full bg-[#0E8685] hover:bg-opacity-90 text-white font-bold py-3 rounded-xl shadow-lg transition text-sm cursor-pointer">
+                    Concluir via WhatsApp 
+                </button>
+            </div>
+        </div>
+
+        <!-- BOTÃO WHATSAPP FIXO FLUTUANTE -->
+        <a href="https://wa.me/5551981061618?text=Olá,%20Portal%20Sereno!%20Gostaria%20de%20tirar%20algumas%20dúvidas%20sobre%20os%20produtos%20e%20rituais.%20Gratidão!" target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" class="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl hover:scale-105 transition">💬</a>
+
+    </main>
+
+    <!-- RODAPÉ CENTRALIZADO -->
+    <footer class="bg-white border-t border-gray-100 py-10 px-4 mt-auto text-center">
+        <div class="max-w-7xl mx-auto flex flex-col items-center justify-center gap-4">
+            <div class="flex items-center gap-3">
+                <svg class="h-10 w-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="64" height="64" rx="18" fill="#0E8685"/>
+                    <circle cx="32" cy="32" r="16" stroke="#C5A880" stroke-width="2.5"/>
+                    <polygon points="32,12 37,27 52,32 37,37 32,52 27,37 12,32 27,27" fill="#FFFFFF" fill-opacity="0.92"/>
+                    <circle cx="32" cy="32" r="4" fill="#0E8685"/>
+                </svg>
+            </div>
+            <span class="text-xs text-gray-500">Produtos com significado. Cuidado com a sua essência.</span>
+            <div class="text-xs text-gray-400">
+                Portal Sereno &copy; 2026 — Bento Gonçalves - RS<br>
+                <span>Powered by <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noreferrer" class="text-gray-600 hover:text-[#0E8685] font-bold transition">Powered by CS Code Solutions</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT LOCAL (SEM BANCO DE DADOS EXTERNO) -->
+    <script>
+        const produtosFicticios = [
+            {
+                id: "prod-1",
+                nome: "Kit Cristais de Equilíbrio e Proteção",
+                categoria: "Cristais",
+                preco: 89.90,
+                destaque: true,
+                descricao: "Conjunto selecionado com quartzo rosa, ametista e turmalina negra para harmonizar ambientes e apoiar práticas de meditação diária.",
+                imagens: [
+                    { url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80", texto: "Kit Completo (3 Pedras)", posV: "bottom", posH: "left" },
+                    { url: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80", texto: "Ametista Bruta", posV: "bottom", posH: "left" }
+                ]
+            },
+            {
+                id: "prod-2",
+                nome: "Incensário Cascata de Cerâmica Artesanal",
+                categoria: "Aromaterapia",
+                preco: 64.50,
+                destaque: true,
+                descricao: "Peça em cerâmica esmaltada projetada para incensos de refluxo, criando efeito visual suave de fumaça para momentos de pausa.",
+                imagens: [
+                    { url: "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=800&q=80", texto: "Cerâmica Areia", posV: "bottom", posH: "left" },
+                    { url: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80", texto: "Com 10 Cones", posV: "bottom", posH: "left" }
+                ]
+            },
+            {
+                id: "prod-3",
+                nome: "Vela Aromática Lavanda & Cedro",
+                categoria: "Aromaterapia",
+                preco: 52.00,
+                destaque: true,
+                descricao: "Vela vegetal de queima limpa em pote de vidro reutilizável, com notas herbais de lavanda e fundo amadeirado de cedro.",
+                imagens: [
+                    { url: "https://images.unsplash.com/photo-1603006905393-c2233ca8969c?auto=format&fit=crop&w=800&q=80", texto: "Pote 180g", posV: "bottom", posH: "left" }
+                ]
+            },
+            {
+                id: "prod-4",
+                nome: "Pêndulo Facetado em Cristal Translúcido",
+                categoria: "Radiestesia",
+                preco: 74.00,
+                destaque: false,
+                descricao: "Pêndulo com corrente metálica fina, indicado para estudos de radiestesia, concentração e práticas integrativas.",
+                imagens: [
+                    { url: "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=800&q=80", texto: "Prata & Cristal", posV: "bottom", posH: "left" }
+                ]
+            },
+            {
+                id: "prod-5",
+                nome: "Mandala Decorativa em Madeira Esculpida",
+                categoria: "Decoração",
+                preco: 118.00,
+                destaque: false,
+                descricao: "Elemento decorativo vazado para paredes ou cantos de leitura, trazendo aconchego visual ao espaço.",
+                imagens: [
+                    { url: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80", texto: "35 cm · Natural", posV: "bottom", posH: "left" }
+                ]
+            },
+            {
+                id: "prod-6",
+                nome: "Óleo Essencial de Bergamota Puro",
+                categoria: "Aromaterapia",
+                preco: 48.90,
+                destaque: false,
+                descricao: "Frasco conta-gotas de 10 ml ideal para difusores ambientais e rotinas de relaxamento no fim do dia.",
+                imagens: [
+                    { url: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80", texto: "Frasco 10 ml", posV: "bottom", posH: "left" }
+                ]
+            }
+        ];
+
+        const slidesFicticios = [
+            {
+                badge: "CURADORIA EM DESTAQUE",
+                titulo: "Cristais e aromas para o seu ritual diário.",
+                desc: "Peças selecionadas para transformar a atmosfera da sua casa.",
+                imagemPc: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=80",
+                imagemMobile: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80",
+                tempo: 6,
+                linkTipo: "categoria",
+                linkAlvo: "Cristais"
+            },
+            {
+                badge: "ESPAÇO TERAPÊUTICO",
+                titulo: "Cuidado, escuta e equilíbrio emocional.",
+                desc: "Conheça nossas práticas integrativas e agende sua sessão.",
+                imagemPc: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=80",
+                imagemMobile: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80",
+                tempo: 6,
+                linkTipo: "terapias",
+                linkAlvo: ""
+            }
+        ];
+
+        let currentSlide = 0;
+        const listaProdutos = produtosFicticios;
+        const slides = slidesFicticios;
+        const todasCategorias = Array.from(new Set(listaProdutos.map(p => p.categoria))).sort();
+        let carouselTimer = null;
+        let produtoAtualModal = null;
+        let fotoSelecionadaModalIndex = 0;
+        let mensagemWhatsAppPendente = "";
+
+        let paginaAtualLoja = 1;
+        const itensPorPaginaLoja = 15;
+        let categoriaFiltroAtiva = 'todos';
+        let termoBuscaAtivo = '';
+        
+        let carrinho = [];
+        try {
+            carrinho = JSON.parse(localStorage.getItem('carrinho_portal_sereno')) || [];
+        } catch (e) {
+            carrinho = [];
+        }
+
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('mobile-menu');
+            const btnMenu = document.getElementById('btn-menu-loja');
+            if (menu && !menu.classList.contains('hidden')) {
+                if (!menu.contains(e.target) && !btnMenu.contains(e.target)) {
+                    menu.classList.add('hidden');
+                }
+            }
+        });
+
+        function inicializarApp() {
+            renderizarMenuCategoriasDinamico();
+            renderizarDestaquesHome();
+            renderizarProdutosLoja();
+            inicializarCarrossel();
+            atualizarContadorCarrinho();
+        }
+
+        document.addEventListener('DOMContentLoaded', inicializarApp);
+
+        function renderizarMenuCategoriasDinamico() {
+            let deskHTML = `<button onclick="mudarAba('view-produtos'); filtrarProdutos('todos');" class="w-full text-left px-4 py-2.5 text-xs font-bold text-gray-700 hover:bg-teal-50 hover:text-[#0E8685] transition cursor-pointer">✨ Todos os Produtos</button>`;
+            let mobHTML = `<button onclick="mudarAba('view-produtos'); filtrarProdutos('todos');" class="block text-left text-xs font-bold text-gray-600 hover:text-[#0E8685]">✨ Todos os Produtos</button>`;
+            let selectHTML = `<option value="todos">✨ Todas as Categorias</option>`;
+
+            todasCategorias.forEach(cat => {
+                deskHTML += `<button onclick="mudarAba('view-produtos'); filtrarProdutos('${cat}');" class="w-full text-left px-4 py-2.5 text-xs font-bold text-gray-700 hover:bg-teal-50 hover:text-[#0E8685] transition cursor-pointer">${cat}</button>`;
+                mobHTML += `<button onclick="mudarAba('view-produtos'); filtrarProdutos('${cat}');" class="block text-left text-xs font-bold text-gray-600 hover:text-[#0E8685]">${cat}</button>`;
+                selectHTML += `<option value="${cat}">${cat}</option>`;
+            });
+
+            const deskSub = document.getElementById('desktop-submenu-categorias');
+            if (deskSub) deskSub.innerHTML = deskHTML;
+
+            const mobSub = document.getElementById('mobile-loja-submenu');
+            if (mobSub) mobSub.innerHTML = mobHTML;
+
+            const selectFiltro = document.getElementById('select-filtro-categorias');
+            if (selectFiltro) {
+                selectFiltro.innerHTML = selectHTML;
+                selectFiltro.value = categoriaFiltroAtiva;
+            }
+        }
+
+        window.mudarAba = function(idAba) {
+            document.querySelectorAll('.app-view').forEach(v => v.classList.add('hidden'));
+            const alvo = document.getElementById(idAba);
+            if (alvo) alvo.classList.remove('hidden');
+            document.getElementById('mobile-menu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.toggleMobileMenu = function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        window.toggleMobileLojaSubmenu = function() {
+            const sub = document.getElementById('mobile-loja-submenu');
+            const arrow = document.getElementById('mobile-submenu-arrow');
+            sub.classList.toggle('hidden');
+            arrow.innerText = sub.classList.contains('hidden') ? '▼' : '▲';
+        }
+
+        window.abrirModalBanner = function() {
+            document.getElementById('modal-banner').classList.remove('hidden');
+            if (slides.length > 0) atualizarSlideUI();
+        }
+
+        window.fecharModalBanner = function() {
+            document.getElementById('modal-banner').classList.add('hidden');
+            if (carouselTimer) clearTimeout(carouselTimer);
+        }
+
+        function inicializarCarrossel() {
+            if (slides.length > 0) atualizarSlideUI();
+        }
+
+        function programarProximoSlide() {
+            if (carouselTimer) clearTimeout(carouselTimer);
+            if (slides.length <= 1) return;
+
+            const s = slides[currentSlide];
+            const tempoSegundos = Number(s?.tempo) || 5; 
+
+            carouselTimer = setTimeout(() => {
+                window.mudarSlide(1);
+            }, tempoSegundos * 1000);
+        }
+
+        function atualizarSlideUI() {
+            if (slides.length === 0) return;
+            const s = slides[currentSlide];
+            if (!s) return;
+            
+            const badgeEl = document.getElementById('carousel-badge');
+            if (s.badge && s.badge.trim() !== '') {
+                badgeEl.innerText = s.badge;
+                badgeEl.style.display = 'inline-block';
+            } else {
+                badgeEl.style.display = 'none';
+            }
+
+            const titleEl = document.getElementById('carousel-title');
+            if (s.titulo && s.titulo.trim() !== '') {
+                titleEl.innerText = s.titulo;
+                titleEl.style.display = 'block';
+            } else {
+                titleEl.style.display = 'none';
+            }
+
+            const descEl = document.getElementById('carousel-desc');
+            if (s.desc && s.desc.trim() !== '') {
+                descEl.innerText = s.desc;
+                descEl.style.display = 'block';
+            } else {
+                descEl.style.display = 'none';
+            }
+            
+            const imgBg = document.getElementById('carousel-bg');
+            const imgAlvo = (window.innerWidth >= 768 ? (s.imagemPc || s.imagemMobile) : (s.imagemMobile || s.imagemPc)) || '';
+            imgBg.src = imgAlvo;
+
+            programarProximoSlide();
+        }
+
+        window.mudarSlide = function(direcao) {
+            if (slides.length === 0) return;
+            currentSlide = (currentSlide + direcao + slides.length) % slides.length;
+            atualizarSlideUI();
+        }
+
+        window.clicarBannerAtual = function() {
+            fecharModalBanner();
+            if (slides.length === 0) return;
+            const s = slides[currentSlide];
+            if (!s) return;
+
+            if (s.linkTipo === 'terapias') {
+                mudarAba('view-terapias');
+            } else if (s.linkTipo === 'categoria' && s.linkAlvo) {
+                mudarAba('view-produtos');
+                filtrarProdutos(s.linkAlvo);
+            } else {
+                mudarAba('view-produtos');
+                filtrarProdutos('todos');
+            }
+        }
+
+        window.abrirModalProdutoId = function(idProduto) {
+            const p = listaProdutos.find(item => item.id === idProduto);
+            if (!p) return;
+            produtoAtualModal = p;
+            fotoSelecionadaModalIndex = 0;
+
+            document.getElementById('modal-nome').innerText = p.nome;
+            document.getElementById('modal-preco').innerText = `R$ ${Number(p.preco).toFixed(2).replace('.', ',')}`;
+            document.getElementById('modal-categoria').innerText = p.categoria;
+            document.getElementById('modal-descricao').innerText = p.descricao || '';
+
+            atualizarVisualizacaoModalFoto();
+            renderizarBotoesVariacoesModal();
+
+            document.getElementById('modal-produto').classList.remove('hidden');
+        }
+
+        window.fecharModalProduto = function() {
+            document.getElementById('modal-produto').classList.add('hidden');
+        }
+
+        window.selecionarVariacaoModal = function(index) {
+            fotoSelecionadaModalIndex = index;
+            atualizarVisualizacaoModalFoto();
+            renderizarBotoesVariacoesModal();
+        }
+
+        function atualizarVisualizacaoModalFoto() {
+            if (!produtoAtualModal || !produtoAtualModal.imagens || produtoAtualModal.imagens.length === 0) return;
+            const imgData = produtoAtualModal.imagens[fotoSelecionadaModalIndex] || produtoAtualModal.imagens[0];
+            
+            const imgEl = document.getElementById('modal-img');
+            imgEl.src = imgData.url || '';
+
+            const badgeEl = document.getElementById('modal-badge-texto');
+            if (imgData.texto && imgData.texto.trim() !== '') {
+                badgeEl.innerText = imgData.texto;
+                badgeEl.style.display = 'block';
+                badgeEl.className = "absolute bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md max-w-[80%] text-center bottom-4 left-4";
+            } else {
+                badgeEl.style.display = 'none';
+            }
+        }
+
+        function renderizarBotoesVariacoesModal() {
+            const container = document.getElementById('modal-variantes-lista');
+            const wrapper = document.getElementById('modal-variacoes-container');
+            container.innerHTML = '';
+
+            if (!produtoAtualModal.imagens || produtoAtualModal.imagens.length <= 1) {
+                wrapper.classList.add('hidden');
+                return;
+            }
+
+            wrapper.classList.remove('hidden');
+            produtoAtualModal.imagens.forEach((img, idx) => {
+                const nomeVariacao = img.texto || `Opção ${idx + 1}`;
+                const isSelected = idx === fotoSelecionadaModalIndex;
+                
+                container.innerHTML += `
+                    <button onclick="selecionarVariacaoModal(${idx})" class="px-3.5 py-2 rounded-xl text-xs font-bold transition border cursor-pointer ${isSelected ? 'bg-[#0E8685] text-white border-[#0E8685] shadow' : 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200'}">
+                        ${nomeVariacao}
+                    </button>
+                `;
+            });
+        }
+
+        window.adicionarProdutoAoCarrinhoModal = function() {
+            if (!produtoAtualModal) return;
+
+            const imagemSelecionada = (produtoAtualModal.imagens && produtoAtualModal.imagens[fotoSelecionadaModalIndex]) 
+                ? produtoAtualModal.imagens[fotoSelecionadaModalIndex].url 
+                : ((produtoAtualModal.imagens && produtoAtualModal.imagens.length > 0) ? produtoAtualModal.imagens[0].url : '');
+
+            const variacaoTexto = (produtoAtualModal.imagens && produtoAtualModal.imagens[fotoSelecionadaModalIndex] && produtoAtualModal.imagens[fotoSelecionadaModalIndex].texto) 
+                ? produtoAtualModal.imagens[fotoSelecionadaModalIndex].texto 
+                : 'Padrão';
+
+            const itemCarrinho = {
+                id: produtoAtualModal.id,
+                nome: produtoAtualModal.nome,
+                preco: Number(produtoAtualModal.preco),
+                variacao: variacaoTexto,
+                imagem: imagemSelecionada
+            };
+
+            carrinho.push(itemCarrinho);
+            localStorage.setItem('carrinho_portal_sereno', JSON.stringify(carrinho));
+            atualizarContadorCarrinho();
+
+            fecharModalProduto();
+            toggleCartModal();
+        }
+
+        window.toggleCartModal = function() {
+            const modal = document.getElementById('modal-carrinho');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                renderizarCarrinho();
+            }
+        }
+
+        window.abrirCheckout = function() {
+            if (carrinho.length === 0) {
+                alert("O seu carrinho está vazio!");
+                return;
+            }
+            toggleCartModal();
+            document.getElementById('modal-checkout').classList.remove('hidden');
+        }
+
+        window.toggleCheckoutModal = function() {
+            document.getElementById('modal-checkout').classList.toggle('hidden');
+        }
+
+        function atualizarContadorCarrinho() {
+            const contadorEl = document.getElementById('cart-count');
+            if (contadorEl) {
+                contadorEl.innerText = carrinho.length;
+            }
+        }
+
+        function renderizarCarrinho() {
+            const container = document.getElementById('carrinho-itens-lista');
+            const totalEl = document.getElementById('carrinho-total');
+            container.innerHTML = '';
+
+            if (carrinho.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-gray-400 text-sm">O seu carrinho está vazio.</div>`;
+                totalEl.innerText = 'R$ 0,00';
+                return;
+            }
+
+            let total = 0;
+            carrinho.forEach((item, index) => {
+                total += item.preco;
+                container.innerHTML += `
+                    <div class="flex items-center gap-4 py-3 first:pt-0">
+                        <img src="${item.imagem}" alt="${item.nome}" width="64" height="64" loading="lazy" class="w-16 h-16 object-cover rounded-xl border border-gray-100 flex-shrink-0">
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-sm text-gray-800 line-clamp-1">${item.nome}</h4>
+                            <p class="text-xs text-[#0E8685] font-semibold mt-0.5">Variação: ${item.variacao}</p>
+                            <p class="text-sm font-extrabold text-[#C5A880] mt-1">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                        </div>
+                        <button onclick="removerDoCarrinho(${index})" class="text-gray-400 hover:text-red-500 font-bold p-2 text-sm cursor-pointer">🗑️</button>
+                    </div>
+                `;
+            });
+
+            totalEl.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        window.removerDoCarrinho = function(index) {
+            carrinho.splice(index, 1);
+            localStorage.setItem('carrinho_portal_sereno', JSON.stringify(carrinho));
+            atualizarContadorCarrinho();
+            renderizarCarrinho();
+        }
+
+        window.finalizarPedidoWhatsApp = function() {
+            const nome = document.getElementById('chk-nome').value.trim();
+            const cpf = document.getElementById('chk-cpf').value.trim();
+            const telefone = document.getElementById('chk-telefone').value.trim();
+            const endereco = document.getElementById('chk-endereco').value.trim();
+            const pagamento = document.getElementById('chk-pagamento').value;
+
+            if (!nome || !cpf || !telefone || !endereco) {
+                alert("Por favor, preencha todos os campos de cadastro e endereço!");
+                return;
+            }
+
+            let mensagem = `*Novo Pedido - Portal Sereno*\n\n`;
+            mensagem += `Olá! Gostaria de alinhar a entrega dos meus itens de curadoria esotérica:\n\n`;
+            mensagem += `*Nome:* ${nome}\n`;
+            mensagem += `*CPF:* ${cpf}\n`;
+            mensagem += `*Telefone:* ${telefone}\n`;
+            mensagem += `*Endereço:* ${endereco}\n`;
+            mensagem += `*Forma de Pagamento:* ${pagamento}\n\n`;
+            mensagem += `*Itens Escolhidos:*\n`;
+
+            let total = 0;
+            carrinho.forEach((item, idx) => {
+                mensagem += `${idx + 1}. *${item.nome}* (${item.variacao}) - R$ ${item.preco.toFixed(2).replace('.', ',')}\n`;
+                total += item.preco;
+            });
+
+            mensagem += `\n*Valor Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\nGratidão e luz! Aguardo instruções para o envio.`;
+
+            mensagemWhatsAppPendente = mensagem;
+
+            document.getElementById('modal-checkout').classList.add('hidden');
+            document.getElementById('modal-sucesso').classList.remove('hidden');
+        }
+
+        window.concluirPedido = function() {
+            if (mensagemWhatsAppPendente) {
+                const url = `https://wa.me/5551981061618?text=${encodeURIComponent(mensagemWhatsAppPendente)}`;
+                window.open(url, '_blank');
+                mensagemWhatsAppPendente = "";
+            }
+
+            carrinho = [];
+            localStorage.removeItem('carrinho_portal_sereno');
+            atualizarContadorCarrinho();
+            document.getElementById('modal-sucesso').classList.add('hidden');
+            mudarAba('view-home');
+        }
+
+        function renderizarDestaquesHome() {
+            const container = document.getElementById('home-destaques-grid');
+            if (!container) return;
+            container.innerHTML = '';
+            const destaques = listaProdutos.filter(p => p.destaque);
+            if (destaques.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-6 text-gray-400">Nenhum produto em destaque no momento.</div>`;
+                return;
+            }
+            destaques.forEach(p => {
+                const imgCapa = (p.imagens && p.imagens.length > 0) ? p.imagens[0].url : '';
+                container.innerHTML += `
+                    <div onclick='abrirModalProdutoId("${p.id}")' class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col justify-between border border-gray-100 cursor-pointer group">
+                        <div>
+                            <div class="relative h-64 bg-gray-100 overflow-hidden">
+                                <img src="${imgCapa}" alt="${p.nome}" width="400" height="400" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-[#C5A880] text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Destaque</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs font-semibold text-[#0E8685] uppercase tracking-wider">${p.categoria}</span>
+                                <h4 class="font-bold text-lg mt-1.5 text-gray-800 line-clamp-1">${p.nome}</h4>
+                                <p class="text-2xl font-extrabold text-[#C5A880] mt-3">R$ ${Number(p.preco).toFixed(2).replace('.', ',')}</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0"><span class="w-full block text-center bg-[#0E8685] text-white font-semibold py-3 rounded-xl text-sm shadow-sm">Ver Detalhes</span></div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderizarProdutosLoja() {
+            const container = document.getElementById('grid-produtos');
+            if (!container) return;
+            container.innerHTML = '';
+            
+            let filtrados = listaProdutos.filter(p => categoriaFiltroAtiva === 'todos' || p.categoria === categoriaFiltroAtiva);
+            
+            if (termoBuscaAtivo.trim() !== '') {
+                const termo = termoBuscaAtivo.toLowerCase();
+                filtrados = filtrados.filter(p => 
+                    p.nome.toLowerCase().includes(termo) || 
+                    (p.descricao || '').toLowerCase().includes(termo) ||
+                    p.categoria.toLowerCase().includes(termo)
+                );
+            }
+
+            const totalPaginas = Math.ceil(filtrados.length / itensPorPaginaLoja) || 1;
+            if (paginaAtualLoja > totalPaginas) paginaAtualLoja = totalPaginas;
+            if (paginaAtualLoja < 1) paginaAtualLoja = 1;
+
+            const inicio = (paginaAtualLoja - 1) * itensPorPaginaLoja;
+            const fim = inicio + itensPorPaginaLoja;
+            const itensPagina = filtrados.slice(inicio, fim);
+
+            document.getElementById('loja-paginacao-info').innerText = `Página ${paginaAtualLoja} de ${totalPaginas} (${filtrados.length} itens)`;
+
+            if (itensPagina.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">Nenhum produto encontrado.</div>`;
+                return;
+            }
+
+            itensPagina.forEach(p => {
+                const imgCapa = (p.imagens && p.imagens.length > 0) ? p.imagens[0].url : '';
+                container.innerHTML += `
+                    <div onclick='abrirModalProdutoId("${p.id}")' class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col justify-between border border-gray-100 cursor-pointer group">
+                        <div>
+                            <div class="relative h-64 bg-gray-100 overflow-hidden">
+                                <img src="${imgCapa}" alt="${p.nome}" width="400" height="400" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <span class="absolute top-3 left-3 bg-[#C5A880] text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">${p.categoria}</span>
+                            </div>
+                            <div class="p-6">
+                                <span class="text-xs font-semibold text-[#0E8685] uppercase tracking-wider">${p.categoria}</span>
+                                <h4 class="font-bold text-lg mt-1.5 text-gray-800 line-clamp-1">${p.nome}</h4>
+                                <p class="text-2xl font-extrabold text-[#C5A880] mt-3">R$ ${Number(p.preco).toFixed(2).replace('.', ',')}</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0"><span class="w-full block text-center bg-[#0E8685] text-white font-semibold py-3 rounded-xl text-sm shadow-sm">Ver Detalhes</span></div>
+                    </div>
+                `;
+            });
+        }
+
+        window.mudarPaginaLoja = function(direcao) {
+            let filtrados = listaProdutos.filter(p => categoriaFiltroAtiva === 'todos' || p.categoria === categoriaFiltroAtiva);
+            if (termoBuscaAtivo.trim() !== '') {
+                const termo = termoBuscaAtivo.toLowerCase();
+                filtrados = filtrados.filter(p => p.nome.toLowerCase().includes(termo) || (p.descricao || '').toLowerCase().includes(termo));
+            }
+            const totalPaginas = Math.ceil(filtrados.length / itensPorPaginaLoja) || 1;
+
+            paginaAtualLoja += direcao;
+            if (paginaAtualLoja < 1) paginaAtualLoja = 1;
+            if (paginaAtualLoja > totalPaginas) paginaAtualLoja = totalPaginas;
+
+            renderizarProdutosLoja();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.pesquisarProdutos = function(termo) {
+            termoBuscaAtivo = termo;
+            paginaAtualLoja = 1;
+            renderizarProdutosLoja();
+        }
+
+        window.filtrarProdutos = function(cat) {
+            categoriaFiltroAtiva = cat;
+            termoBuscaAtivo = '';
+            paginaAtualLoja = 1;
+            
+            const inputBusca = document.getElementById('input-busca');
+            if (inputBusca) inputBusca.value = '';
+
+            const selectFiltro = document.getElementById('select-filtro-categorias');
+            if (selectFiltro) {
+                selectFiltro.value = cat;
+            }
+
+            renderizarProdutosLoja();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            const menuMob = document.getElementById('mobile-menu');
+            if (menuMob) menuMob.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
