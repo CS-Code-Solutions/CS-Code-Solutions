@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Principal -->
+  <title>Sabores & Delícias | Cardápio Digital & Pedidos Online</title>
+  <meta name="description" content="Salgados fritos e assados, doces gourmet, tortas generosas e kit festa. Pronta entrega e encomendas todos os dias. Monte seu pedido online no WhatsApp!">
+  <meta name="keywords" content="cardápio digital, salgados, doces, tortas, kit festa, pedidos online, whatsapp">
+  <meta name="author" content="CS Code Solutions">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#c41d5e">
+
+  <!-- Open Graph / WhatsApp / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Sabores & Delícias">
+  <meta property="og:title" content="Sabores & Delícias | Experiência única em cada sabor! ✨">
+  <meta property="og:description" content="Salgados fritos e assados, doces gourmet e tortas generosas. Confira nosso cardápio e faça seu pedido direto no WhatsApp!">
+
+  <!-- Favicon SVG Inline -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23c41d5e'/><text x='50' y='66' font-size='52' text-anchor='middle' fill='%23ffffff'>🧁</text></svg>">
+  
+  <!-- Fontes do Design System -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Pacifico&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Ícones e Animações -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Fraunces"', 'serif'],
+            script: ['"Pacifico"', 'cursive'],
+          },
+          colors: {
+            primary: '#c41d5e',      
+            'primary-glow': '#f0426d',
+            secondary: '#c8f5d0',    
+            chocolate: '#3a2318',    
+            cream: '#fdfbf9',        
+            blush: '#f9e8ea',        
+            whatsapp: '#25D366'
+          },
+          boxShadow: {
+            'candy': '0 12px 30px -10px rgba(196, 29, 94, 0.6)',
+            'soft': '0 10px 40px -10px rgba(0,0,0,0.08)'
+          },
+          backgroundImage: {
+            'gradient-candy': 'linear-gradient(120deg, #c41d5e 0%, #f0426d 100%)',
+            'gradient-hero': 'linear-gradient(180deg, rgba(58,35,24,0.15) 0%, rgba(58,35,24,0.92) 100%)',
+          },
+          animation: {
+            'spin-slow': 'spin 12s linear infinite',
+            'marquee': 'marquee 18s linear infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .slide-img { opacity: 0; transition: opacity 1s ease-in-out; position: absolute; inset: 0; }
+    .slide-img.active { opacity: 1; }
+    .filter-btn.active { background-color: #c41d5e; color: #fdfbf9; border-color: #c41d5e; box-shadow: 0 12px 30px -10px rgba(196, 29, 94, 0.6); }
+    .marquee-container { display: flex; width: 200%; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-blush text-chocolate font-sans antialiased overflow-x-hidden">
+
+  <!-- Header -->
+  <header id="main-header" class="absolute inset-x-0 top-0 z-50 py-5 transition-all duration-500">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 md:px-10">
+      <!-- Logo Genérico Vetorial -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-candy flex items-center justify-center text-white shadow-candy border-2 border-white/30 group-hover:scale-105 transition-transform">
+          <i class="fas fa-utensils text-xl md:text-2xl"></i>
+        </div>
+        <div class="flex flex-col text-cream drop-shadow">
+          <span class="font-script text-xl md:text-2xl leading-none text-white">Sabores & Delícias</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-secondary mt-1">Confeitaria & Salgados</span>
+        </div>
+      </a>
+
+      <button onclick="toggleCartModal()" class="rounded-full bg-whatsapp text-white font-bold px-5 md:px-6 py-2.5 shadow-soft transition-all duration-300 hover:scale-105 flex items-center gap-2 text-sm relative cursor-pointer">
+        <i class="fas fa-shopping-basket"></i> <span>Ver Pedido</span>
+        <span id="header-cart-badge" class="hidden absolute -top-1 -right-1 bg-primary text-white text-[10px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Botão Flutuante do Carrinho (Inferior Esquerdo) -->
+  <button onclick="toggleCartModal()" class="fixed bottom-6 left-6 z-50 bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-candy hover:scale-110 transition-transform cursor-pointer" title="Abrir Carrinho">
+    <i class="fas fa-shopping-bag"></i>
+    <span id="floating-cart-badge" class="hidden absolute -top-1 -right-1 bg-whatsapp text-white text-xs font-extrabold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white">0</span>
+  </button>
+
+  <!-- Botão Flutuante WhatsApp (Inferior Direito) -->
+  <a href="https://wa.me/5551981061618" target="_blank" rel="noreferrer" class="fixed bottom-6 right-6 z-50 bg-whatsapp text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-soft hover:scale-110 transition-transform" title="Falar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Hero Section -->
+  <section class="relative isolate h-[92svh] min-h-[620px] overflow-hidden bg-chocolate text-cream">
+    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=1200&q=80" class="slide-img active object-cover w-full h-full" alt="Banner Salgados">
+    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80" class="slide-img object-cover w-full h-full" alt="Banner Doces">
+    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=80" class="slide-img object-cover w-full h-full" alt="Banner Tortas">
+    
+    <div class="absolute inset-0 z-[2] bg-gradient-hero"></div>
+
+    <!-- Selo com frase giratória e ícone genérico no centro -->
+    <div class="absolute right-4 top-24 sm:right-6 sm:top-28 z-[3] block">
+      <div class="relative h-24 w-24 sm:h-28 sm:w-28 md:h-36 md:w-36 flex items-center justify-center">
+        <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full animate-spin-slow">
+          <defs>
+            <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+          </defs>
+          <text class="fill-cream font-sans text-[9px] font-bold uppercase tracking-[0.18em]">
+            <textPath href="#circlePath">
+              pronta entrega • encomendas • 
+            </textPath>
+          </text>
+        </svg>
+        <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-primary/90 backdrop-blur-sm border-2 border-cream/40 flex items-center justify-center text-cream shadow-candy relative z-10">
+          <i class="fas fa-award text-xl sm:text-2xl"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-[3] mx-auto flex h-full max-w-6xl flex-col justify-end px-5 pb-14">
+      <div data-aos="fade-up" class="text-left">
+        <span id="hero-kicker" class="inline-flex items-center gap-2 rounded-full bg-primary px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-white shadow-candy">
+          <i class="fas fa-sparkles"></i> Salgados
+        </span>
+
+        <h1 class="mt-3 text-4xl sm:text-6xl font-display font-black leading-[0.95]">
+          Sabores <br>
+          <span id="hero-word" class="font-script font-normal text-primary-glow text-[0.85em] leading-tight block mt-1">
+            crocantes
+          </span>
+        </h1>
+
+        <p id="hero-line" class="mt-3 max-w-md text-base sm:text-lg text-cream/90 font-medium leading-relaxed">
+          fritos e assados, fresquinhos todo dia.<br>Experiência única em cada sabor! ✨
+        </p>
+      </div>
+
+      <div class="mt-5 flex flex-wrap items-center justify-start gap-2.5" data-aos="fade-up" data-aos-delay="100">
+        <a href="#cardapio" class="rounded-full bg-gradient-candy text-white font-bold px-6 py-3 shadow-candy transition-all duration-300 text-sm hover:-translate-y-0.5">
+          Ver Cardápio & Pedir
+        </a>
+        <a href="https://wa.me/5551981061618" target="_blank" rel="noreferrer" class="rounded-full border border-cream/40 bg-cream/15 text-cream font-semibold px-6 py-3 backdrop-blur-md transition-all duration-300 text-sm hover:bg-cream/25">
+          Falar com Atendente
+        </a>
+      </div>
+      
+      <!-- Indicadores do Slider -->
+      <div class="flex gap-2 mt-6">
+        <div class="slide-indicator h-1.5 w-10 bg-primary-glow rounded-full transition-all"></div>
+        <div class="slide-indicator h-1.5 w-10 bg-cream/30 rounded-full transition-all"></div>
+        <div class="slide-indicator h-1.5 w-10 bg-cream/30 rounded-full transition-all"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="relative z-20 -rotate-2 -mx-4 -my-2 bg-primary text-white overflow-hidden py-3.5 shadow-candy border-y-2 border-white/20">
+    <div class="animate-marquee marquee-container font-display font-bold text-base md:text-lg">
+      <span class="mx-4 flex items-center gap-4 whitespace-nowrap">
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Bolinha de queijo</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Esfiha</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Torta</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Coxinha</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Kibe</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Brigadeiro</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Empada</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Bolinha de queijo</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Esfiha</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Torta</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Coxinha</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Kibe</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Brigadeiro</span>
+        <span class="text-yellow-300 text-xl font-normal">✦</span> <span class="whitespace-nowrap">Empada</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Categorias -->
+  <section class="px-5 py-16 md:px-10">
+    <div class="max-w-6xl mx-auto">
+      <p class="font-script text-2xl text-primary mb-1">para todas as ocasiões</p>
+      <h2 class="text-4xl font-display font-black leading-tight mb-8">
+        Do salgadinho ao<br>docinho, <span class="text-primary">tudo feito<br>com carinho</span>
+      </h2>
+
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <a href="#cardapio" onclick="filtrarCardapio('doces')" class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft group block" data-aos="fade-up">
+          <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Doces">
+          <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2"><i class="fas fa-cookie"></i></div>
+            <h3 class="font-bold text-lg leading-tight">Doces variados</h3>
+            <p class="text-[10px] text-gray-200 mt-1 line-clamp-2">Brigadeiros, beijinhos e docinhos finos</p>
+          </div>
+        </a>
+
+        <a href="#cardapio" onclick="filtrarCardapio('salgados')" class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft group block" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Salgados">
+          <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2"><i class="fas fa-utensils"></i></div>
+            <h3 class="font-bold text-lg leading-tight">Salgados</h3>
+            <p class="text-[10px] text-gray-200 mt-1 line-clamp-2">Fritos e assados, sempre quentinhos</p>
+          </div>
+        </a>
+
+        <a href="#cardapio" onclick="filtrarCardapio('tortas')" class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft group block" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Bolos e Tortas">
+          <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2"><i class="fas fa-birthday-cake"></i></div>
+            <h3 class="font-bold text-lg leading-tight">Bolos e tortas</h3>
+            <p class="text-[10px] text-gray-200 mt-1 line-clamp-2">Fatias generosas e bolos de festa</p>
+          </div>
+        </a>
+
+        <a href="#cardapio" onclick="filtrarCardapio('todos')" class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-soft group block" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=400" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Kit Festa">
+          <div class="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/20 to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-2"><i class="fas fa-gift"></i></div>
+            <h3 class="font-bold text-lg leading-tight">Kit festa</h3>
+            <p class="text-[10px] text-gray-200 mt-1 line-clamp-2">E muito mais para sua comemoração</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cardápio Section -->
+  <section id="cardapio" class="px-5 py-10 md:px-10">
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center mb-6" data-aos="fade-up">
+        <p class="font-script text-2xl text-primary">nosso cardápio</p>
+        <h2 class="text-4xl font-display font-black text-chocolate">Escolha sua delícia</h2>
+      </div>
+
+      <!-- Filtros -->
+      <div class="flex gap-2 overflow-x-auto pb-4 md:justify-center no-scrollbar" data-aos="fade-up">
+        <button onclick="filtrarCardapio('todos')" id="btn-cat-todos" class="filter-btn active shrink-0 rounded-full border-2 border-primary bg-primary text-white px-6 py-1.5 text-sm font-bold cursor-pointer transition-all">Todos</button>
+        <button onclick="filtrarCardapio('salgados')" id="btn-cat-salgados" class="filter-btn shrink-0 rounded-full border-2 border-chocolate/10 bg-white text-chocolate px-6 py-1.5 text-sm font-bold cursor-pointer transition-all hover:border-primary/40">Salgados</button>
+        <button onclick="filtrarCardapio('doces')" id="btn-cat-doces" class="filter-btn shrink-0 rounded-full border-2 border-chocolate/10 bg-white text-chocolate px-6 py-1.5 text-sm font-bold cursor-pointer transition-all hover:border-primary/40">Doces</button>
+        <button onclick="filtrarCardapio('tortas')" id="btn-cat-tortas" class="filter-btn shrink-0 rounded-full border-2 border-chocolate/10 bg-white text-chocolate px-6 py-1.5 text-sm font-bold cursor-pointer transition-all hover:border-primary/40">Tortas</button>
+      </div>
+
+      <!-- Grid de Produtos -->
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 mt-4">
+        
+        <!-- Produto 1 -->
+        <article data-categoria="salgados" class="produto-card bg-white rounded-[1.5rem] shadow-soft overflow-hidden flex flex-col justify-between" data-aos="fade-up">
+          <div>
+            <div class="relative aspect-square">
+              <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400" class="w-full h-full object-cover" alt="Coxinha cremosa">
+              <span class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-candy">Mais pedido</span>
+            </div>
+            <div class="p-3">
+              <h3 class="font-bold text-sm leading-tight text-chocolate">Coxinha cremosa</h3>
+              <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Massa sequinha e recheio de frango bem temperado.</p>
+            </div>
+          </div>
+          <div class="p-3 pt-0">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-400 font-medium">Porção (10 un)</span>
+              <span class="text-base font-black text-primary">R$ 18,00</span>
+            </div>
+            <button onclick="addToCart('Coxinha cremosa', 18.00, 'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=400')" class="w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1.5 shadow-candy hover:scale-[1.02] active:scale-95 transition-transform cursor-pointer">
+              <i class="fas fa-plus"></i> Adicionar
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 2 -->
+        <article data-categoria="salgados" class="produto-card bg-white rounded-[1.5rem] shadow-soft overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+          <div>
+            <div class="relative aspect-square">
+              <img src="https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=400" class="w-full h-full object-cover" alt="Mix de fritos">
+            </div>
+            <div class="p-3">
+              <h3 class="font-bold text-sm leading-tight text-chocolate">Mix de fritos</h3>
+              <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Coxinha, kibe, bolinha de queijo e empada.</p>
+            </div>
+          </div>
+          <div class="p-3 pt-0">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-400 font-medium">Cento variado</span>
+              <span class="text-base font-black text-primary">R$ 75,00</span>
+            </div>
+            <button onclick="addToCart('Mix de fritos (Cento)', 75.00, 'https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=400')" class="w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1.5 shadow-candy hover:scale-[1.02] active:scale-95 transition-transform cursor-pointer">
+              <i class="fas fa-plus"></i> Adicionar
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 3 -->
+        <article data-categoria="salgados" class="produto-card bg-white rounded-[1.5rem] shadow-soft overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+          <div>
+            <div class="relative aspect-square">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover" alt="Esfihas & assados">
+            </div>
+            <div class="p-3">
+              <h3 class="font-bold text-sm leading-tight text-chocolate">Esfihas & assados</h3>
+              <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Douradinhos, assados na hora, de carne ou frango.</p>
+            </div>
+          </div>
+          <div class="p-3 pt-0">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-400 font-medium">Porção (6 un)</span>
+              <span class="text-base font-black text-primary">R$ 22,00</span>
+            </div>
+            <button onclick="addToCart('Esfihas & assados', 22.00, 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80')" class="w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1.5 shadow-candy hover:scale-[1.02] active:scale-95 transition-transform cursor-pointer">
+              <i class="fas fa-plus"></i> Adicionar
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 4 -->
+        <article data-categoria="doces" class="produto-card bg-white rounded-[1.5rem] shadow-soft overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+          <div>
+            <div class="relative aspect-square">
+              <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=400" class="w-full h-full object-cover" alt="Brigadeiros gourmet">
+              <span class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-candy">Favorito</span>
+            </div>
+            <div class="p-3">
+              <h3 class="font-bold text-sm leading-tight text-chocolate">Brigadeiros gourmet</h3>
+              <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Tradicional, beijinho, ninho e pistache.</p>
+            </div>
+          </div>
+          <div class="p-3 pt-0">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-400 font-medium">Caixa (12 un)</span>
+              <span class="text-base font-black text-primary">R$ 28,00</span>
+            </div>
+            <button onclick="addToCart('Brigadeiros gourmet', 28.00, 'https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=400')" class="w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1.5 shadow-candy hover:scale-[1.02] active:scale-95 transition-transform cursor-pointer">
+              <i class="fas fa-plus"></i> Adicionar
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 5 -->
+        <article data-categoria="tortas" class="produto-card bg-white rounded-[1.5rem] shadow-soft overflow-hidden flex flex-col justify-between" data-aos="fade-up">
+          <div>
+            <div class="relative aspect-square">
+              <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=400" class="w-full h-full object-cover" alt="Fatia Torta Trufada">
+              <span class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-candy">Especial</span>
+            </div>
+            <div class="p-3">
+              <h3 class="font-bold text-sm leading-tight text-chocolate">Fatia Torta Trufada</h3>
+              <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Massa fofinha de cacau com recheio cremoso de chocolate.</p>
+            </div>
+          </div>
+          <div class="p-3 pt-0">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-400 font-medium">Fatia generosa</span>
+              <span class="text-base font-black text-primary">R$ 16,50</span>
+            </div>
+            <button onclick="addToCart('Fatia Torta Trufada', 16.50, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=400')" class="w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1.5 shadow-candy hover:scale-[1.02] active:scale-95 transition-transform cursor-pointer">
+              <i class="fas fa-plus"></i> Adicionar
+            </button>
+          </div>
+        </article>
+
+        <!-- Produto 6 -->
+        <article data-categoria="tortas" class="produto-card bg-white rounded-[1.5rem] shadow-soft overflow-hidden flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+          <div>
+            <div class="relative aspect-square">
+              <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=400" class="w-full h-full object-cover" alt="Torta Morango & Ninho">
+            </div>
+            <div class="p-3">
+              <h3 class="font-bold text-sm leading-tight text-chocolate">Torta Morango & Ninho</h3>
+              <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-tight">Creme de leite Ninho aerado com morangos frescos.</p>
+            </div>
+          </div>
+          <div class="p-3 pt-0">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs text-gray-400 font-medium">Fatia generosa</span>
+              <span class="text-base font-black text-primary">R$ 17,90</span>
+            </div>
+            <button onclick="addToCart('Torta Morango & Ninho', 17.90, 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=400')" class="w-full rounded-full bg-gradient-candy text-white text-xs font-bold py-2 flex items-center justify-center gap-1.5 shadow-candy hover:scale-[1.02] active:scale-95 transition-transform cursor-pointer">
+              <i class="fas fa-plus"></i> Adicionar
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Promoção -->
+  <section class="px-5 py-10 md:px-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="bg-chocolate rounded-[2rem] overflow-hidden shadow-soft flex flex-col md:flex-row relative" data-aos="fade-up">
+        
+        <div class="absolute top-6 left-6 z-10 bg-primary text-white w-20 h-20 rounded-full flex flex-col items-center justify-center rotate-[-15deg] shadow-candy font-bold leading-tight">
+          <span class="text-xs">A 5ª</span>
+          <span class="text-lg font-display">grátis</span>
+        </div>
+
+        <div class="md:w-1/2 h-64 md:h-auto relative">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800" class="w-full h-full object-cover" alt="Promoção Tortas">
+        </div>
+        
+        <div class="md:w-1/2 p-8 text-cream">
+          <span class="bg-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Promoção</span>
+          <h2 class="font-script text-5xl text-primary-glow mt-4 mb-6">Promoções de tortas!</h2>
+          
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 mb-4 backdrop-blur-sm">
+            <p class="text-sm text-gray-300">Levando 2 fatias, você paga apenas</p>
+            <p class="text-3xl font-display font-bold text-primary-glow mt-1">R$ 14,99 <span class="text-sm font-sans font-normal text-gray-400">cada</span></p>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5 mb-6 backdrop-blur-sm">
+            <p class="text-sm text-gray-300">Levando 4 fatias por</p>
+            <p class="text-3xl font-display font-bold text-primary-glow mt-1 mb-2">R$ 70,00</p>
+            <p class="text-sm font-bold text-white">a 5ª fatia é por nossa conta! 🎁</p>
+          </div>
+
+          <button onclick="addToCart('Combo 4 Fatias Torta (+ 1 Grátis)', 70.00, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800')" class="block text-center w-full rounded-full bg-gradient-candy text-white font-bold py-4 shadow-candy transition-all duration-300 hover:scale-105 cursor-pointer">
+            Adicionar Combo de Tortas ao Carrinho
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Como Pedir -->
+  <section class="bg-secondary px-5 py-16 md:px-10 rounded-t-[3rem]">
+    <div class="max-w-xl mx-auto">
+      <p class="font-script text-2xl text-primary mb-1 text-center">é fácil pedir</p>
+      <h2 class="text-4xl font-display font-black leading-tight text-center text-chocolate mb-4">Pronta entrega todos os dias</h2>
+      <p class="text-center text-chocolate/70 mb-10 font-medium">Encomendas para festas, aniversários e eventos. Orçamento gratuito!</p>
+
+      <div class="space-y-6 relative">
+        <div class="bg-white rounded-3xl p-6 shadow-soft flex items-start gap-4 relative overflow-hidden" data-aos="fade-up">
+          <span class="absolute -right-4 -top-8 text-[120px] font-display font-black text-primary/10">1</span>
+          <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl shrink-0 relative z-10 shadow-candy"><i class="fas fa-cookie"></i></div>
+          <div class="relative z-10">
+            <h3 class="font-display font-bold text-2xl text-chocolate mb-1">Escolha</h3>
+            <p class="text-gray-500 text-sm">Adicione os itens desejados ao seu carrinho flutuante.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-3xl p-6 shadow-soft flex items-start gap-4 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+          <span class="absolute -right-4 -top-8 text-[120px] font-display font-black text-primary/10">2</span>
+          <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl shrink-0 relative z-10 shadow-candy"><i class="far fa-comment-dots"></i></div>
+          <div class="relative z-10">
+            <h3 class="font-display font-bold text-2xl text-chocolate mb-1">Confira seu Pedido</h3>
+            <p class="text-gray-500 text-sm">Revise as quantidades e subtotal diretamente no carrinho.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 shadow-soft flex items-start gap-4 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+          <span class="absolute -right-4 -top-8 text-[120px] font-display font-black text-primary/10">3</span>
+          <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl shrink-0 relative z-10 shadow-candy"><i class="fas fa-truck"></i></div>
+          <div class="relative z-10">
+            <h3 class="font-display font-bold text-2xl text-chocolate mb-1">Envie via WhatsApp</h3>
+            <p class="text-gray-500 text-sm">Finalize enviando a lista completa com 1 clique para entrega.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre nós -->
+  <section class="bg-blush px-5 py-16 text-center">
+    <p class="font-script text-2xl text-primary mb-1">feito com amor</p>
+    <h2 class="text-4xl font-display font-black text-chocolate mb-4">Experiência única em cada sabor</h2>
+    <p class="text-gray-600 mb-10 max-w-sm mx-auto">Por trás de cada delícia, seleção rigorosa de ingredientes e preparo artesanal diário.</p>
+    
+    <div class="flex justify-center items-center h-48 relative max-w-sm mx-auto">
+      <img src="https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?q=80&w=300" class="w-32 h-40 object-cover rounded-2xl absolute left-0 rotate-[-10deg] shadow-soft z-10" data-aos="fade-right" alt="Confeitaria 1">
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=300" class="w-40 h-48 object-cover rounded-2xl absolute z-20 shadow-soft" data-aos="zoom-in" alt="Confeitaria 2">
+      <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&q=80" class="w-32 h-40 object-cover rounded-2xl absolute right-0 rotate-[10deg] shadow-soft z-10" data-aos="fade-left" alt="Confeitaria 3">
+    </div>
+  </section>
+
+  <!-- Contato & Footer -->
+  <footer class="bg-primary text-white px-5 pt-16 pb-8 rounded-t-[3rem]">
+    <div class="max-w-md mx-auto">
+      <h2 class="text-5xl font-display font-black leading-tight mb-4 text-center">Bateu a vontade?<br>Chama a gente!</h2>
+      <p class="text-center text-white/90 mb-8">Faça seu pedido ou orçamento gratuito agora mesmo pelo WhatsApp.</p>
+      
+      <a href="https://wa.me/5551981061618" target="_blank" rel="noreferrer" class="w-full bg-whatsapp text-white rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-4 hover:scale-105 transition-transform">
+        <i class="fab fa-whatsapp text-4xl"></i>
+        <span class="font-display font-bold text-2xl">Whatsapp</span>
+      </a>
+
+      <a href="#cardapio" class="w-full bg-white text-chocolate rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-4 block hover:scale-[1.02] transition-transform">
+        <i class="fas fa-map-marker-alt text-primary text-2xl"></i>
+        <div>
+          <p class="text-xs font-bold text-gray-400 tracking-wider">ATENDIMENTO</p>
+          <p class="font-bold">Pronta Entrega & Encomendas</p>
+        </div>
+      </a>
+
+      <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noreferrer" class="w-full bg-white text-chocolate rounded-3xl p-5 flex items-center gap-4 shadow-soft mb-12 block hover:scale-[1.02] transition-transform">
+        <i class="fab fa-instagram text-primary text-2xl"></i>
+        <div>
+          <p class="text-xs font-bold text-gray-400 tracking-wider">INSTAGRAM</p>
+          <p class="font-bold">@sabores_e_delicias</p>
+        </div>
+      </a>
+
+      <!-- Rodapé com Logo Genérico Limpo -->
+      <div class="text-center border-t border-white/20 pt-8 mt-4">
+        <div class="inline-flex flex-col items-center mb-4">
+          <div class="w-14 h-14 rounded-2xl bg-white/15 border border-white/30 flex items-center justify-center text-white mb-2">
+            <i class="fas fa-utensils text-2xl"></i>
+          </div>
+          <span class="font-script text-2xl text-white">Sabores & Delícias</span>
+        </div>
+        <p class="text-xs text-white/90 font-medium">® 2026 Sabores & Delícias | Modelo Demonstrativo</p>
+        <p class="text-xs text-white/80 mt-1">
+          <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noreferrer" class="hover:underline font-semibold">
+            Powered by CS Code Solutions
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Janela Flutuante com Bordas Arredondadas -->
+  <div id="cart-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-md transition-all duration-300">
+    <div class="w-full max-w-md bg-cream max-h-[85vh] rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden border border-white/20">
+      
+      <!-- Cabeçalho do Carrinho Flutuante -->
+      <div class="bg-chocolate text-cream p-5 sm:p-6 flex items-center justify-between border-b border-white/10 shrink-0">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-2xl bg-primary/20 flex items-center justify-center text-primary-glow border border-primary/30 shadow-inner">
+            <i class="fas fa-shopping-bag text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-xl leading-none">O Seu Pedido</h3>
+            <span id="modal-item-count" class="text-[11px] text-cream/70 font-medium mt-1 block">0 itens selecionados</span>
+          </div>
+        </div>
+        <button onclick="toggleCartModal()" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-cream hover:bg-white/20 transition-all active:scale-95 shadow-sm cursor-pointer">
+          <i class="fas fa-times text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Lista de Itens do Carrinho com Rolagem Interna -->
+      <div id="cart-items-container" class="p-5 sm:p-6 overflow-y-auto flex-1 space-y-3.5 no-scrollbar min-h-[120px]">
+        <!-- Renderizado via JS -->
+      </div>
+
+      <!-- Rodapé da Janela Flutuante -->
+      <div class="p-5 sm:p-6 bg-white border-t border-chocolate/10 space-y-4 shrink-0 shadow-lg">
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-xs text-gray-500 font-medium">
+            <span>Entrega / Retirada</span>
+            <span class="text-chocolate font-bold bg-secondary/60 px-2.5 py-0.5 rounded-full">A combinar</span>
+          </div>
+          <div class="flex justify-between items-baseline text-chocolate border-t border-dashed border-gray-200 pt-3">
+            <span class="font-bold text-sm text-gray-600">Subtotal acumulado:</span>
+            <span id="cart-total-price" class="font-display font-black text-2xl text-primary">R$ 0,00</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-col gap-2.5 pt-1">
+          <button onclick="checkoutWhatsApp()" class="w-full rounded-full bg-whatsapp text-white font-bold py-3.5 px-4 shadow-soft flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-95 transition-all text-sm tracking-wide cursor-pointer">
+            <i class="fab fa-whatsapp text-xl"></i> Finalizar Pedido via WhatsApp
+          </button>
+          <button onclick="toggleCartModal()" class="w-full rounded-full bg-blush/60 text-chocolate font-bold py-2.5 text-xs text-center hover:bg-blush transition-colors cursor-pointer">
+            Continuar a Escolher
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, offset: 30, duration: 800, easing: 'ease-out-cubic' });
+
+    // Filtro de Categorias do Cardápio
+    function filtrarCardapio(categoria) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active', 'border-primary', 'bg-primary', 'text-white');
+        btn.classList.add('border-chocolate/10', 'bg-white', 'text-chocolate');
+      });
+
+      const btnAtivo = document.getElementById(`btn-cat-${categoria}`);
+      if (btnAtivo) {
+        btnAtivo.classList.add('active', 'border-primary', 'bg-primary', 'text-white');
+        btnAtivo.classList.remove('border-chocolate/10', 'bg-white', 'text-chocolate');
+      }
+
+      document.querySelectorAll('.produto-card').forEach(card => {
+        if (categoria === 'todos' || card.dataset.categoria === categoria) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // State do Carrinho com persistência no LocalStorage
+    let cart = JSON.parse(localStorage.getItem('sabores_delicias_cart')) || [];
+
+    function saveCart() {
+      localStorage.setItem('sabores_delicias_cart', JSON.stringify(cart));
+    }
+
+    function addToCart(name, price, img) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, img, qty: 1 });
+      }
+      saveCart();
+      updateCartUI();
+      openCartModal();
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cart-items-container');
+      const totalBadge = document.getElementById('floating-cart-badge');
+      const headerBadge = document.getElementById('header-cart-badge');
+      const totalPriceEl = document.getElementById('cart-total-price');
+      const modalItemCount = document.getElementById('modal-item-count');
+      
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      if (modalItemCount) {
+        modalItemCount.innerText = totalCount === 1 ? '1 item selecionado' : `${totalCount} itens selecionados`;
+      }
+
+      if (totalCount > 0) {
+        totalBadge.innerText = totalCount;
+        totalBadge.classList.remove('hidden');
+        headerBadge.innerText = totalCount;
+        headerBadge.classList.remove('hidden');
+      } else {
+        totalBadge.classList.add('hidden');
+        headerBadge.classList.add('hidden');
+      }
+
+      totalPriceEl.innerText = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center text-gray-400 py-12">
+            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3">
+              <i class="fas fa-cookie-bite text-3xl"></i>
+            </div>
+            <p class="font-bold text-chocolate text-lg">O seu carrinho está vazio</p>
+            <p class="text-xs text-gray-500 mt-1 max-w-[210px]">Explore as opções no cardápio e adicione os seus produtos preferidos!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map((item, index) => `
+        <div class="flex items-center gap-3.5 bg-white p-3.5 rounded-2xl shadow-soft border border-chocolate/5 transition-all hover:border-primary/20">
+          <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl shrink-0 shadow-sm">
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold text-sm text-chocolate truncate leading-tight">${item.name}</h4>
+            <p class="text-xs font-black text-primary mt-1">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</p>
+          </div>
+          <div class="flex items-center gap-1.5 bg-blush px-2.5 py-1.5 rounded-full border border-chocolate/10 shadow-inner">
+            <button onclick="changeQty(${index}, -1)" class="w-6 h-6 rounded-full bg-white text-chocolate text-xs font-bold flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm active:scale-90 cursor-pointer">-</button>
+            <span class="text-xs font-bold text-chocolate px-1.5 min-w-[1.2rem] text-center">${item.qty}</span>
+            <button onclick="changeQty(${index}, 1)" class="w-6 h-6 rounded-full bg-white text-chocolate text-xs font-bold flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm active:scale-90 cursor-pointer">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCartModal() {
+      const modal = document.getElementById('cart-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function openCartModal() {
+      const modal = document.getElementById('cart-modal');
+      modal.classList.remove('hidden');
+    }
+
+    function checkoutWhatsApp() {
+      if (cart.length === 0) {
+        alert('O seu carrinho está vazio!');
+        return;
+      }
+
+      let message = "Olá! Gostaria de fazer o seguinte pedido pelo Cardápio Digital (Demonstração):\n\n";
+      cart.forEach(item => {
+        message += `• *${item.qty}x* ${item.name} (R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')})\n`;
+      });
+      
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      message += `\n💰 *Total: R$ ${totalPrice.toFixed(2).replace('.', ',')}*\n\nAguardo as instruções para pagamento e entrega!`;
+
+      const encodedUrl = `https://wa.me/5551981061618?text=${encodeURIComponent(message)}`;
+      window.open(encodedUrl, '_blank');
+
+      cart = [];
+      saveCart();
+      updateCartUI();
+      toggleCartModal();
+    }
+
+    // Script do Carrossel do Hero
+    const slidesData = [
+      { kicker: 'Salgados', word: 'crocantes', line: 'fritos e assados, fresquinhos todo dia.<br>Experiência única em cada sabor! ✨' },
+      { kicker: 'Doces', word: 'irresistíveis', line: 'brigadeiros e docinhos feitos com amor.<br>Experiência única em cada sabor! ✨' },
+      { kicker: 'Tortas', word: 'de dar água na boca', line: 'fatias generosas e bolos para festas.<br>Experiência única em cada sabor! ✨' }
+    ];
+    let currentSlide = 0;
+    const slideImages = document.querySelectorAll('.slide-img');
+    const slideIndicators = document.querySelectorAll('.slide-indicator');
+    
+    setInterval(() => {
+      if (slideImages.length > 0) {
+        slideImages[currentSlide].classList.remove('active');
+        if (slideIndicators[currentSlide]) {
+          slideIndicators[currentSlide].classList.remove('bg-primary-glow');
+          slideIndicators[currentSlide].classList.add('bg-cream/30');
+        }
+
+        currentSlide = (currentSlide + 1) % slidesData.length;
+        
+        slideImages[currentSlide].classList.add('active');
+        if (slideIndicators[currentSlide]) {
+          slideIndicators[currentSlide].classList.remove('bg-cream/30');
+          slideIndicators[currentSlide].classList.add('bg-primary-glow');
+        }
+        
+        document.getElementById('hero-kicker').innerHTML = `<i class="fas fa-sparkles"></i> ${slidesData[currentSlide].kicker}`;
+        document.getElementById('hero-word').innerText = slidesData[currentSlide].word;
+        document.getElementById('hero-line').innerHTML = slidesData[currentSlide].line;
+      }
+    }, 5500);
+
+    updateCartUI();
+  </script>
+</body>
+</html>
