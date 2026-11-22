@@ -30,8 +30,8 @@ try {
 
 let produtoAtual = null;
 let quantidadeAtual = 1;
-let modoLojaAdmin = "aberto";
-let numeroWhatsAppAdmin = "5551981061618";
+let modoLojaAdmin = "automatico"; 
+let numeroWhatsAppAdmin = "555196598552"; // Número de fallback padrão atualizado
 
 // Configurações de Múltiplas Promoções
 let listaPromocoesAtivas = [];
@@ -155,18 +155,28 @@ const produtosPadraoSeguro = [
     }
 ];
 
-// Ouve Banner Mobile, Promoções e WhatsApp da loja em tempo real, mantendo status sempre Aberto na demo
+// Ouve o status, WhatsApp, Banner Mobile e Promoções da loja em tempo real
 onSnapshot(doc(db, "configuracoes", "loja"), (docSnap) => {
-    modoLojaAdmin = "aberto";
-    atualizarStatusHeader();
-
     if (docSnap.exists()) {
         const dados = docSnap.data();
+        
+        if (dados.modoLoja) {
+            modoLojaAdmin = dados.modoLoja;
+        } else if (dados.aberto !== undefined) {
+            modoLojaAdmin = dados.aberto ? "aberto" : "fechado";
+        } else {
+            modoLojaAdmin = "automatico";
+        }
 
+        atualizarStatusHeader();
         aplicarBannerMobileDinamico(dados.bannerMobileAtivo || "");
         
         listaPromocoesAtivas = dados.promocoes || [];
         renderizarBannersPromocoes();
+        
+        if (dados.whatsapp) {
+            numeroWhatsAppAdmin = dados.whatsapp;
+        }
 
         const botaoWhatsHeader = document.querySelector(".botao-whats-header");
         if (botaoWhatsHeader) {
@@ -341,9 +351,19 @@ function renderizarCardapio(produtos) {
     reativarEventosBotoes();
 }
 
-// Na demonstração, mantém sempre aberto para visualização e teste de fluxo
 function pedidosEstaoAbertos() {
-    return true;
+    if (modoLojaAdmin === "aberto") return true;
+    if (modoLojaAdmin === "fechado") return false;
+
+    const agora = new Date();
+    const dia = agora.getDay(); 
+    const hora = agora.getHours();
+    const minutos = agora.getMinutes();
+    const horarioAtual = hora * 60 + minutos;
+    const inicio = 19 * 60 + 30; // 19h30
+    const fim = 22 * 60;         // 22h00
+
+    return (dia === 5 || dia === 6) && (horarioAtual >= inicio && horarioAtual < fim);
 }
 
 function mostrarAvisoForaDoExpediente() {
@@ -355,9 +375,15 @@ function atualizarStatusHeader() {
     if (!statusLoja) return;
     const textoStatus = statusLoja.querySelector("span:last-child");
 
-    statusLoja.classList.remove("status-fechado", "fechado");
-    statusLoja.classList.add("status-aberto");
-    if (textoStatus) textoStatus.textContent = "Aberto";
+    if (pedidosEstaoAbertos()) {
+        statusLoja.classList.remove("status-fechado");
+        statusLoja.classList.add("status-aberto");
+        if (textoStatus) textoStatus.textContent = "Aberto";
+    } else {
+        statusLoja.classList.remove("status-aberto");
+        statusLoja.classList.add("status-fechado");
+        if (textoStatus) textoStatus.textContent = "Fechado";
+    }
 }
 
 // Elementos do DOM e Carrinho
@@ -417,6 +443,7 @@ function reativarEventosBotoes() {
             const nome = botao.dataset.produto;
             const preco = parseFloat(botao.dataset.preco);
             
+            // Busca a descrição direto no cache ou no card HTML correspondente
             const produtoCache = listaProdutosCache.find(p => p.nome === nome);
             const cardProduto = botao.closest(".produto");
             let descricaoCapturada = "";
@@ -432,7 +459,7 @@ function reativarEventosBotoes() {
             observacaoProduto.value = "";
 
             modalNomeProduto.textContent = nome;
-            modalDescricaoProduto.innerHTML = descricaoCapturada;
+            modalDescricaoProduto.innerHTML = descricaoCapturada; // Mantém formatações como <br>
             modalPrecoProduto.textContent = formatarMoeda(preco);
             quantidadeProduto.textContent = quantidadeAtual;
 
@@ -630,6 +657,7 @@ if (finalizarPedido) {
     finalizarPedido.onclick = () => {
         if (carrinho.length === 0 || !pedidosEstaoAbertos()) return;
         
+        // Mensagem temporária de upsell com tempo expandido
         mostrarMensagem("🍟 Vai esquecer da porção de Fritas ou Onion Rings? 😋");
 
         painelCarrinho.classList.remove("aberto");
@@ -649,10 +677,48 @@ document.querySelectorAll('input[name="pagamento"]').forEach(r => {
 if (formularioPedido) {
     formularioPedido.onsubmit = (e) => {
         e.preventDefault();
-        mostrarMensagem("🔒 Envio desativado nesta demonstração do portfólio.");
+        if (!pedidosEstaoAbertos()) return;
+
+        const nome = document.getElementById("nome").value.trim();
+        const torre = document.getElementById("torre").value.trim();
+        const apartamento = document.getElementById("apartamento").value.trim();
+        const pagamento = document.querySelector('input[name="pagamento"]:checked')?.value;
+        const troco = document.getElementById("troco")?.value.trim() || "";
+        const obs = document.getElementById("observacao")?.value.trim() || "";
+
+        if (!nome || !torre || !apartamento || !pagamento) {
+            mostrarMensagem("Preencha todos os campos obrigatórios (*).");
+            return;
+        }
+
+        let msg = `🍔 *NOVO PEDIDO - BURGER 301*\n\n👤 *Cliente:* ${nome}\n🏢 *Endereço:* Torre ${torre}, Apto ${apartamento}\n💳 *Pagamento:* ${pagamento}\n`;
+        if (pagamento === "Dinheiro" && troco) msg += `💵 *Troco para:* ${troco}\n`;
+        if (obs) msg += `📝 *Obs:* ${obs}\n`;
+        msg += `\n🛒 *ITENS:*\n`;
+
+        let total = 0;
+        carrinho.forEach((item, i) => {
+            const sub = item.valorUnitario * item.quantidade;
+            total += sub;
+            msg += `\n${i + 1}. ${item.quantidade}x ${item.nome} — ${formatarMoeda(sub)}\n`;
+            item.adicionais.forEach(a => msg += `    + ${a.nome}\n`);
+            if (item.observacao) msg += `    📝 ${item.observacao}\n`;
+        });
+
+        msg += `\n💰 *TOTAL DO PEDIDO:* ${formatarMoeda(total)}`;
+
+        const urlWhatsApp = `https://wa.me/${numeroWhatsAppAdmin}?text=${encodeURIComponent(msg)}`;
+        window.open(urlWhatsApp, "_blank");
+
+        carrinho = [];
+        localStorage.removeItem("carrinho_burger301");
+        atualizarCarrinho();
+        formularioPedido.reset();
+        const campoTroco = document.getElementById("campo-troco");
+        if (campoTroco) campoTroco.style.display = "none";
+        dadosPedido.classList.remove("visivel");
     };
 }
-
 // =========================================
 // CONTROLE DO MENU HAMBÚRGUER E ROLAGEM
 // =========================================
@@ -687,18 +753,18 @@ function fecharMenuEColar(alvoId) {
         menuLateral.classList.remove('ativo');
     }
     
+    // Se o alvo for dúvidas, envia para o rodapé da página
     if (alvoId === 'rodape-duvidas') {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         return;
     }
 
+    // Rolagem para Hambúrgueres ou Porções
     const secao = document.getElementById(alvoId);
     if (secao) {
         secao.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 window.fecharMenuEColar = fecharMenuEColar;
-
-atualizarStatusHeader();
 reativarEventosBotoes();
 atualizarCarrinho();
