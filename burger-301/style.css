@@ -80,7 +80,8 @@ body {
     font-weight: 700;
 }
 
-.status-aberto {
+.status-aberto,
+.status-loja.status-fechado.status-aberto {
     background-color: rgba(34, 197, 94, 0.15);
     color: #4ade80;
     border: 1px solid rgba(34, 197, 94, 0.3);
@@ -751,6 +752,12 @@ body {
     cursor: pointer;
 }
 
+.botao-enviar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /* Estilo para o botão de continuar comprando na tela de dados */
 .botao-voltar-cadastro {
     width: 100%;
@@ -888,7 +895,7 @@ body {
     }
 
     .hero-overlay {
-        background: rgba(0, 0, 0, 0.02); /* Cortina praticamente removida para total clareza */
+        background: rgba(0, 0, 0, 0.02);
     }
 
     .hero-conteudo {
@@ -905,14 +912,12 @@ body {
         box-sizing: border-box;
     }
 
-    /* Remove título, parágrafo e diferenciais na versão mobile */
     .hero-conteudo h1,
     .hero-conteudo p,
     .hero-diferenciais {
         display: none !important;
     }
 
-    /* Badge Exclusivo no topo */
     .badge-exclusivo {
         font-size: 0.65rem;
         padding: 5px 12px;
@@ -921,7 +926,6 @@ body {
         border: 1px solid rgba(242, 140, 40, 0.8);
     }
 
-    /* Botão posicionado praticamente no limite inferior do banner */
     .btn-hero-principal {
         position: relative !important;
         bottom: auto !important;
@@ -934,21 +938,19 @@ body {
         font-size: 0.92rem;
         box-sizing: border-box;
         text-align: center;
-        margin-bottom: 0px; /* Colado no limite final */
+        margin-bottom: 0px;
     }
 
     .cardapio {
         padding-top: 25px;
     }
 
-    /* Espaçamento geral das secções */
     .titulo-secao {
         margin-top: 30px !important;
         margin-bottom: 15px !important;
         clear: both;
     }
 
-    /* Aplica alinhamento ao primeiro título (Hambúrgueres) */
     .cardapio > .titulo-secao:first-of-type,
     .cardapio > .titulo-secao:first-child {
         margin-top: 15px !important;
@@ -973,7 +975,6 @@ body {
    CORREÇÃO FINAL: CARRINHO FLUTUANTE MOBILE
 ========================================= */
 @media (max-width: 768px) {
-    /* Ajusta o container principal da barra flutuante no celular */
     .carrinho-flutuante {
         display: flex !important;
         align-items: center;
@@ -990,13 +991,13 @@ body {
         transform: translate(-50%, 0) !important;
     }
 
-    /* Ajusta o botão "VER PEDIDO" no celular */
     #abrir-carrinho {
         padding: 10px 14px !important;
         font-size: 0.85rem !important;
         white-space: nowrap; 
     }
 }
+
 /* =========================================
    BOTÃO HAMBÚRGUER (MENU SUPERIOR DIREITO)
 ========================================= */
