@@ -359,7 +359,7 @@
                             <div class="flex flex-wrap gap-2.5 pt-2">
                                 <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/25">ADS & GTI</span>
                                 <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/25">Inteligência Artificial</span>
-                                <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/25">Sistemas Web & Cloud</span>
+                                <span class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-blue-500/25">Sistemas Web & Cloud</span>
                             </div>
                         </div>
                     </div>
@@ -687,7 +687,7 @@
                 titulo: "Atelier Bella Casa — Catálogo Online",
                 categoria: "e-commerce",
                 categoriaNome: "E-commerce",
-                imagem: "https://images.unsplash.com/photo-1522771739844-6a9f6dd5b104?auto=format&fit=crop&w=800&q=80",
+                imagem: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
                 descricao: "Catálogo interativo de cama, mesa, banho e utilidades com filtro por categoria, variações e checkout via WhatsApp.",
                 urlExecutavel: "catalogo-ficticio/catalogo.html"
             }
@@ -815,7 +815,7 @@
 
                 card.innerHTML = `
                     <div class="aspect-video overflow-hidden relative cursor-pointer" onclick="${acaoClique}">
-                        <img src="${projeto.imagem}" alt="${projeto.titulo}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="${projeto.imagem}" alt="${projeto.titulo}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80';" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
                         <span class="absolute top-3.5 right-3.5 text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-darkBg/80 text-blue-400 border border-blue-500/30 backdrop-blur-md">
                             ${projeto.categoriaNome}
