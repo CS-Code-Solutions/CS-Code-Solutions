@@ -6,180 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burger 301 - Hambúrgueres artesanais</title>
 
+    <!-- METATAGS DE SEO E PRE-VISUALIZACAO OPEN GRAPH -->
     <meta name="description" content="Burger 301 - Hambúrgueres artesanais, porções e adicionais fresquinhos. Faça o seu pedido online direto na sua torre!">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Burger 301">
+    <meta property="og:title" content="Burger 301 - Hambúrgueres Artesanais">
+    <meta property="og:description" content="Peça os melhores hambúrgueres artesanais e porções direto pelo nosso cardápio online!">
+
+    <!-- CONFIGURAÇÕES DE APLICAÇÃO -->
     <meta name="theme-color" content="#f28c28">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Burger 301">
     <link rel="stylesheet" href="style.css?v=7">
+    
+    <!-- FAVICON -->
     <link rel="icon" href="imagens/icone.png" type="image/png">
 
     <style>
-        html, body {
-            min-height: 100%;
-            background-color: #121212 !important;
-            color: #ffffff;
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            margin: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        /* Garante status sempre ABERTO */
-        .status-loja.status-aberto {
-            display: inline-flex !important;
-            align-items: center;
-            gap: 6px;
-            background: rgba(37, 211, 102, 0.15);
-            border: 1px solid #25D366;
-            color: #25D366;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-        .status-loja .ponto-status {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #25D366;
-            display: inline-block;
-        }
-
-        /* Grid e Cards do Cardápio (garantia visual independente do style.css) */
-        #lista-hamburgueres,
-        #lista-porcoes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1100px;
-            margin: 0 auto 40px auto;
-            padding: 0 16px;
-        }
-
-        .produto {
-            background: #1c1c1c;
-            border: 1px solid #2c2c2c;
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-        .produto:hover {
-            transform: translateY(-3px);
-            border-color: #f28c28;
-        }
-        .produto img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #242424;
-            display: block;
-        }
-        .produto-info {
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-            gap: 12px;
-        }
-        .produto-info h3 {
-            margin: 0 0 6px 0;
-            font-size: 1.15rem;
-            color: #ffffff;
-        }
-        .produto-info p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #b5b5b5;
-            line-height: 1.45;
-        }
-        .produto-rodape {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 12px;
-            border-top: 1px solid #2a2a2a;
-            margin-top: auto;
-        }
-        .produto-rodape .preco {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: #f28c28;
-        }
-        .botao-adicionar {
-            background: #f28c28;
-            color: #121212;
-            border: none;
-            padding: 9px 16px;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .botao-adicionar:hover {
-            background: #ff9d3b;
-        }
-
-        /* Item do Carrinho */
-        .item-carrinho {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid #2c2c2c;
-        }
-        .item-carrinho strong {
-            display: block;
-            color: #fff;
-            font-size: 0.95rem;
-        }
-        .item-carrinho small {
-            display: block;
-            color: #aaa;
-            font-size: 0.8rem;
-            margin-top: 2px;
-        }
-        .item-carrinho span {
-            display: block;
-            color: #f28c28;
-            font-weight: 700;
-            margin-top: 4px;
-            font-size: 0.9rem;
-        }
-        .item-carrinho button {
-            background: #2b2b2b;
-            color: #ff6b6b;
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* Botão WhatsApp VISÍVEL mas DESATIVADO (Modo Demo) */
-        .botao-whatsapp-desativado {
-            background-color: #2a3b32 !important;
-            color: #8fa89b !important;
-            border: 1px dashed #4a6658 !important;
-            opacity: 0.72 !important;
-            cursor: not-allowed !important;
-            pointer-events: none !important;
-            user-select: none;
-        }
-        .aviso-demo-whatsapp {
-            display: block;
-            text-align: center;
-            font-size: 12px;
-            color: #a0a0a0;
-            margin-top: 8px;
-            margin-bottom: 12px;
-        }
-
         .botao-instagram-rodape {
             display: inline-flex;
             align-items: center;
@@ -207,6 +51,23 @@
             height: 20px;
             fill: #fff;
         }
+
+        /* Estilo para manter os botões do WhatsApp visíveis, porém desativados na demo */
+        .whatsapp-desativado {
+            opacity: 0.55 !important;
+            cursor: not-allowed !important;
+            pointer-events: none !important;
+            filter: grayscale(40%);
+            user-select: none;
+        }
+        .aviso-demo-whatsapp {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -215,16 +76,22 @@
     <!-- CABEÇALHO SUPERIOR -->
     <header class="header-topo">
         <div class="header-container">
+            
+            <!-- ESQUERDA: LOGO + STATUS (SEMPRE ABERTO) -->
             <div class="header-esquerda">
                 <a href="#" class="logo-header">
                     <span class="texto-burger">BURGER</span> <span class="texto-301">301</span>
                 </a>
+                
                 <div class="status-loja status-aberto">
                     <span class="ponto-status"></span>
                     <span>Aberto</span>
                 </div>
             </div>
 
+            <a href="#cardapio" class="link-cardapio" style="display: none;">Cardápio</a>
+
+            <!-- DIREITA: MENU HAMBÚRGUER -->
             <div class="header-direita">
                 <button type="button" id="btn-menu-toggle" class="btn-menu-hamburguer" aria-label="Abrir Menu">
                     <span></span>
@@ -232,6 +99,7 @@
                     <span></span>
                 </button>
             </div>
+
         </div>
     </header>
 
@@ -239,15 +107,15 @@
     <nav id="menu-lateral" class="menu-lateral">
         <button type="button" id="btn-fechar-menu" class="btn-fechar-menu">✕</button>
         <ul class="menu-lista">
-            <li><a href="#hamburgueres" onclick="fecharMenu()">🍔 Hambúrgueres</a></li>
-            <li><a href="#porcoes" onclick="fecharMenu()">🍟 Porções</a></li>
-            <li><a href="#rodape-duvidas" onclick="fecharMenu()">❓ Dúvidas</a></li>
+            <li><a href="#" onclick="fecharMenuEColar('hamburgueres'); return false;">🍔 Hambúrgueres</a></li>
+            <li><a href="#" onclick="fecharMenuEColar('porcoes'); return false;">🍟 Porções</a></li>
+            <li><a href="#" onclick="fecharMenuEColar('rodape-duvidas'); return false;">❓ Dúvidas</a></li>
         </ul>
     </nav>
 
     <main>
-        <!-- BANNER HERO -->
-        <section class="banner-hero" style="background-image: linear-gradient(rgba(18,18,18,0.72), rgba(18,18,18,0.88)), url('imagens/banner.jpg');">
+        <!-- BANNER HERO DE ALTA CONVERSÃO -->
+        <section class="banner-hero">
             <div class="hero-overlay"></div>
             <div class="hero-conteudo">
                 <span class="badge-exclusivo">🔥 ATENDIMENTO EXCLUSIVO NO CONDOMÍNIO</span>
@@ -312,42 +180,50 @@
                             <span>Bacon</span>
                             <strong>+ R$ 5,00</strong>
                         </label>
+
                         <label class="adicional">
                             <input type="checkbox" name="adicional" value="Cebola caramelizada" data-preco="4.00">
                             <span>Cebola caramelizada</span>
                             <strong>+ R$ 4,00</strong>
                         </label>
+
                         <label class="adicional">
                             <input type="checkbox" name="adicional" value="Abacaxi grelhado" data-preco="4.00">
                             <span>Abacaxi grelhado</span>
                             <strong>+ R$ 4,00</strong>
                         </label>
+
                         <label class="adicional">
                             <input type="checkbox" name="adicional" value="Blend bovino 150g" data-preco="8.00">
                             <span>Blend bovino 150g</span>
                             <strong>+ R$ 8,00</strong>
                         </label>
+
                         <label class="adicional">
                             <input type="checkbox" name="adicional" value="Smash bovino 75g" data-preco="5.00">
                             <span>Smash bovino 75g</span>
                             <strong>+ R$ 5,00</strong>
                         </label>
+
                         <label class="adicional">
                             <input type="checkbox" name="adicional" value="Queijo cheddar" data-preco="6.00">
                             <span>Queijo cheddar</span>
                             <strong>+ R$ 6,00</strong>
                         </label>
+
                         <label class="adicional">
                             <input type="checkbox" name="adicional" value="Queijo mussarela" data-preco="4.00">
                             <span>Queijo mussarela</span>
                             <strong>+ R$ 4,00</strong>
                         </label>
+
                         <label class="adicional">
                             <input type="checkbox" name="adicional" value="Anéis de cebola" data-preco="4.00">
                             <span>Anéis de cebola</span>
                             <strong>+ R$ 4,00</strong>
                         </label>
-                        <label class="adicional" id="label-maionese">
+
+                        <label class="adicional">
                             <input type="checkbox" name="adicional" value="Pote de maionese extra" data-preco="2.00" data-apenas-porcao="true">
                             <span>Pote de maionese extra</span>
                             <strong>+ R$ 2,00</strong>
@@ -466,13 +342,12 @@
                     📍 A entrega é realizada na entrada da torre do condomínio.
                 </p>
 
-                <!-- BOTÃO WHATSAPP VISÍVEL MAS DESATIVADO -->
-                <button type="button" id="btn-enviar-whatsapp" class="botao-enviar botao-whatsapp-desativado" disabled aria-disabled="true" title="Envio via WhatsApp desativado no modo demonstração">
-                    ENVIAR PEDIDO PELO WHATSAPP
-                </button>
-                <span class="aviso-demo-whatsapp">🔒 Envio para WhatsApp desativado na versão de demonstração do portfólio.</span>
+                <!-- BOTÃO DE ENVIAR PELO WHATSAPP VISÍVEL MAS DESATIVADO -->
+                <button type="button" class="botao-enviar whatsapp-desativado" disabled aria-disabled="true">ENVIAR PEDIDO PELO WHATSAPP</button>
+                <span class="aviso-demo-whatsapp">🔒 Envio pelo WhatsApp desativado nesta versão de demonstração.</span>
 
-                <button type="button" id="voltar-cardapio-dados" class="botao-voltar-cadastro">CONTINUAR COMPRANDO</button>
+                <!-- BOTÃO DE VOLTAR AO CARDÁPIO / CONTINUAR COMPRANDO -->
+                <button type="button" id="voltar-cardapio-dados" class="botao-voltar-cadastro" style="margin-top: 14px;">CONTINUAR COMPRANDO</button>
             </form>
         </section>
     </main>
@@ -484,10 +359,12 @@
         <p>📍 Atendimento exclusivo aos moradores do condomínio.</p>
         <p>Sexta e sábado • 19h30 às 22h</p>
 
-        <!-- BOTÃO DÚVIDAS WHATSAPP VISÍVEL MAS DESATIVADO -->
-        <span class="botao-duvidas-whatsapp botao-whatsapp-desativado" aria-disabled="true" title="WhatsApp desativado no modo demonstração">
+        <!-- BOTÃO DE DÚVIDAS VISÍVEL MAS DESATIVADO -->
+        <span class="botao-duvidas-whatsapp whatsapp-desativado" aria-disabled="true">
             💬 Dúvidas? Fale conosco no WhatsApp
         </span>
+
+        <br>
 
         <a href="https://www.instagram.com/burger_301_poema?dlrf=MXZuZXhxcnlrcDZuNw==" target="_blank" rel="noreferrer" class="botao-instagram-rodape">
             <svg xmlns="http://www.w3.org/2000/svg" class="icone-instagram" viewBox="0 0 24 24">
@@ -495,255 +372,482 @@
             </svg>
             <span>Siga a gente no Instagram</span>
         </a>
-        <p>&copy; 2026 | Powered by <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noreferrer"><strong>CS Code Solutions</strong></a></p>
+
+        <!-- ASSINATURA CS CODE SOLUTIONS -->
+        <p class="copyright">&copy; 2026 | Powered by <a href="https://www.instagram.com/cs_code_solutions?exln=Ym1mNDMzYTYxa3d6" target="_blank" rel="noreferrer" style="color: #f28c28; text-decoration: none;"><strong>CS Code Solutions</strong></a></p>
     </footer>
 
-    <!-- JAVASCRIPT AUTÔNOMO (SEMPRE ABERTO, SEM FIREBASE EXTERNO) -->
+    <!-- SCRIPT PARA FORÇAR A PÁGINA A ABRIR SEMPRE NO TOPO -->
     <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 10);
+        });
+    </script>
+
+    <!-- JAVASCRIPT ORIGINAL ADAPTADO (SEM FIREBASE, SEMPRE ABERTO) -->
+    <script>
+        let carrinho = [];
+        try {
+            const carrinhoSalvo = localStorage.getItem("carrinho_burger301_demo");
+            if (carrinhoSalvo) {
+                carrinho = JSON.parse(carrinhoSalvo);
+            }
+        } catch (e) {
+            console.error("Erro ao carregar carrinho:", e);
+        }
+
+        let produtoAtual = null;
+        let quantidadeAtual = 1;
+
+        // Lista original dos produtos com as imagens originais da pasta imagens/
         const produtosOriginais = [
             {
-                id: "b1",
-                categoria: "hamburguer",
-                nome: "301 Clássico",
-                descricao: "Pão brioche selado na manteiga, blend bovino 150g, queijo cheddar derretido e maionese artesanal da casa.",
-                preco: 26.00,
-                imagem: "imagens/classico.jpg"
+                id: "padrao-1",
+                nome: "Poema Kids",
+                categoria: "hamburgueres",
+                preco: 25.00,
+                descricao: "Pão brioche selado na manteiga, smash bovinos de 75g, queijo mussarela e maionese da casa, acompanha porção de fritas.<br>“É a vez dos pequenos.”",
+                imagem: "imagens/poema-kids.jpg",
+                esgotado: false,
+                ordem: 0
             },
             {
-                id: "b2",
-                categoria: "hamburguer",
-                nome: "301 Bacon Cheddar",
-                descricao: "Pão brioche, blend bovino 150g, duplo cheddar cremoso, fatias crocantes de bacon e cebola caramelizada.",
-                preco: 31.00,
-                imagem: "imagens/bacon.jpg"
+                id: "padrao-2",
+                nome: "Smash 301",
+                categoria: "hamburgueres",
+                preco: 29.00,
+                descricao: "Pão brioche selado na manteiga, dois smash bovinos de 75g cada, queijo mussarela e maionese da casa.<br>“Para aquela fominha.”",
+                imagem: "imagens/smash-301.jpg",
+                esgotado: false,
+                ordem: 1
             },
             {
-                id: "b3",
-                categoria: "hamburguer",
-                nome: "301 Duplo Smash",
-                descricao: "Dois hambúrgueres smash 75g prensados na chapa, queijo mussarela, alface americana, tomate e molho especial.",
-                preco: 29.50,
-                imagem: "imagens/duplo.jpg"
+                id: "padrao-3",
+                nome: "Clássico da Casa",
+                categoria: "hamburgueres",
+                preco: 32.00,
+                descricao: "Pão brioche selado na manteiga, blend bovino de 150g, queijo mussarela, alface, tomate e maionese da casa.<br>“Clássico que não sai de moda.”",
+                imagem: "imagens/classico-da-casa.jpg",
+                esgotado: false,
+                ordem: 2
             },
             {
-                id: "p1",
-                categoria: "porcao",
-                nome: "Batata Frita Crocante (400g)",
-                descricao: "Porção generosa de batatas sequinhas e crocantes, acompanha pote de maionese temperada da casa.",
-                preco: 20.00,
-                imagem: "imagens/batata.jpg"
+                id: "padrao-4",
+                nome: "Du'Chef",
+                categoria: "hamburgueres",
+                preco: 35.00,
+                descricao: "Pão brioche selado na manteiga, blend bovino de 150g, queijo cheddar, cebola caramelizada, bacon e maionese da casa.<br>“O favorito.”",
+                imagem: "imagens/duchef.jpg",
+                esgotado: false,
+                ordem: 3
             },
             {
-                id: "p2",
-                categoria: "porcao",
-                nome: "Batata com Cheddar e Bacon",
-                descricao: "Batata frita crocante coberta com creme de cheddar quente e farofa de bacon crocante.",
-                preco: 27.00,
-                imagem: "imagens/batata-cheddar.jpg"
+                id: "padrao-5",
+                nome: "Poema Tropical",
+                categoria: "hamburgueres",
+                preco: 37.00,
+                descricao: "Pão brioche selado na manteiga, blend bovino de 150g, queijo cheddar, bacon, rodela de abacaxi grelhado e maionese da casa.<br>“Uma experiência gastronômica.”",
+                imagem: "imagens/poema-tropical.jpg",
+                esgotado: false,
+                ordem: 4
+            },
+            {
+                id: "padrao-6",
+                nome: "Porção de Fritas",
+                categoria: "porcoes",
+                preco: 10.00,
+                descricao: "Porção de batata frita (na air fryer) e um potinho de maionese da casa.<br>“O que estava faltando.”",
+                imagem: "imagens/fritas.jpg",
+                esgotado: false,
+                ordem: 5
+            },
+            {
+                id: "padrao-7",
+                nome: "Porção de Onion Rings",
+                categoria: "porcoes",
+                preco: 10.00,
+                descricao: "Porção de anéis de cebola fritos (na air fryer) e um potinho de maionese da casa.<br>“Vai ficar de fora?”",
+                imagem: "imagens/onion-rings.jpg",
+                esgotado: false,
+                ordem: 6
+            },
+            {
+                id: "padrao-8",
+                nome: "Fritas Feliz",
+                categoria: "porcoes",
+                preco: 10.00,
+                descricao: "Porção de batata frita carinha (na air fryer) e um potinho de maionese da casa.<br>“Os pequenos adoram.”",
+                imagem: "imagens/fritas-feliz.jpg",
+                esgotado: false,
+                ordem: 7
             }
         ];
 
-        let produtoSelecionado = null;
-        let qtdModal = 1;
-        let carrinho = [];
+        // Desenha os produtos no HTML exatamente como no script.js original
+        function renderizarCardapio(produtos) {
+            const hamburgueresContainer = document.getElementById("lista-hamburgueres");
+            const porcoesContainer = document.getElementById("lista-porcoes");
 
-        function formatarMoeda(valor) {
-            return `R$ ${valor.toFixed(2).replace('.', ',')}`;
-        }
+            if (!hamburgueresContainer || !porcoesContainer) return;
 
-        function renderizarCardapio() {
-            const listaHamb = document.getElementById('lista-hamburgueres');
-            const listaPorc = document.getElementById('lista-porcoes');
-            listaHamb.innerHTML = '';
-            listaPorc.innerHTML = '';
+            hamburgueresContainer.innerHTML = "";
+            porcoesContainer.innerHTML = "";
 
-            produtosOriginais.forEach(prod => {
-                const card = document.createElement('article');
-                card.className = 'produto';
-                card.innerHTML = `
-                    <img src="${prod.imagem}" alt="${prod.nome}" loading="lazy" onerror="this.onerror=null; this.src='imagens/icone.png'; this.style.objectFit='contain'; this.style.padding='24px';">
-                    <div class="produto-info">
-                        <div>
-                            <h3>${prod.nome}</h3>
-                            <p>${prod.descricao}</p>
-                        </div>
-                        <div class="produto-rodape">
-                            <span class="preco">${formatarMoeda(prod.preco)}</span>
-                            <button type="button" class="botao-adicionar" onclick="abrirModal('${prod.id}')">+ PEDIR</button>
-                        </div>
+            produtos.forEach((p) => {
+                const artigo = document.createElement("article");
+                artigo.className = "produto";
+
+                artigo.innerHTML = `
+                    <div class="produto-imagem" style="position: relative;">
+                        <img src="${p.imagem}" alt="${p.nome}">
+                    </div>
+                    <div class="produto-informacoes">
+                        <h3>${p.nome}</h3>
+                        <p class="descricao">${p.descricao}</p>
+                        <p class="preco">R$ ${Number(p.preco).toFixed(2).replace('.', ',')}</p>
+                        <button type="button" class="botao-adicionar" data-produto="${p.nome}" data-preco="${p.preco}">
+                            Adicionar
+                        </button>
                     </div>
                 `;
-                if (prod.categoria === 'hamburguer') {
-                    listaHamb.appendChild(card);
+
+                if (p.categoria === "hamburgueres") {
+                    hamburgueresContainer.appendChild(artigo);
                 } else {
-                    listaPorc.appendChild(card);
+                    porcoesContainer.appendChild(artigo);
                 }
+            });
+
+            reativarEventosBotoes();
+        }
+
+        // Sempre aberto independente do horário ou status externo
+        function pedidosEstaoAbertos() {
+            return true;
+        }
+
+        // Elementos do DOM e Carrinho
+        const modal = document.getElementById("modal-produto");
+        const observacaoProduto = document.getElementById("observacao-produto");
+        const fecharModal = document.getElementById("fechar-modal");
+        const modalNomeProduto = document.getElementById("modal-nome-produto");
+        const modalDescricaoProduto = document.getElementById("modal-descricao-produto");
+        const modalPrecoProduto = document.getElementById("modal-preco-produto");
+        const modalTotal = document.getElementById("modal-total");
+        const quantidadeProduto = document.getElementById("quantidade-produto");
+        const diminuirQuantidade = document.getElementById("diminuir-quantidade");
+        const aumentarQuantidade = document.getElementById("aumentar-quantidade");
+        const adicionarCarrinhoModal = document.getElementById("adicionar-carrinho-modal");
+
+        const itensCarrinho = document.getElementById("itens-carrinho");
+        const quantidadeCarrinho = document.getElementById("quantidade-carrinho");
+        const valorTotal = document.getElementById("valor-total");
+        const finalizarPedido = document.getElementById("finalizar-pedido");
+        const carrinhoFlutuante = document.getElementById("carrinho-flutuante");
+        const abrirCarrinho = document.getElementById("abrir-carrinho");
+        const resumoCarrinho = document.getElementById("resumo-carrinho");
+        const painelCarrinho = document.getElementById("carrinho");
+        const dadosPedido = document.getElementById("dados-pedido");
+
+        function formatarMoeda(valor) {
+            return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+        }
+
+        function mostrarMensagem(texto) {
+            const mensagemAntiga = document.querySelector(".mensagem-sucesso");
+            if (mensagemAntiga) mensagemAntiga.remove();
+            
+            const div = document.createElement("div");
+            div.className = "mensagem-sucesso";
+            div.style.cssText = "position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #f28c28; color: #fff; padding: 14px 24px; border-radius: 8px; font-weight: bold; font-size: 15px; z-index: 99999; box-shadow: 0 4px 20px rgba(0,0,0,0.7); text-align: center; max-width: 90%;";
+            div.textContent = texto;
+            
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 4500);
+        }
+
+        function reativarEventosBotoes() {
+            document.querySelectorAll(".botao-adicionar").forEach(function (botao) {
+                botao.replaceWith(botao.cloneNode(true));
+            });
+
+            document.querySelectorAll(".botao-adicionar").forEach(function (botao) {
+                botao.addEventListener("click", function () {
+                    const nome = botao.dataset.produto;
+                    const preco = parseFloat(botao.dataset.preco);
+                    
+                    const produtoCache = produtosOriginais.find(p => p.nome === nome);
+                    const cardProduto = botao.closest(".produto");
+                    let descricaoCapturada = "";
+
+                    if (cardProduto && cardProduto.querySelector(".descricao")) {
+                        descricaoCapturada = cardProduto.querySelector(".descricao").innerHTML.trim();
+                    } else if (produtoCache && produtoCache.descricao) {
+                        descricaoCapturada = produtoCache.descricao;
+                    }
+
+                    produtoAtual = { nome, preco };
+                    quantidadeAtual = 1;
+                    observacaoProduto.value = "";
+
+                    modalNomeProduto.textContent = nome;
+                    modalDescricaoProduto.innerHTML = descricaoCapturada;
+                    modalPrecoProduto.textContent = formatarMoeda(preco);
+                    quantidadeProduto.textContent = quantidadeAtual;
+
+                    document.querySelectorAll('#modal-produto input[name="adicional"]').forEach(checkbox => checkbox.checked = false);
+                    ajustarAdicionaisPorPorcao(nome);
+                    atualizarTotalModal();
+
+                    modal.classList.add("ativo");
+                    modal.setAttribute("aria-hidden", "false");
+                });
             });
         }
 
-        function abrirModal(id) {
-            produtoSelecionado = produtosOriginais.find(p => p.id === id);
-            if (!produtoSelecionado) return;
+        document.querySelectorAll('#modal-produto input[name="adicional"]').forEach(c => {
+            c.addEventListener("change", atualizarTotalModal);
+        });
 
-            qtdModal = 1;
-            document.getElementById('modal-nome-produto').textContent = produtoSelecionado.nome;
-            document.getElementById('modal-descricao-produto').textContent = produtoSelecionado.descricao;
-            document.getElementById('modal-preco-produto').textContent = formatarMoeda(produtoSelecionado.preco);
-            document.getElementById('quantidade-produto').textContent = qtdModal;
-            document.getElementById('observacao-produto').value = '';
-
-            document.querySelectorAll('input[name="adicional"]').forEach(cb => cb.checked = false);
-
-            const labelMaionese = document.getElementById('label-maionese');
-            if (labelMaionese) {
-                labelMaionese.style.display = produtoSelecionado.categoria === 'porcao' ? 'flex' : 'none';
-            }
-
-            atualizarTotalModal();
-            const modal = document.getElementById('modal-produto');
-            modal.classList.add('ativo');
-            modal.style.display = 'flex';
+        fecharModal.addEventListener("click", fecharModalProduto);
+        function fecharModalProduto() {
+            modal.classList.remove("ativo");
+            modal.setAttribute("aria-hidden", "true");
+            produtoAtual = null;
         }
 
-        function fecharModal() {
-            const modal = document.getElementById('modal-produto');
-            modal.classList.remove('ativo');
-            modal.style.display = 'none';
+        modal.addEventListener("click", function (e) {
+            if (e.target === modal) fecharModalProduto();
+        });
+
+        aumentarQuantidade.addEventListener("click", () => {
+            quantidadeAtual++;
+            quantidadeProduto.textContent = quantidadeAtual;
+            atualizarTotalModal();
+        });
+
+        diminuirQuantidade.addEventListener("click", () => {
+            if (quantidadeAtual > 1) {
+                quantidadeAtual--;
+                quantidadeProduto.textContent = quantidadeAtual;
+                atualizarTotalModal();
+            }
+        });
+
+        function obterAdicionaisSelecionados() {
+            const adicionais = [];
+            document.querySelectorAll('#modal-produto input[name="adicional"]:checked').forEach(c => {
+                adicionais.push({ nome: c.value, preco: parseFloat(c.dataset.preco) });
+            });
+            return adicionais;
+        }
+
+        function calcularTotalProduto() {
+            if (!produtoAtual) return 0;
+            let adicionaisTotal = 0;
+            obterAdicionaisSelecionados().forEach(a => adicionaisTotal += a.preco);
+            return (produtoAtual.preco + adicionaisTotal) * quantidadeAtual;
         }
 
         function atualizarTotalModal() {
-            if (!produtoSelecionado) return;
-            let extras = 0;
-            document.querySelectorAll('input[name="adicional"]:checked').forEach(cb => {
-                extras += parseFloat(cb.dataset.preco || 0);
-            });
-            const total = (produtoSelecionado.preco + extras) * qtdModal;
-            document.getElementById('modal-total').textContent = formatarMoeda(total);
+            modalTotal.textContent = formatarMoeda(calcularTotalProduto());
         }
 
-        function atualizarCarrinhoUI() {
-            const itensEl = document.getElementById('itens-carrinho');
-            const qtdEl = document.getElementById('quantidade-carrinho');
-            const totalEl = document.getElementById('valor-total');
-            const resumoEl = document.getElementById('resumo-carrinho');
-            const btnFin = document.getElementById('finalizar-pedido');
+        function ajustarAdicionaisPorPorcao(nomeProduto) {
+            const nomesPorcoes = new Set(["Porção de Fritas", "Porção de Onion Rings", "Fritas Feliz"]);
+            const ehPorcao = nomesPorcoes.has(nomeProduto);
+            document.querySelectorAll('#modal-produto .adicional').forEach(adicional => {
+                const input = adicional.querySelector('input[type="checkbox"]');
+                if (!input) return;
+                const somentePorcao = input.dataset.apenasPorcao === "true";
+                if (ehPorcao) {
+                    adicional.style.display = somentePorcao ? "" : "none";
+                    input.disabled = !somentePorcao;
+                    if (!somentePorcao) input.checked = false;
+                } else {
+                    adicional.style.display = "";
+                    input.disabled = false;
+                }
+            });
+        }
 
-            const totalQtd = carrinho.reduce((acc, i) => acc + i.quantidade, 0);
-            const totalValor = carrinho.reduce((acc, i) => acc + i.total, 0);
+        adicionarCarrinhoModal.addEventListener("click", () => {
+            if (!produtoAtual) return;
+            const adicionais = obterAdicionaisSelecionados();
+            const observacao = observacaoProduto.value.trim();
+            let adicionaisTotal = 0;
+            adicionais.forEach(a => adicionaisTotal += a.preco);
 
-            qtdEl.textContent = `${totalQtd} ${totalQtd === 1 ? 'item' : 'itens'}`;
-            totalEl.textContent = formatarMoeda(totalValor);
-            resumoEl.textContent = `${totalQtd} ${totalQtd === 1 ? 'item' : 'itens'} • ${formatarMoeda(totalValor)}`;
-            btnFin.disabled = carrinho.length === 0;
+            carrinho.push({
+                id: Date.now(),
+                nome: produtoAtual.nome,
+                precoBase: produtoAtual.preco,
+                quantidade: quantidadeAtual,
+                adicionais,
+                observacao,
+                valorUnitario: produtoAtual.preco + adicionaisTotal
+            });
 
+            atualizarCarrinho();
+            fecharModalProduto();
+            mostrarMensagem(`${quantidadeAtual}x ${produtoAtual.nome} adicionado ao pedido!`);
+        });
+
+        function atualizarCarrinho() {
+            try {
+                localStorage.setItem("carrinho_burger301_demo", JSON.stringify(carrinho));
+            } catch (e) {}
+
+            if (!itensCarrinho) return;
+
+            itensCarrinho.innerHTML = "";
             if (carrinho.length === 0) {
-                itensEl.innerHTML = '<p class="carrinho-vazio">Seu carrinho está vazio.</p>';
+                itensCarrinho.innerHTML = `<p class="carrinho-vazio">Seu carrinho está vazio.</p>`;
+                quantidadeCarrinho.textContent = "0 itens";
+                valorTotal.textContent = formatarMoeda(0);
+                resumoCarrinho.textContent = "0 itens • R$ 0,00";
+                finalizarPedido.disabled = true;
+                carrinhoFlutuante.classList.remove("visivel");
                 return;
             }
 
-            itensEl.innerHTML = carrinho.map((item, idx) => `
-                <div class="item-carrinho">
-                    <div>
-                        <strong>${item.quantidade}x ${item.nome}</strong>
-                        ${item.adicionais.length ? `<small>+ ${item.adicionais.join(', ')}</small>` : ''}
-                        ${item.observacao ? `<small>Obs: ${item.observacao}</small>` : ''}
-                        <span>${formatarMoeda(item.total)}</span>
+            let total = 0, quantidadeItens = 0;
+            carrinho.forEach(item => {
+                const subtotal = item.valorUnitario * item.quantidade;
+                total += subtotal;
+                quantidadeItens += item.quantidade;
+
+                const div = document.createElement("div");
+                div.className = "item-carrinho";
+                div.innerHTML = `
+                    <div class="item-carrinho-info">
+                        <h3>${item.nome}</h3>
+                        <p class="controle-quantidade">
+                            <span>Qtd:</span>
+                            <button type="button" class="botao-diminuir" data-id="${item.id}">−</button>
+                            <strong>${item.quantidade}</strong>
+                            <button type="button" class="botao-aumentar" data-id="${item.id}">+</button>
+                        </p>
+                        ${item.adicionais.map(a => `<span>+ ${a.nome} — ${formatarMoeda(a.preco)}</span>`).join("")}
+                        ${item.observacao ? `<div>📝 ${item.observacao}</div>` : ""}
                     </div>
-                    <button type="button" onclick="removerItemCarrinho(${idx})" aria-label="Remover">✕</button>
-                </div>
-            `).join('');
-        }
-
-        function removerItemCarrinho(idx) {
-            carrinho.splice(idx, 1);
-            atualizarCarrinhoUI();
-        }
-
-        function fecharMenu() {
-            document.getElementById('menu-lateral').classList.remove('ativo');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderizarCardapio();
-            atualizarCarrinhoUI();
-
-            document.getElementById('btn-menu-toggle').addEventListener('click', () => {
-                document.getElementById('menu-lateral').classList.add('ativo');
+                    <div class="item-carrinho-acoes">
+                        <strong>${formatarMoeda(subtotal)}</strong>
+                        <button type="button" class="botao-remover" data-id="${item.id}">Remover</button>
+                    </div>
+                `;
+                itensCarrinho.appendChild(div);
             });
 
-            document.getElementById('btn-fechar-menu').addEventListener('click', fecharMenu);
-            document.getElementById('fechar-modal').addEventListener('click', fecharModal);
+            quantidadeCarrinho.textContent = `${quantidadeItens} ${quantidadeItens === 1 ? "item" : "itens"}`;
+            valorTotal.textContent = formatarMoeda(total);
+            resumoCarrinho.textContent = `${quantidadeItens} ${quantidadeItens === 1 ? "item" : "itens"} • ${formatarMoeda(total)}`;
+            finalizarPedido.disabled = false;
+            if (!dadosPedido.classList.contains("visivel")) carrinhoFlutuante.classList.add("visivel");
 
-            document.querySelectorAll('input[name="adicional"]').forEach(cb => {
-                cb.addEventListener('change', atualizarTotalModal);
+            configurarBotoesCarrinho();
+        }
+
+        function configurarBotoesCarrinho() {
+            document.querySelectorAll(".botao-remover").forEach(b => b.onclick = () => {
+                carrinho = carrinho.filter(i => i.id !== Number(b.dataset.id));
+                atualizarCarrinho();
             });
-
-            document.getElementById('diminuir-quantidade').addEventListener('click', () => {
-                if (qtdModal > 1) {
-                    qtdModal--;
-                    document.getElementById('quantidade-produto').textContent = qtdModal;
-                    atualizarTotalModal();
+            document.querySelectorAll(".botao-aumentar").forEach(b => b.onclick = () => {
+                const item = carrinho.find(i => i.id === Number(b.dataset.id));
+                if (item) { item.quantidade++; atualizarCarrinho(); }
+            });
+            document.querySelectorAll(".botao-diminuir").forEach(b => b.onclick = () => {
+                const item = carrinho.find(i => i.id === Number(b.dataset.id));
+                if (item) {
+                    item.quantidade--;
+                    if (item.quantidade <= 0) carrinho = carrinho.filter(i => i.id !== Number(b.dataset.id));
+                    atualizarCarrinho();
                 }
             });
+        }
 
-            document.getElementById('aumentar-quantidade').addEventListener('click', () => {
-                qtdModal++;
-                document.getElementById('quantidade-produto').textContent = qtdModal;
-                atualizarTotalModal();
-            });
+        if (abrirCarrinho) abrirCarrinho.onclick = () => painelCarrinho.classList.add("aberto");
 
-            document.getElementById('adicionar-carrinho-modal').addEventListener('click', () => {
-                if (!produtoSelecionado) return;
-                const adicionais = [];
-                let valorExtras = 0;
-                document.querySelectorAll('input[name="adicional"]:checked').forEach(cb => {
-                    adicionais.push(cb.value);
-                    valorExtras += parseFloat(cb.dataset.preco || 0);
-                });
-                const obs = document.getElementById('observacao-produto').value.trim();
-                const totalItem = (produtoSelecionado.preco + valorExtras) * qtdModal;
-
-                carrinho.push({
-                    nome: produtoSelecionado.nome,
-                    quantidade: qtdModal,
-                    adicionais,
-                    observacao: obs,
-                    total: totalItem
-                });
-
-                atualizarCarrinhoUI();
-                fecharModal();
-            });
-
-            const painelCarrinho = document.getElementById('carrinho');
-            document.getElementById('abrir-carrinho').addEventListener('click', () => {
-                painelCarrinho.classList.add('ativo');
-                painelCarrinho.style.display = 'flex';
-            });
-
-            document.getElementById('continuar-comprando').addEventListener('click', () => {
-                painelCarrinho.classList.remove('ativo');
-                painelCarrinho.style.display = 'none';
-            });
-
-            document.getElementById('finalizar-pedido').addEventListener('click', () => {
-                painelCarrinho.classList.remove('ativo');
-                painelCarrinho.style.display = 'none';
-                const dados = document.getElementById('dados-pedido');
-                dados.style.display = 'block';
-                dados.scrollIntoView({ behavior: 'smooth' });
-            });
-
-            document.getElementById('voltar-cardapio-dados').addEventListener('click', () => {
-                document.getElementById('cardapio').scrollIntoView({ behavior: 'smooth' });
-            });
-
-            document.getElementById('formulario-pedido').addEventListener('change', () => {
-                const pag = document.querySelector('input[name="pagamento"]:checked');
-                const campoTroco = document.getElementById('campo-troco');
-                campoTroco.style.display = (pag && pag.value === 'Dinheiro') ? 'block' : 'none';
-            });
+        document.querySelectorAll("#continuar-comprando, #voltar-cardapio-dados").forEach(botao => {
+            botao.onclick = (e) => {
+                e.preventDefault();
+                if (painelCarrinho) painelCarrinho.classList.remove("aberto");
+                if (dadosPedido) dadosPedido.classList.remove("visivel");
+                if (carrinho && carrinho.length > 0 && carrinhoFlutuante) {
+                    carrinhoFlutuante.classList.add("visivel");
+                }
+            };
         });
+
+        if (finalizarPedido) {
+            finalizarPedido.onclick = () => {
+                if (carrinho.length === 0) return;
+                
+                mostrarMensagem("🍟 Vai esquecer da porção de Fritas ou Onion Rings? 😋");
+
+                painelCarrinho.classList.remove("aberto");
+                carrinhoFlutuante.classList.remove("visivel");
+                dadosPedido.classList.add("visivel");
+                setTimeout(() => dadosPedido.scrollIntoView({ behavior: "smooth" }), 100);
+            };
+        }
+
+        document.querySelectorAll('input[name="pagamento"]').forEach(r => {
+            r.onchange = () => {
+                const campoTroco = document.getElementById("campo-troco");
+                if (campoTroco) campoTroco.style.display = (r.value === "Dinheiro" && r.checked) ? "block" : "none";
+            };
+        });
+
+        // Menu Hambúrguer
+        const btnMenuToggle = document.getElementById('btn-menu-toggle');
+        const btnFecharMenu = document.getElementById('btn-fechar-menu');
+        const menuLateral = document.getElementById('menu-lateral');
+
+        if (btnMenuToggle) {
+            btnMenuToggle.addEventListener('click', () => {
+                menuLateral.classList.add('ativo');
+            });
+        }
+
+        if (btnFecharMenu) {
+            btnFecharMenu.addEventListener('click', () => {
+                menuLateral.classList.remove('ativo');
+            });
+        }
+
+        window.addEventListener('click', (e) => {
+            if (menuLateral && menuLateral.classList.contains('ativo')) {
+                if (!menuLateral.contains(e.target) && !btnMenuToggle.contains(e.target)) {
+                    menuLateral.classList.remove('ativo');
+                }
+            }
+        });
+
+        function fecharMenuEColar(alvoId) {
+            if (menuLateral) {
+                menuLateral.classList.remove('ativo');
+            }
+            
+            if (alvoId === 'rodape-duvidas') {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                return;
+            }
+
+            const secao = document.getElementById(alvoId);
+            if (secao) {
+                secao.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        window.fecharMenuEColar = fecharMenuEColar;
+
+        // Inicializa o cardápio e o carrinho
+        renderizarCardapio(produtosOriginais);
+        atualizarCarrinho();
     </script>
 </body>
+
 </html>
