@@ -417,7 +417,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                     <div class="space-y-4">
                         <div id="modal-img-container" class="relative h-72 bg-gray-100 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center">
-                            <img id="modal-img" src="" alt="Produto" width="500" height="500" class="w-full h-full object-cover">
+                            <img id="modal-img" src="" alt="Produto" width="500" height="500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80';" class="w-full h-full object-cover">
                             <div id="modal-badge-texto" class="absolute hidden bg-black/60 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md max-w-[80%] text-center"></div>
                         </div>
                         <div id="modal-variacoes-container" class="space-y-2">
@@ -540,6 +540,8 @@
 
     <!-- SCRIPT LOCAL (SEM BANCO DE DADOS EXTERNO) -->
     <script>
+        const IMAGEM_FALLBACK = "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80";
+
         const produtosFicticios = [
             {
                 id: "prod-1",
@@ -573,7 +575,7 @@
                 destaque: true,
                 descricao: "Vela vegetal de queima limpa em pote de vidro reutilizável, com notas herbais de lavanda e fundo amadeirado de cedro.",
                 imagens: [
-                    { url: "https://images.unsplash.com/photo-1603006905393-c2233ca8969c?auto=format&fit=crop&w=800&q=80", texto: "Pote 180g", posV: "bottom", posH: "left" }
+                    { url: "https://images.unsplash.com/photo-1602874801007-bd458bb1b8b6?auto=format&fit=crop&w=800&q=80", texto: "Pote 180g", posV: "bottom", posH: "left" }
                 ]
             },
             {
@@ -835,7 +837,7 @@
             const imgData = produtoAtualModal.imagens[fotoSelecionadaModalIndex] || produtoAtualModal.imagens[0];
             
             const imgEl = document.getElementById('modal-img');
-            imgEl.src = imgData.url || '';
+            imgEl.src = imgData.url || IMAGEM_FALLBACK;
 
             const badgeEl = document.getElementById('modal-badge-texto');
             if (imgData.texto && imgData.texto.trim() !== '') {
@@ -875,7 +877,7 @@
 
             const imagemSelecionada = (produtoAtualModal.imagens && produtoAtualModal.imagens[fotoSelecionadaModalIndex]) 
                 ? produtoAtualModal.imagens[fotoSelecionadaModalIndex].url 
-                : ((produtoAtualModal.imagens && produtoAtualModal.imagens.length > 0) ? produtoAtualModal.imagens[0].url : '');
+                : ((produtoAtualModal.imagens && produtoAtualModal.imagens.length > 0) ? produtoAtualModal.imagens[0].url : IMAGEM_FALLBACK);
 
             const variacaoTexto = (produtoAtualModal.imagens && produtoAtualModal.imagens[fotoSelecionadaModalIndex] && produtoAtualModal.imagens[fotoSelecionadaModalIndex].texto) 
                 ? produtoAtualModal.imagens[fotoSelecionadaModalIndex].texto 
@@ -941,7 +943,7 @@
                 total += item.preco;
                 container.innerHTML += `
                     <div class="flex items-center gap-4 py-3 first:pt-0">
-                        <img src="${item.imagem}" alt="${item.nome}" width="64" height="64" loading="lazy" class="w-16 h-16 object-cover rounded-xl border border-gray-100 flex-shrink-0">
+                        <img src="${item.imagem}" alt="${item.nome}" width="64" height="64" loading="lazy" onerror="this.onerror=null; this.src='${IMAGEM_FALLBACK}';" class="w-16 h-16 object-cover rounded-xl border border-gray-100 flex-shrink-0">
                         <div class="flex-grow">
                             <h4 class="font-bold text-sm text-gray-800 line-clamp-1">${item.nome}</h4>
                             <p class="text-xs text-[#0E8685] font-semibold mt-0.5">Variação: ${item.variacao}</p>
@@ -1021,12 +1023,12 @@
                 return;
             }
             destaques.forEach(p => {
-                const imgCapa = (p.imagens && p.imagens.length > 0) ? p.imagens[0].url : '';
+                const imgCapa = (p.imagens && p.imagens.length > 0) ? p.imagens[0].url : IMAGEM_FALLBACK;
                 container.innerHTML += `
                     <div onclick='abrirModalProdutoId("${p.id}")' class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col justify-between border border-gray-100 cursor-pointer group">
                         <div>
                             <div class="relative h-64 bg-gray-100 overflow-hidden">
-                                <img src="${imgCapa}" alt="${p.nome}" width="400" height="400" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <img src="${imgCapa}" alt="${p.nome}" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='${IMAGEM_FALLBACK}';" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                 <span class="absolute top-3 left-3 bg-[#C5A880] text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Destaque</span>
                             </div>
                             <div class="p-6">
@@ -1073,12 +1075,12 @@
             }
 
             itensPagina.forEach(p => {
-                const imgCapa = (p.imagens && p.imagens.length > 0) ? p.imagens[0].url : '';
+                const imgCapa = (p.imagens && p.imagens.length > 0) ? p.imagens[0].url : IMAGEM_FALLBACK;
                 container.innerHTML += `
                     <div onclick='abrirModalProdutoId("${p.id}")' class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col justify-between border border-gray-100 cursor-pointer group">
                         <div>
                             <div class="relative h-64 bg-gray-100 overflow-hidden">
-                                <img src="${imgCapa}" alt="${p.nome}" width="400" height="400" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <img src="${imgCapa}" alt="${p.nome}" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='${IMAGEM_FALLBACK}';" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                 <span class="absolute top-3 left-3 bg-[#C5A880] text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">${p.categoria}</span>
                             </div>
                             <div class="p-6">
